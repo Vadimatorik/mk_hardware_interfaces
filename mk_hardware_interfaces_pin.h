@@ -36,3 +36,20 @@ public:
 
     virtual bool    read    ( void )            const = 0;
 };
+
+class pin_multifunc_base : public pin_base {
+public:
+    virtual bool    reinit  ( uint32_t number_cfg )  const = 0;
+};
+
+
+class pin_multifunc_it_base : public pin_multifunc_base {
+public:
+    virtual bool    check_it    (void)          const = 0;
+    virtual void    clear_it    (void)          const = 0;
+};
+
+class global_port_base {
+public:
+    virtual void init_all_port  ( void )        const = 0;
+};
