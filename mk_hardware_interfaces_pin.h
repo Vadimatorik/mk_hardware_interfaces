@@ -22,12 +22,34 @@ public:
     virtual void    reset   ( void )            const = 0;
 
     //**********************************************************************
+    // Метод инвертирует значение на выходе.
+    //**********************************************************************
+    virtual void	toggle	( void )            const = 0;
+
+    //**********************************************************************
     // Метод устанавливает на выводе заданное состояние (логический ноль или
     // логическую единицу), если вывод ранее был настроен как выход.
     //**********************************************************************
-    virtual void    set     ( uint8_t state )   const = 0;
     virtual void    set     ( bool state )      const = 0;
     virtual void    set     ( int state )       const = 0;
+    virtual void    set     ( uint8_t state )   const = 0;
 
     virtual bool    read    ( void )            const = 0;
+};
+
+class pin_multifunc_base : public pin_base {
+public:
+    virtual bool    reinit  ( uint32_t number_cfg )  const = 0;
+};
+
+
+class pin_multifunc_it_base : public pin_multifunc_base {
+public:
+    virtual bool    check_it    (void)          const = 0;
+    virtual void    clear_it    (void)          const = 0;
+};
+
+class global_port_base {
+public:
+    virtual void init_all_port  ( void )        const = 0;
 };
