@@ -51,5 +51,5 @@ public:
 
 class global_port_base {
 public:
-    virtual void init_all_port  ( void )        const = 0;
+    virtual void reinit_all_ports  ( void )        const = 0;
 };
