@@ -4,6 +4,9 @@
 
 enum class RCC_RESULT {
     OK                  = 0,            // Операция успешна произведена.
+    ERROR_CFG_NUMBER    = 1,
+    ERROR_CLK_INIT      = 2,
+    ERROR_OSC_INIT      = 3
 };
 
 class rcc_base {
