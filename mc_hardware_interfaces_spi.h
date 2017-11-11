@@ -98,4 +98,6 @@ public:
     //                  ( если будет использоваться ).
     //**********************************************************************
     virtual SPI::BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
+
+    virtual SPI::BASE_RESULT set_prescaler ( uint32_t prescaler ) const = 0;
 };
