@@ -1,8 +1,16 @@
 #pragma once
 
+
+// Сторожевой таймер.
+// Суть: настраивает встроенный системный таймер на "счет вниз"
+// (согласно конфигурации пользователя), создает поток
+// с наименьшим приоритетом (на +1 больше, чем IDLE),
+// в котором при любой возможности сбрасывается настроенный таймер
+// (устанавливается начальное значение, от которого идет счет вниз).
+// При достижении 0 МК перезагружается.
 class wdt_base {
 public:
-    virtual void init ( void ) const = 0;
-    virtual void reset ( void ) const = 0;
-    virtual void reset_service ( void ) const = 0;
+	virtual void init ( void )					const = 0;
+	virtual void reset ( void )					const = 0;
+	virtual void reset_service ( void )			const = 0;
 };
