@@ -2,18 +2,13 @@
 
 #include <stdint.h>
 
+#include "mc_hardware_interfaces_base.h"
+
 namespace SPI {
 
 enum class STEP_MODE {
     INC         = 1,
     DEC         = -1
-};
-
-enum class BASE_RESULT {
-    OK                  = 0,            // Операция успешна произведена.
-    TIME_OUT            = 1,            // Был произведён выход по истечении времени ожидания.
-    LENGTH_ERROR        = 2,             // Попытка передать/принять пакет 0-й длины.
-    ERROR_INIT          = 3,
 };
 
 }
@@ -27,7 +22,7 @@ public:
     // 1. Отключить SPI.
     // 2. Заполнить все регистры.
     //**********************************************************************
-    virtual SPI::BASE_RESULT reinit ( void ) const = 0;
+    virtual BASE_RESULT reinit ( void ) const = 0;
 
     //**********************************************************************
     // Методы должены включать/отключать SPI (не перетерая поля регистров).
@@ -46,7 +41,7 @@ public:
     //
     // ЗАМЕЧАНИЕ: входной прием не ведется (входные данные просто теряются)!
     //**********************************************************************
-    virtual SPI::BASE_RESULT tx           ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms, const SPI::STEP_MODE step_mode = SPI::STEP_MODE::INC ) const = 0;
+    virtual BASE_RESULT tx           ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms, const SPI::STEP_MODE step_mode = SPI::STEP_MODE::INC ) const = 0;
 
 
     //**********************************************************************
@@ -67,7 +62,7 @@ public:
     // ЗАМЕЧАНИЕ: p_array_tx может быть равен p_array_rx. Тогда
     // принятые данные перезапишут массив исходящих данных!
     //**********************************************************************
-    virtual SPI::BASE_RESULT tx ( const uint8_t* const  p_array_tx, uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
+    virtual BASE_RESULT tx ( const uint8_t* const  p_array_tx, uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
 
     //**********************************************************************
     // p_item_tx    -   указатель на переменную, которая будет передаваться
@@ -81,7 +76,7 @@ public:
     //
     // Передаем 1 байт count раз.
     //**********************************************************************
-    virtual SPI::BASE_RESULT tx_one_item ( const uint8_t p_item_tx, const uint16_t count, const uint32_t timeout_ms ) const = 0;
+    virtual BASE_RESULT tx_one_item ( const uint8_t p_item_tx, const uint16_t count, const uint32_t timeout_ms ) const = 0;
 
     //**********************************************************************
     // p_array_rx   -   указатель на массив, в который будет
@@ -97,7 +92,7 @@ public:
     // value_out    -   значение, которое будет отправляться по TX
     //                  ( если будет использоваться ).
     //**********************************************************************
-    virtual SPI::BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
+    virtual BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
 
-    virtual SPI::BASE_RESULT set_prescaler ( uint32_t prescaler ) const = 0;
+    virtual BASE_RESULT set_prescaler ( uint32_t prescaler ) const = 0;
 };
