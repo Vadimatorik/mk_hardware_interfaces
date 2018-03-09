@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef __cplusplus
 
 // Сторожевой таймер.
 // Суть: настраивает встроенный системный таймер на "счет вниз"
@@ -14,3 +15,5 @@ public:
 	virtual void reset ( void )					const = 0;
 	virtual void reset_service ( void )			const = 0;
 };
+
+#endif
