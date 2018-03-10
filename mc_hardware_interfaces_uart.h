@@ -6,7 +6,7 @@
 
 class uart_base {
 public:
-	virtual void 			reinit		( void ) const = 0;
+	virtual bool 			reinit		( void ) const = 0;
 
 	virtual void 			on     		( void ) const = 0;
 	virtual void 			off    		( void ) const = 0;
