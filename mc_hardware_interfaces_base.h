@@ -12,4 +12,6 @@ enum class BASE_RESULT {
 	NOT_DATA			= 4,			// Нет запрашиваемых данных.
 };
 
+#define check_result( base_result_variable )			if ( base_result_variable != BASE_RESULT::OK ) return base_result_variable;
+
 #endif
