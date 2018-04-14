@@ -11,5 +11,5 @@ enum class RCC_RESULT {
 
 class rcc_base {
 public:
-    virtual RCC_RESULT set_cfg ( uint32_t number_cfg_set ) const = 0;
+    virtual RCC_RESULT setCfg ( uint32_t numberCfg ) const = 0;
 };
