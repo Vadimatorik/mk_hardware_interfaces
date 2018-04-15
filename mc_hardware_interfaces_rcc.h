@@ -9,7 +9,7 @@ enum class RCC_RESULT {
     ERROR_OSC_INIT      = 3
 };
 
-class rcc_base {
+class rccBase {
 public:
     virtual RCC_RESULT setCfg ( uint32_t numberCfg ) const = 0;
 };
