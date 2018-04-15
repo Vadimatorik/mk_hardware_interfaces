@@ -37,13 +37,13 @@ public:
 	virtual bool	read		( void )					const = 0;
 };
 
-class PinMultifuncBase : public PinBase {
+class PinMultifuncBase {
 public:
 	virtual bool	reinit		( uint32_t numberCfg )		const = 0;
 };
 
 
-class PinMultifuncItBase : public PinMultifuncBase {
+class PinMultifuncItBase {
 public:
 	virtual bool	checkIt	( void )						const = 0;
 	virtual void	clearIt	( void )						const = 0;
