@@ -4,7 +4,7 @@
 
 #ifdef __cplusplus
 
-class DacOneChannelBase {
+class DacBase {
 public:
 	//**********************************************************************
 	// Метод должен:
@@ -17,8 +17,7 @@ public:
 	//**********************************************************************
 	// Выставление заданного значения на канал.
 	//**********************************************************************
-	virtual void	setValue		( uint32_t& value )			const = 0;
-	virtual void	setValue		( const uint32_t value )	const = 0;
+	virtual void	setValue		( const uint32_t ch, const uint32_t value )	const = 0;
 };
 
 #endif
