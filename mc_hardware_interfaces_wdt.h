@@ -10,7 +10,7 @@ public:
 	 * Сбрасывает текущие настройки WDT и инициализирует его заново.
 	 * После инициализации WDT автоматически запускается.
 	 *
-	 * \param[in]	numberCfg		-	выбранная конфигурация таймера.
+	 * \param[in]	numberCfg		-	выбранный режим работы.
 	 *
 	 * \return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
@@ -27,6 +27,7 @@ public:
 	 * Метод сбрасывает WDT на сервисное значение.
 	 */
 	virtual	BASE_RESULT	resetService	( void )									= 0;
+
 };
 
 #endif

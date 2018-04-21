@@ -17,10 +17,12 @@ public:
 	 * Замечание: управление тактовым сигналом аппаратного
 	 * модуля осуществляется внутри метода автоматически.
 	 *
+	 * \param[in]	numberCfg		-	выбранный режим работы.
+	 *
 	 * 	\return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	в противном случае.	}
 	 */
-	virtual BASE_RESULT	reinit			( void )										= 0;
+	virtual	BASE_RESULT	reinit			( uint32_t numberCfg = 0 )						= 0;
 
 	/*!
 	 * Выставляет заданное значение на канал.

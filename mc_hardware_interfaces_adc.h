@@ -17,10 +17,12 @@ public:
 	 * Замечание: управление тактовым сигналом аппаратного
 	 * модуля осуществляется внутри метода автоматически.
 	 *
+	 * \param[in]	numberCfg		-	выбранный режим работы.
+	 *
 	 * 	\return		{	BASE_RESULT::OK			-	инициализация прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
 	 */
-	virtual BASE_RESULT		reinit								( void )	= 0;
+	virtual BASE_RESULT		reinit								( uint32_t numberCfg = 0 )	= 0;
 
 	/*!
 	 * Инициирует непрерывное преобразование на канале.
@@ -29,14 +31,15 @@ public:
 	 *												была успешно начата.
 	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
 	 */
-	virtual BASE_RESULT		startContinuousConversion			( void )	= 0;
+	virtual BASE_RESULT		startContinuousConversion			( void )					= 0;
 
 	/// Останавливает непрерывное преобразование на канале.
-	virtual void			stopContinuousConversion			( void )	= 0;
+	virtual void			stopContinuousConversion			( void )					= 0;
 
 	/// Возвращает результат измерения.
 	/// \return		{	Результат измерения напряжения на канале.	}
-	virtual uint32_t		getMeasurement						( void )	= 0;
+	virtual uint32_t		getMeasurement						( void )					= 0;
+
 };
 
 #endif

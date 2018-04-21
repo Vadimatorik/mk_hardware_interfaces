@@ -74,6 +74,7 @@ public:
 	 * действия чтобы можно было успешно выйти из прерывания.
 	 */
 	virtual void			clearInterruptFlag		( void )										= 0;
+
 };
 
 /*!
@@ -112,6 +113,7 @@ public:
 	 * \param[in]	duty			-	кожффициент заполнения в диапазоне 0..1.
 	 */
 	virtual void			setDuty					( float duty )									= 0;
+
 };
 
 #endif
