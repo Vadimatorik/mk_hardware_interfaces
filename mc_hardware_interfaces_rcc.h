@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef __cplusplus
+
 #include <stdint.h>
 
 /// Варианты ответа на вызов метода setCfg класса RccBase.
@@ -27,3 +29,5 @@ public:
 	 */
 	virtual	RCC_RESULT	setCfg		( uint32_t numberCfg = 0 )					= 0;
 };
+
+#endif

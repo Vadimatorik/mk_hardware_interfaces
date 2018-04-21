@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef __cplusplus
+
 #include <stdint.h>
 
 /*!
@@ -70,4 +72,5 @@ public:
 	virtual void	clearIt			( void )					= 0;
 };
 
+#endif
 

@@ -1,16 +1,8 @@
 #pragma once
 
-#include <stdint.h>
+#ifdef __cplusplus
 
 #include "mc_hardware_interfaces_base.h"
-
-/*!
- * Направление движения по массиву при отправке сообщения.
- */
-enum class STEP_MODE {
-	INC		 =	1,				/// От младшего к старшему.
-	DEC		 =	-1				/// От старшего к младшему.
-};
 
 /*!
  * Класс предназначен для использования SPI в режиме мастера с разрядностью
@@ -25,15 +17,21 @@ public:
 	 * Замечание: управление тактовым сигналом аппаратного
 	 * модуля осуществляется внутри метода автоматически.
 	 *
-	 * \return		{	BASE_RESULT::OK			-	инициализация прошла успешно.
-	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
+	 * \return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
+	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
+	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BASE_RESULT		reinit		( void )										= 0;
+	virtual	BASE_RESULT		reinit		( uint32_t numberCfg = 0 )						= 0;
 
-	/// Запускает I2C.
-	virtual	void			on			( void )										= 0;
+	/*!
+	 * Запускает SPI.
+	 *
+	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
+	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
+	 */
+	virtual	BASE_RESULT		on			( void )										= 0;
 
-	/// Останавливает I2C.
+	/// Останавливает SPI.
 	virtual	void			off			( void )										= 0;
 
 	/*!
@@ -57,7 +55,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual BASE_RESULT tx	(	const uint8_t*		const txArray,
+	virtual BASE_RESULT	tx	(	const uint8_t*		const txArray,
 								const uint16_t&		length		=	1,
 								const uint32_t&		timeoutMs	=	100,
 								const STEP_MODE		stepMode	=	STEP_MODE::INC )	= 0;
@@ -144,12 +142,15 @@ public:
 								const uint8_t&		outValue	=	0xFF )				= 0;
 
 	/*!
-	 * Устанавливает делитель.
+	 * Устанавливает делитель SPI.
 	 * \param[in]	prescalerNumber		-	номер конфигурации делителя.
 	 *
 	 * \return		{	BASE_RESULT::OK					-	делитель установлен.
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.	}
 	 */
-	virtual BASE_RESULT	setPrescaler	( uint32_t prescalerNumber )					= 0;
+	virtual BASE_RESULT	setPrescaler	(	uint32_t prescalerNumber	=	0	)		= 0;
 };
+
+#endif
+
