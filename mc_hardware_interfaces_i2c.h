@@ -20,6 +20,7 @@ public:
 	 * \param[in]	numberCfg		-	выбранный режим работы.
 	 *
 	 * \return		{	BASE_RESULT::OK			-	инициализация прошла успешно.
+	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
 	 */
 	virtual	BASE_RESULT		reinit		( uint32_t numberCfg = 0 )							= 0;
