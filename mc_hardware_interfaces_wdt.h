@@ -4,7 +4,7 @@
 
 #include "mc_hardware_interfaces_base.h"
 
-class wdt_base {
+class WdtBase {
 public:
 	/*!
 	 * Сбрасывает текущие настройки WDT и инициализирует его заново.
@@ -21,12 +21,12 @@ public:
 	/*!
 	 * Метод сбрасывает WDT на рабочее значение.
 	 */
-	virtual	BASE_RESULT	reset			( void )									= 0;
+	virtual	void	reset			( void )										= 0;
 
 	/*!
 	 * Метод сбрасывает WDT на сервисное значение.
 	 */
-	virtual	BASE_RESULT	resetService	( void )									= 0;
+	virtual	void	resetService	( void )										= 0;
 
 };
 

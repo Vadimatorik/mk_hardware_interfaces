@@ -56,9 +56,8 @@ public:
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
 	virtual BASE_RESULT	tx	(	const uint8_t*		const txArray,
-								const uint16_t&		length		=	1,
-								const uint32_t&		timeoutMs	=	100,
-								const STEP_MODE		stepMode	=	STEP_MODE::INC )	= 0;
+								const uint16_t		length		=	1,
+								const uint32_t		timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Передает массив по SPI и забирает ответ.
@@ -88,9 +87,8 @@ public:
 	 */
 	virtual BASE_RESULT tx	(	const uint8_t*		const txArray,
 								uint8_t*			rxArray,
-								const uint16_t&		length		=	1,
-								const uint32_t&		timeoutMs	=	100,
-								const STEP_MODE		stepMode	=	STEP_MODE::INC	)	= 0;
+								const uint16_t		length		=	1,
+								const uint32_t		timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Передает один элемент count раз.
@@ -137,9 +135,9 @@ public:
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
 	virtual	BASE_RESULT	rx	(	uint8_t*			rxArray,
-								const uint16_t&		length		=	1,
-								const uint32_t&		timeoutMs	=	100,
-								const uint8_t&		outValue	=	0xFF )				= 0;
+								const uint16_t		length		=	1,
+								const uint32_t		timeoutMs	=	100,
+								const uint8_t		outValue	=	0xFF )				= 0;
 
 	/*!
 	 * Устанавливает делитель SPI.
