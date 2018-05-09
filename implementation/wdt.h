@@ -14,7 +14,7 @@
 #include "stm32f1xx_hal_conf.h"
 #endif
 
-#ifdef HAL_WDT_MODULE_ENABLED
+#ifdef HAL_WWDG_MODULE_ENABLED
 
 #include "mc_hardware_interfaces_wdt.h"
 #include "user_os.h"

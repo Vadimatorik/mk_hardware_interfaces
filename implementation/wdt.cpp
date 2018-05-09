@@ -1,6 +1,6 @@
 #include "wdt.h"
 
-#ifdef HAL_WDT_MODULE_ENABLED
+#ifdef HAL_WWDG_MODULE_ENABLED
 
 BASE_RESULT Wdt::reinit ( uint32_t numberCfg ) {
 	if ( numberCfg >= this->countCfg )

@@ -3,6 +3,20 @@
 #ifdef __cplusplus
 
 #ifdef STM32F4
+#include "stm32f4xx_hal_conf.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_conf.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_conf.h"
+#endif
+
+#ifdef HAL_ADC_MODULE_ENABLED
+
+#ifdef STM32F4
 #include "stm32f4xx_hal_adc.h"
 #include "stm32f4xx_hal_rcc.h"
 #endif
@@ -16,8 +30,6 @@
 #include "stm32f1xx_hal_adc.h"
 #include "stm32f1xx_hal_rcc.h"
 #endif
-
-#ifdef HAL_ADC_MODULE_ENABLED
 
 #include "mc_hardware_interfaces_adc.h"
 
