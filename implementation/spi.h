@@ -4,57 +4,82 @@
 #include "user_os.h"
 #include "mc_hardware_interfaces_spi.h"
 #include "pin.h"
-#include "stm32f1xx_hal_spi.h"
-#include "stm32f1xx_hal_dma.h"
+#include "stm32f2xx_hal_spi.h"
+#include "stm32f2xx_hal_dma.h"
 
-struct spi_master_8bit_cfg {
-    SPI_TypeDef*                SPIx;
-    const pin_base*             pin_cs;
-    uint32_t                    clk_polarity;                   // SPI_Clock_Polarity.
-    uint32_t                    clk_phase;                      // SPI_Clock_Phase.
-    uint32_t                    baud_rate_prescaler;            // SPI_BaudRate_Prescaler
-// В случае, если DMA не используется (передача и прием на прерываниях),
-// то следует указать nullptr.
-    DMA_Channel_TypeDef*		dma_tx;                         // Из мерии DMA1_Channelx.
-    DMA_Channel_TypeDef*		dma_rx;                         // Из мерии DMA1_Channelx.
+struct SpiMaster8BitCfg {
+	SPI_TypeDef*				SPIx;
 
-	uint8_t						handler_prio;					// 1, 2..15.
+	const PinBase*				pinCs;
+
+	uint32_t					clkPolarity;					/// SPI_Clock_Polarity.
+	uint32_t					clkPhase;						/// SPI_Clock_Phase.
+
+	uint32_t*					baudratePrescalerArray;			/// SPI_BaudRate_Prescaler
+	uint32_t					numberBaudratePrescalerCfg;		/// Колличество режимов.
+
+	/// В случае, если DMA не используется (передача и прием на прерываниях),
+	/// то следует указать nullptr.
+	DMA_Stream_TypeDef*			dmaTx;							/// Из мерии DMAx_Streamx.
+	DMA_Stream_TypeDef*			dmaRx;							/// Из мерии DMAx_Streamx.
+	uint32_t					dmaTxCh;						/// Из серии DMA_CHANNEL_x.
+	uint32_t					dmaRxCh;						/// Из серии DMA_CHANNEL_x.
 };
 
-class spi_master_8bit : public spi_master_8bit_base {
+class SpiMaster8Bit : public SpiMaster8BitBase {
 public:
-    spi_master_8bit( const spi_master_8bit_cfg* const cfg );
-    BASE_RESULT  reinit ( void ) const;
-    void on     ( void ) const;
-    void off    ( void ) const;
-    BASE_RESULT tx ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms, const SPI::STEP_MODE step_mode = SPI::STEP_MODE::INC ) const;
-    BASE_RESULT tx ( const uint8_t* const  p_array_tx, uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms ) const;
-    BASE_RESULT tx_one_item ( const uint8_t p_item_tx, const uint16_t count, const uint32_t timeout_ms ) const;
-    BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const;
-    BASE_RESULT set_prescaler ( uint32_t prescaler ) const;
+	SpiMaster8Bit( const SpiMaster8BitCfg* const cfg, const uint32_t countCfg );
 
-    void    give_semaphore ( void );                        						// Отдать симафор из прерывания (внутренняя функция.
+	BASE_RESULT		reinit			( uint32_t numberCfg = 0 );
 
-    void	handler ( void );
+	BASE_RESULT		on				( void );
+	void			off				( void );
+
+	BASE_RESULT	tx				(	const uint8_t*		const txArray,
+									const uint16_t		length		=	1,
+									const uint32_t		timeoutMs	=	100	);
+
+	BASE_RESULT tx				(	const uint8_t*		const txArray,
+									uint8_t*			rxArray,
+									const uint16_t		length		=	1,
+									const uint32_t		timeoutMs	=	100	);
+
+	BASE_RESULT	txOneItem		(	const uint8_t		txByte,
+									const uint16_t		count		=	1,
+									const uint32_t		timeoutMs	=	100	);
+
+	BASE_RESULT	rx				(	uint8_t*			rxArray,
+									const uint16_t		length		=	1,
+									const uint32_t		timeoutMs	=	100,
+									const uint8_t		outValue	=	0xFF );
+
+	BASE_RESULT		setPrescaler	(	uint32_t prescalerNumber		=	0	);
+
+
+	void	giveSemaphore			( void );			// Отдать симафор из прерывания (внутренняя функция.
+	void	irqHandler		( void );
 
 private:
-    bool    init_clk_spi        ( void ) const;            							// Включаем тактирование SPI и DMA (если используется).
-    bool    init_spi            ( void ) const;            							// Инициализируем только SPI (считается, что он уже затактирован).
-    bool    init_spi_irq        ( void ) const;            							// Включаем нужные прерывания (по SPI (если нет DMA) иначе DMA).
+	bool	initClkSpi		( void );											// Включаем тактирование SPI и DMA (если используется).
+	bool	initSpi			( void );											// Инициализируем только SPI (считается, что он уже затактирован).
 
-    uint8_t                             				num_cfg;                   	// Колличество структур переинициализации.
+	const SpiMaster8BitCfg*					const cfg;
+	const uint32_t							countCfg;
 
-    mutable SPI_HandleTypeDef               			handle;
+	uint32_t*								baudratePrescalerArray;
+	uint32_t								numberBaudratePrescalerCfg;
 
-    mutable USER_OS_STATIC_BIN_SEMAPHORE_BUFFER     	sb;
-    mutable USER_OS_STATIC_BIN_SEMAPHORE				s = nullptr;
+	SPI_HandleTypeDef						spi;
 
-    uint8_t												runtime_flags    = 0;
-    mutable DMA_HandleTypeDef							hdma_tx;
-    mutable DMA_HandleTypeDef							hdma_rx;
+	USER_OS_STATIC_BIN_SEMAPHORE_BUFFER		sb;
+	USER_OS_STATIC_BIN_SEMAPHORE			s = nullptr;
 
-    const spi_master_8bit_cfg* const cfg;
+	DMA_HandleTypeDef						dmaTx;
+	DMA_HandleTypeDef						dmaRx;
 
-    USER_OS_STATIC_MUTEX                    			m = nullptr;
-    USER_OS_STATIC_MUTEX_BUFFER             			mb;
+	PinBase*								cs;
+
+	USER_OS_STATIC_MUTEX					m = nullptr;
+	USER_OS_STATIC_MUTEX_BUFFER				mb;
+
 };

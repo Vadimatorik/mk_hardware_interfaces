@@ -1,20 +1,22 @@
+#pragma once
+
 #include "mc_hardware_interfaces_rcc.h"
-#include "stm32f1xx_hal_rcc.h"
-#include "stm32f1xx_hal_flash.h"
+#include "stm32f2xx_hal_rcc.h"
+#include "stm32f2xx_hal_flash.h"
 #include <stdint.h>
 
-struct rcc_cfg {
-	RCC_ClkInitTypeDef			clk;
+struct rccCfg {
 	RCC_OscInitTypeDef			osc;
-	uint32_t					f_latency;
+	RCC_ClkInitTypeDef			clk;
+	uint32_t					fLatency;
 };
 
-class rcc : public rcc_base {
+class Rcc : public RccBase {
 public:
-    rcc( const rcc_cfg* const cfg, const uint32_t number_cfg ) : cfg( cfg ), number_cfg( number_cfg ) {}
-    RCC_RESULT set_cfg ( uint32_t number_cfg_set ) const;
+	Rcc( const rccCfg* const cfg, const uint32_t cfgCount ) : cfg( cfg ), cfgCount( cfgCount ) {}
+	RCC_RESULT setCfg ( const uint32_t number_cfg_set = 0 );
 
 private:
-    const rcc_cfg*              const cfg;
-    const uint32_t              number_cfg;
+	const rccCfg*				const cfg;
+	const uint32_t				cfgCount;
 };

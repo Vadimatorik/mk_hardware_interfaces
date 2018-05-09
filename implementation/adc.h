@@ -1,29 +1,42 @@
-#include "mc_hardware_interfaces_adc.h"
-#include "stm32f1xx_hal_adc.h"
-#include "stm32f1xx_hal_rcc.h"
+#pragma once
 
-struct adc_one_channel_cfg {
+#ifdef __cplusplus
+
+#include "mc_hardware_interfaces_adc.h"
+#include "stm32f2xx_hal_adc.h"
+#include "stm32f2xx_hal_rcc.h"
+
+struct AdcOneChannelCfg {
 	ADC_TypeDef*		ADCx;
-	uint32_t			clock_prescaler;							// ADC_ClockPrescaler
+	uint32_t			clockPrescaler;								// ADC_ClockPrescaler
 	uint32_t			resolution;									// ADC_Resolution
-	uint32_t			data_align;									// ADC_Data_align
+	uint32_t			dataAlign;									// ADC_Data_align
 	uint32_t			channel;									// ADC_channels
-	uint32_t			sampling_time;								// ADC_sampling_times
+	uint32_t			samplingTime;								// ADC_sampling_times
 };
 
-class adc_one_channel : public adc_one_channel_base {
+class AdcOneChannel : public AdcOneChannelBase {
 public:
-	adc_one_channel( const adc_one_channel_cfg* const cfg );
+	AdcOneChannel( const AdcOneChannelCfg* const cfg, const uint32_t countCfg );
 
-	bool reinit ( void )													const;
-	bool start_continuous_conversion ( void )								const;
-	bool stop_continuous_conversion ( void )								const;
-	void get_measurement ( uint32_t& channel_measurement )					const;
+	BASE_RESULT		reinit								( uint32_t numberCfg = 0 );
 
-	void clk_enable ( void )												const;
-	void clk_disable ( void )												const;
+	BASE_RESULT		startContinuousConversion			( void );
+	void			stopContinuousConversion			( void );
+	uint32_t		getMeasurement						( void );
+
+	void			irqHandler							( void );
 
 private:
-	mutable ADC_HandleTypeDef				adc_st;
-	mutable ADC_ChannelConfTypeDef			channel_cfg;
+	void			clkEnable							( void );
+	void			clkDisable							( void );
+
+
+	const AdcOneChannelCfg*			const cfg;
+	const uint32_t					countCfg;
+
+	ADC_HandleTypeDef				adc;
+	ADC_ChannelConfTypeDef			channelCfg;
 };
+
+#endif

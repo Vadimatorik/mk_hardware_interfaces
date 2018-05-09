@@ -1,76 +1,75 @@
 #include "adc.h"
 
-adc_one_channel::adc_one_channel( const adc_one_channel_cfg* const cfg ) {
-	this->adc_st.Instance					= cfg->ADCx;
-	this->adc_st.Init.DataAlign				= cfg->data_align;
-	this->adc_st.Init.ScanConvMode			= ENABLE;
-	this->adc_st.Init.ContinuousConvMode	= ENABLE;
-	this->adc_st.Init.NbrOfConversion		= 1;
+AdcOneChannel::AdcOneChannel( const AdcOneChannelCfg* const cfg, const uint32_t countCfg ) :
+	cfg( cfg ), countCfg( countCfg ) {}
 
-	this->channel_cfg.Channel				= cfg->channel;
-	this->channel_cfg.Rank					= 1;
-	this->channel_cfg.SamplingTime			= cfg->sampling_time;
-}
+BASE_RESULT AdcOneChannel::reinit ( uint32_t numberCfg ) {
+	if ( numberCfg >= this->countCfg )	return BASE_RESULT::INPUT_VALUE_ERROR;
 
-bool adc_one_channel::reinit ( void ) const {
-	this->clk_enable();
-	HAL_ADC_DeInit( &this->adc_st );
+	/// Заполняем HAL-структуру.
+	this->adc.Instance					= this->cfg[ numberCfg ].ADCx;
+	this->adc.Init.ClockPrescaler		= this->cfg[ numberCfg ].clockPrescaler;
+	this->adc.Init.Resolution			= this->cfg[ numberCfg ].resolution;
+	this->adc.Init.DataAlign			= this->cfg[ numberCfg ].dataAlign;
+	this->adc.Init.ScanConvMode			= DISABLE;
+	this->adc.Init.ContinuousConvMode	= ENABLE;
+	this->adc.Init.DiscontinuousConvMode= DISABLE;
+	this->adc.Init.ExternalTrigConv		= ADC_SOFTWARE_START;
+	this->adc.Init.ExternalTrigConvEdge	= ADC_EXTERNALTRIGCONVEDGE_NONE;
+	this->adc.Init.NbrOfConversion		= 1;
+	this->adc.Init.DMAContinuousRequests= DISABLE;
+	this->adc.Init.EOCSelection			= ADC_EOC_SEQ_CONV;
+
+	this->channelCfg.Channel			= this->cfg[ numberCfg ].channel;
+	this->channelCfg.Rank				= 1;
+	this->channelCfg.SamplingTime		= this->cfg[ numberCfg ].samplingTime;
+
+	this->clkDisable();
+	this->clkEnable();
+
+	HAL_ADC_DeInit( &this->adc );
 
 	HAL_StatusTypeDef r;
-	r = HAL_ADC_Init( &this->adc_st );
-	if ( r != HAL_OK ) return false;
-	r = HAL_ADC_ConfigChannel( &this->adc_st, &this->channel_cfg );
-	if ( r != HAL_OK ) return false;
+	r = HAL_ADC_Init( &this->adc );
+	if ( r != HAL_OK ) return BASE_RESULT::ERROR_INIT;
 
-	return true;
+	r = HAL_ADC_ConfigChannel( &this->adc, &this->channelCfg );
+	if ( r != HAL_OK ) return BASE_RESULT::ERROR_INIT;
+
+	return BASE_RESULT::OK;
 }
 
-void adc_one_channel::clk_enable ( void ) const {
-	switch( ( uint32_t )this->adc_st.Instance ) {
-#ifdef ADC1
+void AdcOneChannel::clkEnable ( void ) {
+	switch( ( uint32_t )this->adc.Instance ) {
 		case ADC1_BASE: __HAL_RCC_ADC1_CLK_ENABLE(); break;
-#endif
-
-#ifdef ADC2
 		case ADC2_BASE: __HAL_RCC_ADC2_CLK_ENABLE(); break;
-#endif
-
-#ifdef ADC3
 		case ADC3_BASE: __HAL_RCC_ADC3_CLK_ENABLE(); break;
-#endif
 	}
 }
 
-void adc_one_channel::clk_disable ( void ) const {
-	switch( ( uint32_t )this->adc_st.Instance ) {
-#ifdef ADC1
+void AdcOneChannel::clkDisable ( void ) {
+	switch( ( uint32_t )this->adc.Instance ) {
 		case ADC1_BASE:	__HAL_RCC_ADC1_CLK_DISABLE(); break;
-#endif
-
-#ifdef ADC2
 		case ADC2_BASE:	__HAL_RCC_ADC2_CLK_DISABLE(); break;
-#endif
-
-#ifdef ADC3
 		case ADC3_BASE:	__HAL_RCC_ADC3_CLK_DISABLE(); break;
-#endif
 	}
 }
 
-bool adc_one_channel::start_continuous_conversion ( void ) const {
+BASE_RESULT AdcOneChannel::startContinuousConversion ( void ) {
 	HAL_StatusTypeDef r;
-	r = HAL_ADC_Start( &this->adc_st );
-	if ( r != HAL_OK ) return false;
-	return true;
+	r = HAL_ADC_Start( &this->adc );
+	if ( r != HAL_OK ) return BASE_RESULT::ERROR_INIT;
+	return BASE_RESULT::OK;
 }
 
-bool adc_one_channel::stop_continuous_conversion ( void ) const {
-	HAL_StatusTypeDef r;
-	r = HAL_ADC_Stop( &this->adc_st );
-	if ( r != HAL_OK ) return false;
-	return true;
+void AdcOneChannel::stopContinuousConversion ( void ) {
+	HAL_ADC_Stop( &this->adc );
 }
 
-void adc_one_channel::get_measurement ( uint32_t& channel_measurement ) const {
-	channel_measurement = HAL_ADC_GetValue( &this->adc_st );
+uint32_t AdcOneChannel::getMeasurement ( void ) {
+	return this->adc.Instance->DR;
+}
+
+void AdcOneChannel::irqHandler ( void ) {
+	this->adc.Instance->SR = 0;
 }

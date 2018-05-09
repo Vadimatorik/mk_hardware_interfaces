@@ -4,43 +4,53 @@
 
 #include "dma.h"
 #include "mc_hardware_interfaces_uart.h"
-#include "stm32f1xx_hal_conf.h"
+#include "stm32f2xx_hal_conf.h"
 #include "user_os.h"
 
-struct uart_cfg {
-	USART_TypeDef               *UARTx;
+struct uartCfg {
+	USART_TypeDef*				uart;
 	uint32_t					baudrate;
-	uint32_t					mode;							// UART_MODE_RX/UART_MODE_TX/UART_MODE_TX_RX.
-    DMA_Channel_TypeDef*         dma_tx;                         // Из мерии DMAx_Streamx.
-    uint32_t                    dma_tx_ch;                      // Из серии DMA_CHANNEL_x.
-	uint8_t						handler_prio;					// 1, 2..15.
+	uint32_t					mode;						// UART_MODE_RX/UART_MODE_TX/UART_MODE_TX_RX.
+	DMA_Stream_TypeDef*			dmaTx;						// Из мерии DMAx_Streamx.
+	uint32_t					dmaTxCh;					// Из серии DMA_CHANNEL_x.
 };
 
-class uart : public uart_base {
+class Uart : public UartBase {
 public:
-	uart( const uart_cfg* const cfg );
-	bool 			reinit		( void ) const;
+	Uart( const uartCfg* const cfg, const uint32_t countCfg );
 
-	void 			on     		( void ) const;
-	void 			off    		( void ) const;
+	BASE_RESULT		reinit						( uint32_t numberCfg = 0 );
 
-    BASE_RESULT		tx			( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms ) const;
-    BASE_RESULT		get_byte	( uint8_t* data ) const;
+	BASE_RESULT		on							( void );
+	void			off							( void );
 
-    void			irq_handler				( void ) const;
+	BASE_RESULT		tx							(	const uint8_t*		const txArray,
+													const uint16_t&		length		=	1,
+													const uint32_t&		timeoutMs	=	100	);
 
-    void			give_semaphore			( void ) const;
+	BASE_RESULT		getByte						(	uint8_t* retrunData,
+													const uint32_t&		timeoutMs	=	100	);
+
+	BASE_RESULT		getByteWitchout				(	uint8_t* retrunData	);
+
+	void			irqHandler					( void );
+
+	/// Для внутреннего пользования HAL-а.
+	void			giveSemaphore				( void );
 
 private:
-    bool 			init_clk	 			( void ) const;
+	bool 			clkInit						( void );
+	bool			clkDeinit					( void );
 
-    const uart_cfg*										const cfg;
-    mutable DMA_HandleTypeDef							hdma_tx;
-    mutable	UART_HandleTypeDef							handle;
-    mutable USER_OS_STATIC_BIN_SEMAPHORE				s = nullptr;
-    mutable USER_OS_STATIC_MUTEX                    	m = nullptr;
-    mutable USER_OS_STATIC_BIN_SEMAPHORE_BUFFER     	sb;
-    mutable USER_OS_STATIC_MUTEX_BUFFER             	mb;
+	const uartCfg*								const cfg;
+	const uint32_t								countCfg;
+
+	DMA_HandleTypeDef							dmaTx;
+	UART_HandleTypeDef							uart;
+	USER_OS_STATIC_BIN_SEMAPHORE				s = nullptr;
+	USER_OS_STATIC_MUTEX						m = nullptr;
+	USER_OS_STATIC_BIN_SEMAPHORE_BUFFER			sb;
+	USER_OS_STATIC_MUTEX_BUFFER					mb;
 };
 
 #endif

@@ -1,10 +1,11 @@
 #include "port.h"
 
-#include "stm32f1xx_hal_gpio.h"
+#include "stm32f2xx_hal_gpio.h"
 
-void global_port::reinit_all_ports ( void ) const {
-    for ( uint32_t l = 0; l < this->number_cfg; l++ ) {
-        gpio_clk_en( (const GPIO_TypeDef*)cfg[l].GPIOx );
-        HAL_GPIO_Init( (GPIO_TypeDef*)cfg[l].GPIOx, ( GPIO_InitTypeDef* ) ( &cfg[l].init ) );
+BASE_RESULT GlobalPort::reinitAllPorts ( void ) {
+    for ( uint32_t l = 0; l < this->countCfg; l++ ) {
+		gpioClkEn( (const GPIO_TypeDef*)this->cfg[l].GPIOx );
+        HAL_GPIO_Init( ( GPIO_TypeDef* )cfg[l].GPIOx, ( GPIO_InitTypeDef* ) ( &cfg[l].init ) );
     }
+	return BASE_RESULT::OK;
 }

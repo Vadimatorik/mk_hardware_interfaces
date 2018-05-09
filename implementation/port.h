@@ -3,17 +3,18 @@
 #ifdef __cplusplus
 
 #include "pin.h"
+#include "mc_hardware_interfaces_port.h"
 
 #ifdef HAL_GPIO_MODULE_ENABLED
 
-class global_port : public global_port_base {
+class GlobalPort : public GlobalPortBase {
 public:
-    global_port( const pin_cfg* const cfg, uint32_t number_cfg ) : cfg( cfg ), number_cfg( number_cfg ) {}
-    void reinit_all_ports ( void ) const;
+	GlobalPort( const pinCfg* const cfg, uint32_t countCfg ) : cfg( cfg ), countCfg( countCfg ) {}
+	BASE_RESULT	reinitAllPorts		( void );
 
 private:
-    const pin_cfg* const cfg;
-    const uint32_t number_cfg;
+	const pinCfg*				const cfg;
+	const uint32_t				countCfg;
 };
 
 #endif
