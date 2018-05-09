@@ -4,13 +4,13 @@
 #include "user_os.h"
 #include "mc_hardware_interfaces_spi.h"
 #include "pin.h"
-#include "stm32f2xx_hal_spi.h"
-#include "stm32f2xx_hal_dma.h"
+#include "stm32f4xx_hal_spi.h"
+#include "stm32f4xx_hal_dma.h"
 
 struct SpiMaster8BitCfg {
 	SPI_TypeDef*				SPIx;
 
-	const PinBase*				pinCs;
+	PinBase*				pinCs;
 
 	uint32_t					clkPolarity;					/// SPI_Clock_Polarity.
 	uint32_t					clkPhase;						/// SPI_Clock_Phase.

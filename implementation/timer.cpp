@@ -63,7 +63,6 @@ static void clkTimInit ( TIM_TypeDef* tim ) {
 TimCounter::TimCounter ( const timCounterCfg* const cfg ) : cfg( cfg ) {
 	this->tim.Instance						= this->cfg->tim;
 
-	this->tim.Init.AutoReloadPreload		= TIM_AUTORELOAD_PRELOAD_ENABLE;
 	this->tim.Init.ClockDivision			= TIM_CLOCKDIVISION_DIV1;
 	this->tim.Init.CounterMode				= TIM_COUNTERMODE_UP;
 }
@@ -109,7 +108,6 @@ uint32_t TimCounter::getCounter ( void ) {
 TimCompOneChannel::TimCompOneChannel ( const timCompOneChannelCfg* const cfg ) : cfg( cfg ) {
 	this->tim.Instance						= this->cfg->tim;
 
-	this->tim.Init.AutoReloadPreload		= TIM_AUTORELOAD_PRELOAD_ENABLE;
 	this->tim.Init.ClockDivision			= TIM_CLOCKDIVISION_DIV1;
 	this->tim.Init.CounterMode				= TIM_COUNTERMODE_UP;
 
@@ -159,7 +157,6 @@ void TimCompOneChannel::off ( void ) {
 TimPwmOneChannel::TimPwmOneChannel ( const timPwmOneChannelCfg* const cfg ) : cfg( cfg ) {
 	this->tim.Instance						= this->cfg->tim;
 
-	this->tim.Init.AutoReloadPreload		= TIM_AUTORELOAD_PRELOAD_ENABLE;
 	this->tim.Init.ClockDivision			= TIM_CLOCKDIVISION_DIV1;
 	this->tim.Init.CounterMode				= TIM_COUNTERMODE_UP;
 
@@ -211,7 +208,6 @@ void TimPwmOneChannel::setDuty ( float duty ) {
 TimInterrupt::TimInterrupt( const timInterruptCfg* const cfg ) : cfg( cfg ) {
 	this->tim.Instance						= this->cfg->tim;
 
-	this->tim.Init.AutoReloadPreload		= TIM_AUTORELOAD_PRELOAD_ENABLE;
 	this->tim.Init.ClockDivision			= TIM_CLOCKDIVISION_DIV1;
 	this->tim.Init.CounterMode				= TIM_COUNTERMODE_UP;
 }
@@ -238,7 +234,6 @@ BASE_RESULT TimInterrupt::on ( void ) {
 	if ( this->tim.State == HAL_TIM_STATE_RESET )
 		return BASE_RESULT::ERROR_INIT;
 
-	this->tim.Instance->CNT = 0;
 	HAL_TIM_Base_Start_IT( &this->tim );
 
 	return BASE_RESULT::OK;
@@ -249,5 +244,5 @@ void TimInterrupt::off ( void ) {
 }
 
 void TimInterrupt::clearInterruptFlag ( void ) {
-	this->tim.Instance->SR = 0;
+	HAL_TIM_IRQHandler( &this->tim );
 }

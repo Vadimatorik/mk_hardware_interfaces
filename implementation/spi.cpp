@@ -67,7 +67,7 @@ BASE_RESULT SpiMaster8Bit::reinit ( uint32_t numberCfg  ) {
 	if ( this->initSpi() == false )
 		return BASE_RESULT::ERROR_INIT;
 
-	this->cs										=	this->cs;
+	this->cs										=	this->cfg[ numberCfg ].pinCs;
 
 	return BASE_RESULT::OK;
 }

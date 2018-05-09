@@ -2,7 +2,7 @@
 
 #ifdef __cplusplus
 
-#include "stm32f2xx_hal_conf.h"
+#include "stm32f4xx_hal_conf.h"
 #include "mc_hardware_interfaces_pin.h"
 
 #ifdef HAL_GPIO_MODULE_ENABLED

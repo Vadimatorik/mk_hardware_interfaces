@@ -1,5 +1,5 @@
-#include "stm32f2xx_hal_dma.h"
-#include "stm32f2xx_hal_rcc.h"
+#include "stm32f4xx_hal_dma.h"
+#include "stm32f4xx_hal_rcc.h"
 
 #ifdef __cplusplus
 extern "C" {

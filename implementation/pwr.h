@@ -3,7 +3,7 @@
 #ifdef __cplusplus
 
 #include "mc_hardware_interfaces_pwr.h"
-#include "stm32f2xx_hal_conf.h"
+#include "stm32f4xx_hal_conf.h"
 #include "user_os.h"
 
 struct pwrCfg {

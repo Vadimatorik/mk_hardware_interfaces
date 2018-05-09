@@ -3,8 +3,8 @@
 #ifdef __cplusplus
 
 #include "mc_hardware_interfaces_dac.h"
-#include "stm32f2xx_hal_dac.h"
-#include "stm32f2xx_hal_rcc.h"
+#include "stm32f4xx_hal_dac.h"
+#include "stm32f4xx_hal_rcc.h"
 
 struct DacCfg {
 	uint32_t			buffer;				// DAC_OUTPUTBUFFER_ENABLE/DAC_OUTPUTBUFFER_DISABLE.

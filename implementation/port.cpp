@@ -1,6 +1,6 @@
 #include "port.h"
 
-#include "stm32f2xx_hal_gpio.h"
+#include "stm32f4xx_hal_gpio.h"
 
 BASE_RESULT GlobalPort::reinitAllPorts ( void ) {
     for ( uint32_t l = 0; l < this->countCfg; l++ ) {

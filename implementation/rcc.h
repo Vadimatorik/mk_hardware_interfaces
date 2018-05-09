@@ -1,8 +1,8 @@
 #pragma once
 
 #include "mc_hardware_interfaces_rcc.h"
-#include "stm32f2xx_hal_rcc.h"
-#include "stm32f2xx_hal_flash.h"
+#include "stm32f4xx_hal_rcc.h"
+#include "stm32f4xx_hal_flash.h"
 #include <stdint.h>
 
 struct rccCfg {
