@@ -1,16 +1,33 @@
 #pragma once
 
+#ifdef __cplusplus
+
+#ifdef STM32F4
+#include "stm32f4xx_hal_spi.h"
+#include "stm32f4xx_hal_dma.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_spi.h"
+#include "stm32f2xx_hal_dma.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_spi.h"
+#include "stm32f1xx_hal_dma.h"
+#endif
+
+#ifdef HAL_SPI_MODULE_ENABLED
+
 #include "dma.h"
 #include "user_os.h"
 #include "mc_hardware_interfaces_spi.h"
 #include "pin.h"
-#include "stm32f4xx_hal_spi.h"
-#include "stm32f4xx_hal_dma.h"
 
 struct SpiMaster8BitCfg {
 	SPI_TypeDef*				SPIx;
 
-	PinBase*				pinCs;
+	PinBase*					pinCs;
 
 	uint32_t					clkPolarity;					/// SPI_Clock_Polarity.
 	uint32_t					clkPhase;						/// SPI_Clock_Phase.
@@ -83,3 +100,7 @@ private:
 	USER_OS_STATIC_MUTEX_BUFFER				mb;
 
 };
+
+#endif
+
+#endif

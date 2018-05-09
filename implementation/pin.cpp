@@ -1,5 +1,7 @@
 #include "pin.h"
 
+#ifdef HAL_GPIO_MODULE_ENABLED
+
 void gpioClkEn (  const GPIO_TypeDef* GPIOx ) {
 	switch ( (uint32_t)GPIOx ) {
 #ifdef GPIOA
@@ -91,3 +93,5 @@ bool PinMultifuncIt::checkIt ( void ) {
 void PinMultifuncIt::clearIt ( void ) {
 	__HAL_GPIO_EXTI_CLEAR_IT( this->exitPin );
 }
+
+#endif

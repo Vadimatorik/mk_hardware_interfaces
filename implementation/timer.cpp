@@ -1,5 +1,7 @@
 #include "timer.h"
 
+#ifdef HAL_TIM_MODULE_ENABLED
+
 // Включаем тактирование SPI.
 static void clkTimInit ( TIM_TypeDef* tim ) {
 	switch ( ( uint32_t )tim ) {
@@ -246,3 +248,5 @@ void TimInterrupt::off ( void ) {
 void TimInterrupt::clearInterruptFlag ( void ) {
 	HAL_TIM_IRQHandler( &this->tim );
 }
+
+#endif

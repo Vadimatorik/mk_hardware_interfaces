@@ -1,5 +1,7 @@
 #include "dac.h"
 
+#ifdef HAL_DAC_MODULE_ENAB
+
 Dac::Dac( const DacCfg* const cfg, const uint32_t countCfg ) :
 	cfg( cfg ), countCfg( countCfg ) {
 	this->dac.Instance							= DAC;
@@ -58,3 +60,5 @@ void Dac::clkEnable ( void ) {
 void Dac::clkDisable ( void ) {
 	__HAL_RCC_DAC_CLK_DISABLE();
 }
+
+#endif

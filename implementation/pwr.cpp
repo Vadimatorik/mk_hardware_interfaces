@@ -1,5 +1,7 @@
 #include "pwr.h"
 
+#ifdef HAL_PWR_MODULE_ENABLED
+
 BASE_RESULT Pwr::reinit ( uint32_t numberCfg ) {
 	if ( numberCfg >= this->countCfg )
 		return BASE_RESULT::INPUT_VALUE_ERROR;
@@ -23,3 +25,5 @@ void Pwr::pvdDisable ( void ) {
 void Pwr::irqHandler ( void ) {
 	HAL_PWR_PVD_IRQHandler();
 }
+
+#endif

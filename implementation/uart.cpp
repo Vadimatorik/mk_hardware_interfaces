@@ -1,5 +1,7 @@
 #include "uart.h"
 
+#ifdef HAL_UART_MODULE_ENABLED
+
 Uart::Uart( const uartCfg* const cfg, uint32_t countCfg  ) :
 	cfg( cfg ), countCfg( countCfg ) {
 	this->uart.Init.HwFlowCtl							= UART_HWCONTROL_NONE;
@@ -215,3 +217,5 @@ bool Uart::clkDeinit ( void ) {
 	};
 	return false;
 }
+
+#endif

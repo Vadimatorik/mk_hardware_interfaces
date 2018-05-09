@@ -1,8 +1,25 @@
 #pragma once
 
-#include "mc_hardware_interfaces_rcc.h"
+#ifdef __cplusplus
+
+#ifdef STM32F4
 #include "stm32f4xx_hal_rcc.h"
 #include "stm32f4xx_hal_flash.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_rcc.h"
+#include "stm32f2xx_hal_flash.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_rcc.h"
+#include "stm32f1xx_hal_flash.h"
+#endif
+
+#ifdef HAL_RCC_MODULE_ENABLED
+
+#include "mc_hardware_interfaces_rcc.h"
 #include <stdint.h>
 
 struct rccCfg {
@@ -20,3 +37,7 @@ private:
 	const rccCfg*				const cfg;
 	const uint32_t				cfgCount;
 };
+
+#endif
+
+#endif

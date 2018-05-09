@@ -2,9 +2,22 @@
 
 #ifdef __cplusplus
 
+#ifdef STM32F4
+#include "stm32f4xx_hal_conf.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_conf.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_conf.h"
+#endif
+
+#ifdef HAL_UART_MODULE_ENABLED
+
 #include "dma.h"
 #include "mc_hardware_interfaces_uart.h"
-#include "stm32f4xx_hal_conf.h"
 #include "user_os.h"
 
 struct uartCfg {
@@ -52,5 +65,7 @@ private:
 	USER_OS_STATIC_BIN_SEMAPHORE_BUFFER			sb;
 	USER_OS_STATIC_MUTEX_BUFFER					mb;
 };
+
+#endif
 
 #endif

@@ -2,9 +2,24 @@
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_adc.h"
+#ifdef STM32F4
 #include "stm32f4xx_hal_adc.h"
 #include "stm32f4xx_hal_rcc.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_adc.h"
+#include "stm32f2xx_hal_rcc.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_adc.h"
+#include "stm32f1xx_hal_rcc.h"
+#endif
+
+#ifdef HAL_ADC_MODULE_ENABLED
+
+#include "mc_hardware_interfaces_adc.h"
 
 struct AdcOneChannelCfg {
 	ADC_TypeDef*		ADCx;
@@ -38,5 +53,7 @@ private:
 	ADC_HandleTypeDef				adc;
 	ADC_ChannelConfTypeDef			channelCfg;
 };
+
+#endif
 
 #endif

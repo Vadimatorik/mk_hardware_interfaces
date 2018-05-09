@@ -1,5 +1,7 @@
 #include "wdt.h"
 
+#ifdef HAL_WDT_MODULE_ENABLED
+
 BASE_RESULT Wdt::reinit ( uint32_t numberCfg ) {
 	if ( numberCfg >= this->countCfg )
 		return BASE_RESULT::INPUT_VALUE_ERROR;
@@ -17,7 +19,7 @@ BASE_RESULT Wdt::reinit ( uint32_t numberCfg ) {
 
 	IWDG->KR	= 0xAAAA;								// Перезагружаем WDT.
 
-	USER_OS_STATIC_TASK_CREATE( this->task, "wdt", 64, ( void* )this, this->cfg->taskPrio, this->task_stack, &this->task_struct );
+	USER_OS_STATIC_TASK_CREATE( this->task, "wdt", 64, ( void* )this, this->cfg->taskPrio, this->taskStack, &this->taskStruct );
 
 	return BASE_RESULT::OK;
 }
@@ -50,3 +52,5 @@ void Wdt::task ( void* p_obj ) {
 		USER_OS_TASK_DELAY_UNTIL( &last_wake_time, time_out );
 	}
 }
+
+#endif

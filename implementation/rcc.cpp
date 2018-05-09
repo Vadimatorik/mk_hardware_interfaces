@@ -1,5 +1,7 @@
 #include "rcc.h"
 
+#ifdef HAL_RCC_MODULE_ENABLED
+
 RCC_RESULT Rcc::setCfg ( const uint32_t numberCfg ) {
 	if ( numberCfg >= this->cfgCount ) return RCC_RESULT::ERROR_CFG_NUMBER;
 
@@ -13,3 +15,5 @@ RCC_RESULT Rcc::setCfg ( const uint32_t numberCfg ) {
 
 	return RCC_RESULT::OK;
 }
+
+#endif

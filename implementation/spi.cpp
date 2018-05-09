@@ -1,6 +1,8 @@
 #include "spi.h"
 #include <string.h>
 
+#ifdef HAL_SPI_MODULE_ENABLED
+
 SpiMaster8Bit::SpiMaster8Bit( const SpiMaster8BitCfg* const cfg, const uint32_t countCfg ) :
 	cfg( cfg ), countCfg( countCfg ) {
 	this->spi.obj									=	this;
@@ -309,3 +311,5 @@ bool SpiMaster8Bit::initSpi ( void ) {
 
 	return true;
 }
+
+#endif

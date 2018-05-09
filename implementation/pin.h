@@ -2,10 +2,21 @@
 
 #ifdef __cplusplus
 
+#ifdef STM32F4
 #include "stm32f4xx_hal_conf.h"
-#include "mc_hardware_interfaces_pin.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_conf.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_conf.h"
+#endif
 
 #ifdef HAL_GPIO_MODULE_ENABLED
+
+#include "mc_hardware_interfaces_pin.h"
 
 #define PIN_COUNT(x) sizeof(x)/sizeof(x[0])
 

@@ -2,8 +2,21 @@
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_pwr.h"
+#ifdef STM32F4
 #include "stm32f4xx_hal_conf.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_conf.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_conf.h"
+#endif
+
+#ifdef HAL_PWR_MODULE_ENABLED
+
+#include "mc_hardware_interfaces_pwr.h"
 #include "user_os.h"
 
 struct pwrCfg {
@@ -29,5 +42,7 @@ private:
 
 	uint32_t								nowCfg;
 };
+
+#endif
 
 #endif

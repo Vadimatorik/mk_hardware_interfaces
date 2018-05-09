@@ -1,8 +1,25 @@
 #pragma once
 
-#include "mc_hardware_interfaces_timer.h"
+#ifdef __cplusplus
+
+#ifdef STM32F4
 #include "stm32f4xx_hal_tim.h"
 #include "stm32f4xx_hal_rcc.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_tim.h"
+#include "stm32f2xx_hal_rcc.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_tim.h"
+#include "stm32f1xx_hal_rcc.h"
+#endif
+
+#ifdef HAL_TIM_MODULE_ENABLED
+
+#include "mc_hardware_interfaces_timer.h"
 
 struct clkTimBaseCfg {
 	const uint32_t					period;					// 0..0xFFFF или 0..0xFFFFFFFF
@@ -119,3 +136,5 @@ private:
 
 	TIM_HandleTypeDef				tim;
 };
+
+#endif

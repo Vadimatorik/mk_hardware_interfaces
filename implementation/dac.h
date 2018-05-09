@@ -2,9 +2,24 @@
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_dac.h"
+#ifdef STM32F4
 #include "stm32f4xx_hal_dac.h"
 #include "stm32f4xx_hal_rcc.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_dac.h"
+#include "stm32f2xx_hal_rcc.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_dac.h"
+#include "stm32f1xx_hal_rcc.h"
+#endif
+
+#ifdef HAL_DAC_MODULE_ENABLED
+
+#include "mc_hardware_interfaces_dac.h"
 
 struct DacCfg {
 	uint32_t			buffer;				// DAC_OUTPUTBUFFER_ENABLE/DAC_OUTPUTBUFFER_DISABLE.
@@ -28,5 +43,7 @@ private:
 	DAC_HandleTypeDef				dac;
 	DAC_ChannelConfTypeDef			dacCh;
 };
+
+#endif
 
 #endif

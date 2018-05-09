@@ -2,8 +2,21 @@
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_wdt.h"
+#ifdef STM32F4
 #include "stm32f4xx_hal_conf.h"
+#endif
+
+#ifdef STM32F2
+#include "stm32f2xx_hal_conf.h"
+#endif
+
+#ifdef STM32F1
+#include "stm32f1xx_hal_conf.h"
+#endif
+
+#ifdef HAL_WDT_MODULE_ENABLED
+
+#include "mc_hardware_interfaces_wdt.h"
 #include "user_os.h"
 
 struct wdtCfg {
@@ -31,12 +44,14 @@ private:
 
 	uint32_t								nowCfg;
 
-	static void task ( void* p_obj );
+	static void task ( void* obj );
 
-	USER_OS_STATIC_STACK_TYPE		task_stack[ 64 ] = { 0 };
-	USER_OS_STATIC_TASK_STRUCT_TYPE	task_struct;
+	USER_OS_STATIC_STACK_TYPE				taskStack[ 64 ] = { 0 };
+	USER_OS_STATIC_TASK_STRUCT_TYPE			taskStruct;
 
 	uint8_t									reboot;
 };
+
+#endif
 
 #endif

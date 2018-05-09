@@ -2,10 +2,11 @@
 
 #ifdef __cplusplus
 
-#include "pin.h"
 #include "mc_hardware_interfaces_port.h"
 
 #ifdef HAL_GPIO_MODULE_ENABLED
+
+#include "pin.h"
 
 class GlobalPort : public GlobalPortBase {
 public:
