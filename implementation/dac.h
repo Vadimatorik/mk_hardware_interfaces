@@ -2,35 +2,9 @@
 
 #ifdef __cplusplus
 
-#ifdef STM32F4
-#include "stm32f4xx_hal_conf.h"
-#endif
-
-#ifdef STM32F2
-#include "stm32f2xx_hal_conf.h"
-#endif
-
-#ifdef STM32F1
-#include "stm32f1xx_hal_conf.h"
-#endif
+#include "platform.h"
 
 #ifdef HAL_DAC_MODULE_ENABLED
-
-#ifdef STM32F4
-#include "stm32f4xx_hal_dac.h"
-#include "stm32f4xx_hal_rcc.h"
-#endif
-
-#ifdef STM32F2
-#include "stm32f2xx_hal_dac.h"
-#include "stm32f2xx_hal_rcc.h"
-#endif
-
-#ifdef STM32F1
-#include "stm32f1xx_hal_dac.h"
-#include "stm32f1xx_hal_rcc.h"
-#endif
-
 
 #include "mc_hardware_interfaces_dac.h"
 

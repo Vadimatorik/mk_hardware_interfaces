@@ -2,37 +2,11 @@
 
 #ifdef __cplusplus
 
-#ifdef STM32F4
-#include "stm32f4xx_hal_conf.h"
-#endif
-
-#ifdef STM32F2
-#include "stm32f2xx_hal_conf.h"
-#endif
-
-#ifdef STM32F1
-#include "stm32f1xx_hal_conf.h"
-#endif
+#include "platform.h"
 
 #ifdef HAL_RCC_MODULE_ENABLED
 
-#ifdef STM32F4
-#include "stm32f4xx_hal_rcc.h"
-#include "stm32f4xx_hal_flash.h"
-#endif
-
-#ifdef STM32F2
-#include "stm32f2xx_hal_rcc.h"
-#include "stm32f2xx_hal_flash.h"
-#endif
-
-#ifdef STM32F1
-#include "stm32f1xx_hal_rcc.h"
-#include "stm32f1xx_hal_flash.h"
-#endif
-
 #include "mc_hardware_interfaces_rcc.h"
-#include <stdint.h>
 
 struct rccCfg {
 	RCC_OscInitTypeDef			osc;

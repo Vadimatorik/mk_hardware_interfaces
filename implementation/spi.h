@@ -2,34 +2,9 @@
 
 #ifdef __cplusplus
 
-#ifdef STM32F4
-#include "stm32f4xx_hal_conf.h"
-#endif
-
-#ifdef STM32F2
-#include "stm32f2xx_hal_conf.h"
-#endif
-
-#ifdef STM32F1
-#include "stm32f1xx_hal_conf.h"
-#endif
+#include "platform.h"
 
 #ifdef HAL_SPI_MODULE_ENABLED
-
-#ifdef STM32F4
-#include "stm32f4xx_hal_spi.h"
-#include "stm32f4xx_hal_dma.h"
-#endif
-
-#ifdef STM32F2
-#include "stm32f2xx_hal_spi.h"
-#include "stm32f2xx_hal_dma.h"
-#endif
-
-#ifdef STM32F1
-#include "stm32f1xx_hal_spi.h"
-#include "stm32f1xx_hal_dma.h"
-#endif
 
 #include "dma.h"
 #include "user_os.h"
