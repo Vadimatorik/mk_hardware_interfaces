@@ -145,6 +145,7 @@ BASE_RESULT TimCompOneChannel::on ( void ) {
 		return BASE_RESULT::ERROR_INIT;
 
 	HAL_TIM_OC_Start( &this->tim, this->cfg->outChannel );
+	HAL_TIMEx_OCN_Start( &this->tim, this->cfg->outChannel );
 
 	return BASE_RESULT::OK;
 }
