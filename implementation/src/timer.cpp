@@ -151,7 +151,7 @@ BASE_RESULT TimCompOneChannel::on ( void ) {
 }
 
 void TimCompOneChannel::off ( void ) {
-	HAL_TIM_OC_Stop( &this->tim, this->cfg->outChannel );
+	this->tim.Instance->CR1 &= ~(TIM_CR1_CEN);
 }
 
 //**********************************************************************
