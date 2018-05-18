@@ -1,6 +1,6 @@
 #include "dac.h"
 
-#ifdef HAL_DAC_MODULE_ENAB
+#ifdef HAL_DAC_MODULE_ENABLED
 
 Dac::Dac( const DacCfg* const cfg, const uint32_t countCfg ) :
 	cfg( cfg ), countCfg( countCfg ) {
