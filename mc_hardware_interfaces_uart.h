@@ -22,7 +22,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BASE_RESULT		reinit		( uint32_t numberCfg = 0 )									= 0;
+	virtual	BASE_RESULT		reinit		( void )													= 0;
 
 	/*!
 	 * Запускает UART/USART.

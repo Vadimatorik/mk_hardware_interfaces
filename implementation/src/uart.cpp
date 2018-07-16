@@ -59,6 +59,8 @@ BASE_RESULT Uart::reinit ( uint32_t numberCfg ) {
 	if ( r != HAL_OK )
 		return BASE_RESULT::ERROR_INIT;
 
+	if ( this->cfg->de != nullptr )    	this->cfg->de->reset();
+
 	return BASE_RESULT::OK;
 }
 
@@ -80,6 +82,8 @@ BASE_RESULT Uart::tx (	const uint8_t*		const txArray,
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 	USER_OS_TAKE_BIN_SEMAPHORE ( this->s, 0 );
 
+	if ( this->cfg->de != nullptr )    	this->cfg->de->set();
+
 	if ( this->uart.hdmatx != nullptr ) {												// Если передача идет по DMA.
 		HAL_UART_Transmit_DMA( &this->uart, ( uint8_t* )txArray, length );
 	} else {																	// Если по прерываниям.
@@ -90,6 +94,8 @@ BASE_RESULT Uart::tx (	const uint8_t*		const txArray,
 	if ( USER_OS_TAKE_BIN_SEMAPHORE ( this->s, timeoutMs ) == pdTRUE ) {
 		rv = BASE_RESULT::OK;
 	}
+
+	if ( this->cfg->de != nullptr )    		this->cfg->de->reset();
 
 	USER_OS_GIVE_MUTEX( this->m );
 	return rv;

@@ -7,11 +7,13 @@
 #ifdef HAL_UART_MODULE_ENABLED
 
 #include "dma.h"
+#include "pin.h"
 #include "mc_hardware_interfaces_uart.h"
 #include "user_os.h"
 
 struct uartCfg {
 	USART_TypeDef*				uart;
+	Pin*						de;
 	uint32_t					baudrate;
 	uint32_t					mode;						// UART_MODE_RX/UART_MODE_TX/UART_MODE_TX_RX.
 	DMA_Stream_TypeDef*			dmaTx;						// Из мерии DMAx_Streamx.

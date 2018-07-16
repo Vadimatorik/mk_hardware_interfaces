@@ -4,7 +4,7 @@
 
 #include "platform.h"
 
-#ifdef HAL_RCC_MODULE_ENABLED
+#if define( HAL_RCC_MODULE_ENABLED ) && define ( HAL_FLASH_MODULE_ENABLED )
 
 #include "mc_hardware_interfaces_rcc.h"
 
