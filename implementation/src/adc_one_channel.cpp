@@ -1,4 +1,4 @@
-#include "adc.h"
+#include <adc_one_channel.h>
 
 #ifdef HAL_ADC_MODULE_ENABLED
 
