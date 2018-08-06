@@ -21,9 +21,9 @@ class AdcOneChannel : public AdcOneChannelBase {
 public:
 	AdcOneChannel( const AdcOneChannelCfg* const cfg, const uint32_t countCfg );
 
-	BASE_RESULT		reinit								( uint32_t numberCfg = 0 );
+	BaseResult		reinit								( uint32_t numberCfg = 0 );
 
-	BASE_RESULT		startContinuousConversion			( void );
+	BaseResult		startContinuousConversion			( void );
 	void			stopContinuousConversion			( void );
 	uint32_t		getMeasurement						( void );
 

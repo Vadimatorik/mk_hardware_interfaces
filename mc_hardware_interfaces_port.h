@@ -21,7 +21,7 @@ public:
 	 * \return		{	BASE_RESULT::OK			-	инициализация прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
 	 */
-	virtual BASE_RESULT		reinitAllPorts	( void )					= 0;
+	virtual BaseResult		reinitAllPorts	( void )					= 0;
 };
 
 #endif

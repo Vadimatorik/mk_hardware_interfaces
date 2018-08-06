@@ -5,8 +5,8 @@
 AdcOneChannel::AdcOneChannel( const AdcOneChannelCfg* const cfg, const uint32_t countCfg ) :
 	cfg( cfg ), countCfg( countCfg ) {}
 
-BASE_RESULT AdcOneChannel::reinit ( uint32_t numberCfg ) {
-	if ( numberCfg >= this->countCfg )	return BASE_RESULT::INPUT_VALUE_ERROR;
+BaseResult AdcOneChannel::reinit ( uint32_t numberCfg ) {
+	if ( numberCfg >= this->countCfg )	return BaseResult::errInputValue;
 
 	/// Заполняем HAL-структуру.
 	this->adc.Instance						= this->cfg[ numberCfg ].ADCx;
@@ -33,12 +33,12 @@ BASE_RESULT AdcOneChannel::reinit ( uint32_t numberCfg ) {
 
 	HAL_StatusTypeDef r;
 	r = HAL_ADC_Init( &this->adc );
-	if ( r != HAL_OK ) return BASE_RESULT::ERROR_INIT;
+	if ( r != HAL_OK ) return BaseResult::errInit;
 
 	r = HAL_ADC_ConfigChannel( &this->adc, &this->channelCfg );
-	if ( r != HAL_OK ) return BASE_RESULT::ERROR_INIT;
+	if ( r != HAL_OK ) return BaseResult::errInit;
 
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
 void AdcOneChannel::clkEnable ( void ) {
@@ -57,11 +57,11 @@ void AdcOneChannel::clkDisable ( void ) {
 	}
 }
 
-BASE_RESULT AdcOneChannel::startContinuousConversion ( void ) {
+BaseResult AdcOneChannel::startContinuousConversion ( void ) {
 	HAL_StatusTypeDef r;
 	r = HAL_ADC_Start( &this->adc );
-	if ( r != HAL_OK ) return BASE_RESULT::ERROR_INIT;
-	return BASE_RESULT::OK;
+	if ( r != HAL_OK ) return BaseResult::errInit;
+	return BaseResult::ok;
 }
 
 void AdcOneChannel::stopContinuousConversion ( void ) {

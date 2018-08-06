@@ -17,8 +17,8 @@ class Dac : public DacBase {
 public:
 	Dac( const DacCfg* const cfg, const uint32_t countCfg );
 
-	BASE_RESULT	reinit			( uint32_t numberCfg = 0 );
-	BASE_RESULT	setValue		( const uint32_t ch, const uint32_t value );
+	BaseResult	reinit			( uint32_t numberCfg = 0 );
+	BaseResult	setValue		( const uint32_t ch, const uint32_t value );
 
 private:
 	void		clkEnable		( void );

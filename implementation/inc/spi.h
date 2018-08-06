@@ -34,30 +34,30 @@ class SpiMaster8Bit : public SpiMaster8BitBase {
 public:
 	SpiMaster8Bit( const SpiMaster8BitCfg* const cfg, const uint32_t countCfg );
 
-	BASE_RESULT		reinit			( uint32_t numberCfg = 0 );
+	BaseResult		reinit			( uint32_t numberCfg = 0 );
 
-	BASE_RESULT		on				( void );
+	BaseResult		on				( void );
 	void			off				( void );
 
-	BASE_RESULT	tx				(	const uint8_t*		const txArray,
+	BaseResult	tx				(	const uint8_t*		const txArray,
 									const uint16_t		length		=	1,
 									const uint32_t		timeoutMs	=	100	);
 
-	BASE_RESULT tx				(	const uint8_t*		const txArray,
+	BaseResult tx				(	const uint8_t*		const txArray,
 									uint8_t*			rxArray,
 									const uint16_t		length		=	1,
 									const uint32_t		timeoutMs	=	100	);
 
-	BASE_RESULT	txOneItem		(	const uint8_t		txByte,
+	BaseResult	txOneItem		(	const uint8_t		txByte,
 									const uint16_t		count		=	1,
 									const uint32_t		timeoutMs	=	100	);
 
-	BASE_RESULT	rx				(	uint8_t*			rxArray,
+	BaseResult	rx				(	uint8_t*			rxArray,
 									const uint16_t		length		=	1,
 									const uint32_t		timeoutMs	=	100,
 									const uint8_t		outValue	=	0xFF );
 
-	BASE_RESULT		setPrescaler	(	uint32_t prescalerNumber		=	0	);
+	BaseResult		setPrescaler	(	uint32_t prescalerNumber		=	0	);
 
 
 	void	giveSemaphore			( void );			// Отдать симафор из прерывания (внутренняя функция.

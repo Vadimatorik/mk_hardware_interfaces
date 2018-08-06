@@ -8,8 +8,8 @@ Dac::Dac( const DacCfg* const cfg, const uint32_t countCfg ) :
 	this->dacCh.DAC_Trigger						= DAC_TRIGGER_NONE;
 }
 
-BASE_RESULT Dac::reinit ( uint32_t numberCfg ) {
-	if ( numberCfg >= this->countCfg )	return BASE_RESULT::INPUT_VALUE_ERROR;
+BaseResult Dac::reinit ( uint32_t numberCfg ) {
+	if ( numberCfg >= this->countCfg )	return BaseResult::errInputValue;
 
 	/// Заполнение HAL-структуры.
 	this->dacCh.DAC_OutputBuffer				= cfg[ numberCfg ].buffer;
@@ -18,16 +18,16 @@ BASE_RESULT Dac::reinit ( uint32_t numberCfg ) {
 	this->clkEnable();
 
 	if ( HAL_DAC_DeInit( &this->dac ) != HAL_OK )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	if ( HAL_DAC_Init( &this->dac ) != HAL_OK )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	if ( HAL_DAC_ConfigChannel( &this->dac, &this->dacCh, DAC_CHANNEL_1 ) != HAL_OK)
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	if ( HAL_DAC_ConfigChannel( &this->dac, &this->dacCh, DAC_CHANNEL_2 ) != HAL_OK)
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	HAL_DAC_Start(  &this->dac, DAC_CHANNEL_1 );
 	HAL_DAC_Start(  &this->dac, DAC_CHANNEL_2 );
@@ -35,14 +35,14 @@ BASE_RESULT Dac::reinit ( uint32_t numberCfg ) {
 	HAL_DAC_SetValue( &this->dac, DAC_CHANNEL_1,	DAC_ALIGN_12B_R, this->cfg[ numberCfg ].defaultValue );
 	HAL_DAC_SetValue( &this->dac, DAC_CHANNEL_2,	DAC_ALIGN_12B_R, this->cfg[ numberCfg ].defaultValue );
 
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
-BASE_RESULT	Dac::setValue ( const uint32_t ch, const uint32_t value ) {
-	if ( ch > 1 )			return BASE_RESULT::INPUT_VALUE_ERROR;
-	if ( value > 0xFFF )	return BASE_RESULT::INPUT_VALUE_ERROR;
+BaseResult	Dac::setValue ( const uint32_t ch, const uint32_t value ) {
+	if ( ch > 1 )			return BaseResult::errInputValue;
+	if ( value > 0xFFF )	return BaseResult::errInputValue;
 
-	if ( this->dac.State == HAL_DAC_STATE_RESET )	return BASE_RESULT::ERROR_INIT;
+	if ( this->dac.State == HAL_DAC_STATE_RESET )	return BaseResult::errInit;
 
 	if ( ch == 0 ) {
 		HAL_DAC_SetValue( &this->dac, DAC_CHANNEL_1,	DAC_ALIGN_12B_R, value );
@@ -50,7 +50,7 @@ BASE_RESULT	Dac::setValue ( const uint32_t ch, const uint32_t value ) {
 		HAL_DAC_SetValue( &this->dac, DAC_CHANNEL_2,	DAC_ALIGN_12B_R, value );
 	}
 
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
 void Dac::clkEnable ( void ) {

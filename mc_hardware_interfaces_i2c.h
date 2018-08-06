@@ -23,7 +23,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
 	 */
-	virtual	BASE_RESULT		reinit		( uint32_t numberCfg = 0 )							= 0;
+	virtual	BaseResult		reinit		( uint32_t numberCfg = 0 )							= 0;
 
 	/*!
 	 * Запускает I2C.
@@ -31,21 +31,21 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
 	 */
-	virtual	BASE_RESULT		on			( void )											= 0;
+	virtual	BaseResult		on			( void )											= 0;
 
 	/// Останавливает I2C.
 	virtual	void			off			( void )											= 0;
 
 
-	virtual	BASE_RESULT		read		( const uint8_t slaveDeviceAddress,
+	virtual	BaseResult		read		( const uint8_t slaveDeviceAddress,
 										  uint8_t* rx, uint8_t readAddress,
 										  uint16_t countByte )								= 0;
 
-	virtual	BASE_RESULT		readDma		( const uint8_t slaveDeviceAddress,
+	virtual	BaseResult		readDma		( const uint8_t slaveDeviceAddress,
 										  uint8_t* rx, uint8_t readAddress,
 										  uint16_t countByte )								= 0;
 
-	virtual	BASE_RESULT		writeByte	( const uint8_t slaveDeviceAddress,
+	virtual	BaseResult		writeByte	( const uint8_t slaveDeviceAddress,
 										  uint8_t* rx,
 										  uint8_t writeAddress )							= 0;
 };

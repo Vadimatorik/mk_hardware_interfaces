@@ -18,7 +18,7 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 */
-	virtual	BASE_RESULT	reinit			( uint32_t numberCfg = 0 )				= 0;
+	virtual	BaseResult	reinit			( uint32_t numberCfg = 0 )				= 0;
 
 	/*!
 	 * Запускает контроль за напряжением питания согласно конфигурации.

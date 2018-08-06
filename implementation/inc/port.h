@@ -13,7 +13,7 @@
 class GlobalPort : public GlobalPortBase {
 public:
 	GlobalPort( const pinCfg* const cfg, uint32_t countCfg ) : cfg( cfg ), countCfg( countCfg ) {}
-	BASE_RESULT	reinitAllPorts		( void );
+	BaseResult	reinitAllPorts		( void );
 
 private:
 	const pinCfg*				const cfg;

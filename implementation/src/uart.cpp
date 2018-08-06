@@ -29,9 +29,9 @@ Uart::Uart( const uartCfg* const cfg, uint32_t countCfg  ) :
 	this->s = USER_OS_STATIC_BIN_SEMAPHORE_CREATE( &this->sb );
 }
 
-BASE_RESULT Uart::reinit ( uint32_t numberCfg ) {
+BaseResult Uart::reinit ( uint32_t numberCfg ) {
 	if ( numberCfg >= this->countCfg )
-		return BASE_RESULT::INPUT_VALUE_ERROR;
+		return BaseResult::errInputValue;
 
 	this->clkDeinit();
 
@@ -53,30 +53,30 @@ BASE_RESULT Uart::reinit ( uint32_t numberCfg ) {
 
 	r = HAL_UART_DeInit( &this->uart );
 	if ( r != HAL_OK )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	r = HAL_UART_Init( &this->uart );
 	if ( r != HAL_OK )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	if ( this->cfg->de != nullptr )    	this->cfg->de->reset();
 
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
-BASE_RESULT Uart::on ( void ) {
+BaseResult Uart::on ( void ) {
 	if (   this->uart.gState == HAL_UART_STATE_RESET )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	__HAL_UART_ENABLE( &this->uart );
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
 void Uart::off ( void ) {
 	__HAL_UART_DISABLE( &this->uart );
 }
 
-BASE_RESULT Uart::tx (	const uint8_t*		const txArray,
+BaseResult Uart::tx (	const uint8_t*		const txArray,
 						const uint16_t&		length,
 						const uint32_t&		timeoutMs	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
@@ -90,9 +90,9 @@ BASE_RESULT Uart::tx (	const uint8_t*		const txArray,
 		HAL_UART_Transmit_IT( &this->uart, ( uint8_t* )txArray, length );
 	}
 
-	BASE_RESULT rv = BASE_RESULT::TIME_OUT;
+	BaseResult rv = BaseResult::errTimeOut;
 	if ( USER_OS_TAKE_BIN_SEMAPHORE ( this->s, timeoutMs ) == pdTRUE ) {
-		rv = BASE_RESULT::OK;
+		rv = BaseResult::ok;
 	}
 
 	if ( this->cfg->de != nullptr )    		this->cfg->de->reset();
@@ -101,37 +101,37 @@ BASE_RESULT Uart::tx (	const uint8_t*		const txArray,
 	return rv;
 }
 
-BASE_RESULT Uart::getByteWitchout (	uint8_t* retrunData	) {
+BaseResult Uart::getByteWitchout (	uint8_t* retrunData	) {
 	if (   this->uart.gState == HAL_UART_STATE_RESET )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	/// Если есть данные.
 	if ( __HAL_UART_GET_FLAG( &this->uart, UART_FLAG_RXNE ) ) {
 		*retrunData = this->uart.Instance->DR;
-		return BASE_RESULT::OK;
+		return BaseResult::ok;
 	}
 
-	return BASE_RESULT::NOT_DATA;
+	return BaseResult::errNotData;
 }
 
-BASE_RESULT Uart::getByte (	uint8_t* retrunData,
+BaseResult Uart::getByte (	uint8_t* retrunData,
 							const uint32_t&		timeoutMs	) {
 	if (   this->uart.gState == HAL_UART_STATE_RESET )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	/// Если есть данные.
 	if ( __HAL_UART_GET_FLAG( &this->uart, UART_FLAG_RXNE ) ) {
 		*retrunData = this->uart.Instance->DR;
-		return BASE_RESULT::OK;
+		return BaseResult::ok;
 	}
 
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 	USER_OS_TAKE_BIN_SEMAPHORE ( this->s, 0 );
 
-	volatile BASE_RESULT rv = BASE_RESULT::TIME_OUT;
+	volatile BaseResult rv = BaseResult::errTimeOut;
 	if ( USER_OS_TAKE_BIN_SEMAPHORE ( this->s, timeoutMs ) == pdTRUE ) {
 		*retrunData = this->uart.Instance->DR;
-		rv = BASE_RESULT::OK;
+		rv = BaseResult::ok;
 	}
 
 	USER_OS_GIVE_MUTEX( this->m );

@@ -23,7 +23,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	в противном случае.	}
 	 */
-	virtual	BASE_RESULT	reinit			( uint32_t numberCfg = 0 )						= 0;
+	virtual	BaseResult	reinit			( uint32_t numberCfg = 0 )						= 0;
 
 	/*!
 	 * Выставляет заданное значение на канал.
@@ -34,7 +34,7 @@ public:
 	 *					BASE_RESULT::ERROR_INIT			-	DAC не был инициализирован ранее.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	ch или value вне диапазона. }
 	 */
-	virtual BASE_RESULT	setValue		( const uint32_t ch, const uint32_t value )		= 0;
+	virtual BaseResult	setValue		( const uint32_t ch, const uint32_t value )		= 0;
 };
 
 #endif

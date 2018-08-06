@@ -22,7 +22,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BASE_RESULT		reinit		( uint32_t numberCfg = 0 )													= 0;
+	virtual	BaseResult		reinit		( uint32_t numberCfg = 0 )													= 0;
 
 	/*!
 	 * Запускает UART/USART.
@@ -30,7 +30,7 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.	}
 	 */
-	virtual	BASE_RESULT		on			( void )													= 0;
+	virtual	BaseResult		on			( void )													= 0;
 
 	/// Останавливает UART/USART.
 	virtual	void			off			( void )													= 0;
@@ -54,7 +54,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual	BASE_RESULT	tx				(	const uint8_t*		const txArray,
+	virtual	BaseResult	tx				(	const uint8_t*		const txArray,
 											const uint16_t&		length		=	1,
 											const uint32_t&		timeoutMs	=	100	)				= 0;
 
@@ -67,7 +67,7 @@ public:
 	 *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual	BASE_RESULT	getByte			(	uint8_t* retrunData,
+	virtual	BaseResult	getByte			(	uint8_t* retrunData,
 											const uint32_t&		timeoutMs	=	100	)				= 0;
 
 	/*!
@@ -79,7 +79,7 @@ public:
 	 *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.
 	 *					BASE_RESULT::NOT_DATA			-	байт отсутствует	}
 	 */
-	virtual	BASE_RESULT	getByteWitchout	(	uint8_t* retrunData	)									= 0;
+	virtual	BaseResult	getByteWitchout	(	uint8_t* retrunData	)									= 0;
 
 };
 

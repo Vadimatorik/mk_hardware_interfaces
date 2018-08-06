@@ -24,7 +24,7 @@ public:
 		: cfg( cfg ), countCfg( countCfg ),
 		nowCfg( 0 ) {}
 
-	BASE_RESULT		reinit			( uint32_t numberCfg = 0 );
+	BaseResult		reinit			( uint32_t numberCfg = 0 );
 	void			reset			( void );
 	void			resetService	( void );
 

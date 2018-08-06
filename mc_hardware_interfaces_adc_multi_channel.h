@@ -5,10 +5,10 @@
 #include "mc_hardware_interfaces_base.h"
 
 /*!
- * Класс предназначен для использования одного канала ADC
+ * Класс предназначен для использования нескольких каналов ADC
  * в режиме непрерывного преобразования.
  */
-class AdcOneChannelBase {
+class AdcMultiChannelBase {
 public:
 	/*!
 	 * Сбрасывает текущие настройки ADC и инициализирует его заново.
@@ -23,7 +23,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
 	 */
-	virtual BaseResult		reinit								( uint32_t numberCfg = 0 )	= 0;
+	virtual BaseResult		reinit								(	uint32_t		numberCfg = 0	)		= 0;
 
 	/*!
 	 * Инициирует непрерывное преобразование на канале.
@@ -32,14 +32,15 @@ public:
 	 *												была успешно начата.
 	 *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
 	 */
-	virtual BaseResult		startContinuousConversion			( void )					= 0;
+	virtual BaseResult		startContinuousConversion			(	void	)								= 0;
 
 	/// Останавливает непрерывное преобразование на канале.
-	virtual void			stopContinuousConversion			( void )					= 0;
+	virtual void			stopContinuousConversion			(	void	)								= 0;
 
 	/// Возвращает результат измерения.
 	/// \return		{	Результат измерения напряжения на канале.	}
-	virtual uint32_t		getMeasurement						( void )					= 0;
+	virtual BaseResult		getMeasurement						(	const uint32_t		numberChannel,
+																	uint32_t*			returnValue		)	= 0;
 
 };
 

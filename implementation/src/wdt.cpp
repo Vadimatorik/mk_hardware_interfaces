@@ -2,9 +2,9 @@
 
 #ifdef HAL_WWDG_MODULE_ENABLED
 
-BASE_RESULT Wdt::reinit ( uint32_t numberCfg ) {
+BaseResult Wdt::reinit ( uint32_t numberCfg ) {
 	if ( numberCfg >= this->countCfg )
-		return BASE_RESULT::INPUT_VALUE_ERROR;
+		return BaseResult::errInputValue;
 
 	this->nowCfg	=	numberCfg;
 
@@ -21,7 +21,7 @@ BASE_RESULT Wdt::reinit ( uint32_t numberCfg ) {
 
 	USER_OS_STATIC_TASK_CREATE( this->task, "wdt", 64, ( void* )this, this->cfg->taskPrio, this->taskStack, &this->taskStruct );
 
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
 void Wdt::reset ( void ) {

@@ -24,19 +24,19 @@ class Uart : public UartBase {
 public:
 	Uart( const uartCfg* const cfg, const uint32_t countCfg );
 
-	BASE_RESULT		reinit						( uint32_t numberCfg = 0 );
+	BaseResult		reinit						( uint32_t numberCfg = 0 );
 
-	BASE_RESULT		on							( void );
+	BaseResult		on							( void );
 	void			off							( void );
 
-	BASE_RESULT		tx							(	const uint8_t*		const txArray,
+	BaseResult		tx							(	const uint8_t*		const txArray,
 													const uint16_t&		length		=	1,
 													const uint32_t&		timeoutMs	=	100	);
 
-	BASE_RESULT		getByte						(	uint8_t* retrunData,
+	BaseResult		getByte						(	uint8_t* retrunData,
 													const uint32_t&		timeoutMs	=	100	);
 
-	BASE_RESULT		getByteWitchout				(	uint8_t* retrunData	);
+	BaseResult		getByteWitchout				(	uint8_t* retrunData	);
 
 	void			irqHandler					( void );
 

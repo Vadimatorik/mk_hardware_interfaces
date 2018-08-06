@@ -10,8 +10,8 @@ SpiMaster8Bit::SpiMaster8Bit( const SpiMaster8BitCfg* const cfg, const uint32_t 
 	this->s											=	USER_OS_STATIC_BIN_SEMAPHORE_CREATE( &this->sb );
 }
 
-BASE_RESULT SpiMaster8Bit::reinit ( uint32_t numberCfg  ) {
-	if ( numberCfg >= this->countCfg ) return BASE_RESULT::INPUT_VALUE_ERROR;
+BaseResult SpiMaster8Bit::reinit ( uint32_t numberCfg  ) {
+	if ( numberCfg >= this->countCfg ) return BaseResult::errInputValue;
 
 	this->spi.Instance								=	cfg->SPIx;
 	this->spi.Init.Mode								=	SPI_MODE_MASTER;
@@ -64,32 +64,32 @@ BASE_RESULT SpiMaster8Bit::reinit ( uint32_t numberCfg  ) {
 	this->baudratePrescalerArray					=	this->cfg[ numberCfg ].baudratePrescalerArray;
 	this->numberBaudratePrescalerCfg				=	this->cfg[ numberCfg ].numberBaudratePrescalerCfg;
 
-	if ( this->initClkSpi() == false )		return BASE_RESULT::ERROR_INIT;				// Включаем тактирование SPI.
+	if ( this->initClkSpi() == false )		return BaseResult::errInit;				// Включаем тактирование SPI.
 
 	if ( this->initSpi() == false )
-		return BASE_RESULT::ERROR_INIT;
+		return BaseResult::errInit;
 
 	this->cs										=	this->cfg[ numberCfg ].pinCs;
 
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
-BASE_RESULT SpiMaster8Bit::on ( void ) {
-	if ( this->spi.State ==  HAL_SPI_STATE_RESET )	return BASE_RESULT::ERROR_INIT;
+BaseResult SpiMaster8Bit::on ( void ) {
+	if ( this->spi.State ==  HAL_SPI_STATE_RESET )	return BaseResult::errInit;
 	__HAL_SPI_ENABLE( &this->spi );
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
 void SpiMaster8Bit::off ( void ) {
 	__HAL_SPI_DISABLE( &this->spi );
 }
 
-BASE_RESULT SpiMaster8Bit::tx (	const uint8_t*		const txArray,
+BaseResult SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 								const uint16_t		length,
 								const uint32_t		timeoutMs ) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 
-	BASE_RESULT rv = BASE_RESULT::TIME_OUT ;
+	BaseResult rv = BaseResult::errTimeOut ;
 	xSemaphoreTake ( this->s, 0 );
 
 	if ( this->cs != nullptr )
@@ -100,7 +100,7 @@ BASE_RESULT SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 	}
 
 	if ( xSemaphoreTake ( this->s, timeoutMs ) == pdTRUE ) {
-		rv = BASE_RESULT::OK;
+		rv = BaseResult::ok;
 	}
 
 	if ( this->cs != nullptr )
@@ -111,14 +111,14 @@ BASE_RESULT SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 	return rv;
 }
 
-BASE_RESULT SpiMaster8Bit::tx (	const uint8_t*		const txArray,
+BaseResult SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 								uint8_t*			rxArray,
 								const uint16_t		length,
 								const uint32_t		timeoutMs	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 	xSemaphoreTake ( this->s, 0 );
 
-	BASE_RESULT rv = BASE_RESULT::TIME_OUT;
+	BaseResult rv = BaseResult::errTimeOut;
 
 	if ( this->cs != nullptr )
 		this->cs->set( 0 );
@@ -130,7 +130,7 @@ BASE_RESULT SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 	}
 
 	if ( xSemaphoreTake ( this->s, timeoutMs ) == pdTRUE ) {
-		rv = BASE_RESULT::OK;
+		rv = BaseResult::ok;
 	}
 
 	if ( this->cs != nullptr )
@@ -141,12 +141,12 @@ BASE_RESULT SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 	return rv;
 }
 
-BASE_RESULT SpiMaster8Bit::txOneItem (	const uint8_t	txByte,
+BaseResult SpiMaster8Bit::txOneItem (	const uint8_t	txByte,
 										const uint16_t	count,
 										const uint32_t	timeoutMs	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 
-	BASE_RESULT rv = BASE_RESULT::TIME_OUT ;
+	BaseResult rv = BaseResult::errTimeOut ;
 	xSemaphoreTake ( this->s, 0 );
 
 	if ( this->cs != nullptr )
@@ -162,7 +162,7 @@ BASE_RESULT SpiMaster8Bit::txOneItem (	const uint8_t	txByte,
 	}
 
 	if ( xSemaphoreTake ( this->s, timeoutMs ) == pdTRUE ) {
-		rv = BASE_RESULT::OK;
+		rv = BaseResult::ok;
 	}
 
 	if ( this->cs != nullptr )
@@ -173,14 +173,14 @@ BASE_RESULT SpiMaster8Bit::txOneItem (	const uint8_t	txByte,
 	return rv;
 }
 
-BASE_RESULT SpiMaster8Bit::rx (	uint8_t*			rxArray,
+BaseResult SpiMaster8Bit::rx (	uint8_t*			rxArray,
 								const uint16_t		length,
 								const uint32_t		timeoutMs,
 								const uint8_t		outValue	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 	xSemaphoreTake ( this->s, 0 );
 
-	BASE_RESULT rv = BASE_RESULT::TIME_OUT ;
+	BaseResult rv = BaseResult::errTimeOut ;
 
 	if ( this->cs != nullptr )		 // Опускаем CS (для того, чтобы "выбрать" устроство).
 		this->cs->set( 0 );
@@ -195,7 +195,7 @@ BASE_RESULT SpiMaster8Bit::rx (	uint8_t*			rxArray,
 	}
 
 	if ( xSemaphoreTake ( this->s, timeoutMs ) == pdTRUE ) {
-		rv = BASE_RESULT::OK;
+		rv = BaseResult::ok;
 	}
 
 	if ( this->cs != nullptr )
@@ -214,8 +214,8 @@ void SpiMaster8Bit::irqHandler ( void ) {
 		HAL_DMA_IRQHandler( &this->dmaRx );
 }
 
-BASE_RESULT SpiMaster8Bit::setPrescaler (	uint32_t prescalerNumber	) {
-	if ( prescalerNumber >= this->numberBaudratePrescalerCfg ) return BASE_RESULT::INPUT_VALUE_ERROR;
+BaseResult SpiMaster8Bit::setPrescaler (	uint32_t prescalerNumber	) {
+	if ( prescalerNumber >= this->numberBaudratePrescalerCfg ) return BaseResult::errInputValue;
 
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 
@@ -224,7 +224,7 @@ BASE_RESULT SpiMaster8Bit::setPrescaler (	uint32_t prescalerNumber	) {
 
 	USER_OS_GIVE_MUTEX( this->m );
 
-	return BASE_RESULT::OK;
+	return BaseResult::ok;
 }
 
 /*!

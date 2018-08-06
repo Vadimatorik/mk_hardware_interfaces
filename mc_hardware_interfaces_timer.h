@@ -23,7 +23,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual BASE_RESULT		reinit					( uint32_t numberCfg = 0 )						= 0;
+	virtual BaseResult		reinit					( uint32_t numberCfg = 0 )						= 0;
 
 	/*!
 	 * Запускает таймера.
@@ -31,7 +31,7 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
 	 */
-	virtual	BASE_RESULT		on						( void )										= 0;
+	virtual	BaseResult		on						( void )										= 0;
 
 	/// Останавливает таймер.
 	virtual	void			off						( void )										= 0;
@@ -59,7 +59,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual BASE_RESULT		reinit					( uint32_t numberCfg = 0 )						= 0;
+	virtual BaseResult		reinit					( uint32_t numberCfg = 0 )						= 0;
 
 	/*!
 	 * Запускает таймера.
@@ -67,7 +67,7 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
 	 */
-	virtual	BASE_RESULT		on						( void )										= 0;
+	virtual	BaseResult		on						( void )										= 0;
 
 	/// Останавливает таймер.
 	virtual	void			off						( void )										= 0;
@@ -92,7 +92,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BASE_RESULT		reinit					( uint32_t numberCfg = 0 )						= 0;
+	virtual	BaseResult		reinit					( uint32_t numberCfg = 0 )						= 0;
 
 	/*!
 	 * Запускает таймера.
@@ -100,7 +100,7 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
 	 */
-	virtual	BASE_RESULT		on						( void )										= 0;
+	virtual	BaseResult		on						( void )										= 0;
 
 	/// Останавливает таймер.
 	virtual	void			off						( void )										= 0;
@@ -131,7 +131,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual BASE_RESULT		reinit					( uint32_t numberCfg = 0 )						= 0;
+	virtual BaseResult		reinit					( uint32_t numberCfg = 0 )						= 0;
 
 	/*!
 	 * Запускает таймера.
@@ -139,7 +139,7 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
 	 */
-	virtual	BASE_RESULT		on						( void )										= 0;
+	virtual	BaseResult		on						( void )										= 0;
 
 	/// Останавливает таймер.
 	virtual	void			off						( void )										= 0;

@@ -21,7 +21,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BASE_RESULT		reinit		( uint32_t numberCfg = 0 )						= 0;
+	virtual	BaseResult		reinit		( uint32_t numberCfg = 0 )						= 0;
 
 	/*!
 	 * Запускает SPI.
@@ -29,7 +29,7 @@ public:
 	 * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
 	 */
-	virtual	BASE_RESULT		on			( void )										= 0;
+	virtual	BaseResult		on			( void )										= 0;
 
 	/// Останавливает SPI.
 	virtual	void			off			( void )										= 0;
@@ -55,7 +55,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual BASE_RESULT	tx	(	const uint8_t*		const txArray,
+	virtual BaseResult	tx	(	const uint8_t*		const txArray,
 								const uint16_t		length		=	1,
 								const uint32_t		timeoutMs	=	100	)				= 0;
 
@@ -85,7 +85,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr или rxArray == nullptr.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual BASE_RESULT tx	(	const uint8_t*		const txArray,
+	virtual BaseResult tx	(	const uint8_t*		const txArray,
 								uint8_t*			rxArray,
 								const uint16_t		length		=	1,
 								const uint32_t		timeoutMs	=	100	)				= 0;
@@ -109,7 +109,7 @@ public:
 	 *					BASE_RESULT::LENGTH_ERROR		-	length вне диапазона.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual BASE_RESULT	txOneItem (	const uint8_t	txByte,
+	virtual BaseResult	txOneItem (	const uint8_t	txByte,
 									const uint16_t	count		=	1,
 									const uint32_t	timeoutMs	=	100	)				= 0;
 
@@ -134,7 +134,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr или rxArray == nullptr.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual	BASE_RESULT	rx	(	uint8_t*			rxArray,
+	virtual	BaseResult	rx	(	uint8_t*			rxArray,
 								const uint16_t		length		=	1,
 								const uint32_t		timeoutMs	=	100,
 								const uint8_t		outValue	=	0xFF )				= 0;
@@ -147,7 +147,7 @@ public:
 	 *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.	}
 	 */
-	virtual BASE_RESULT	setPrescaler	(	uint32_t prescalerNumber	=	0	)		= 0;
+	virtual BaseResult	setPrescaler	(	uint32_t prescalerNumber	=	0	)		= 0;
 };
 
 #endif
