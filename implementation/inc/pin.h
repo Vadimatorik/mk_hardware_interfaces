@@ -10,6 +10,30 @@
 
 #define PIN_COUNT(x) sizeof(x)/sizeof(x[0])
 
+#define	PINS_ADC_MODE								\
+		.Mode		=	GPIO_MODE_ANALOG,			\
+		.Pull		=	GPIO_NOPULL,				\
+		.Speed		=	GPIO_SPEED_FREQ_LOW,		\
+		.Alternate	=	0
+
+#define	PINS_INPUT_MODE								\
+		.Mode		=	GPIO_MODE_INPUT,			\
+		.Pull		=	GPIO_PULLUP,				\
+		.Speed		=	GPIO_SPEED_FREQ_VERY_HIGH,	\
+		.Alternate	=	0
+
+#define	PINS_EXTI_MODE								\
+		.Mode		=	GPIO_MODE_IT_FALLING,		\
+		.Pull		=	GPIO_PULLUP,				\
+		.Speed		=	GPIO_SPEED_FREQ_LOW,		\
+		.Alternate	=	0
+
+#define PINS_OUTPUT_PP_MODE							\
+		.Mode		=	GPIO_MODE_OUTPUT_PP,		\
+		.Pull		=	GPIO_NOPULL,				\
+		.Speed		=	GPIO_SPEED_FREQ_VERY_HIGH,	\
+		.Alternate	=	0
+
 struct pinCfg {
 	const GPIO_TypeDef*		 const GPIOx;
 	const GPIO_InitTypeDef	init;

@@ -6,7 +6,7 @@
 
 #ifdef HAL_ADC_MODULE_ENABLED
 
-#include <mc_hardware_interfaces_adc_one_channel.h>
+#include "mc_hardware_interfaces_adc_one_channel.h"
 
 struct AdcOneChannelCfg {
 	ADC_TypeDef*		ADCx;
