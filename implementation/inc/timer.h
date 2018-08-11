@@ -29,9 +29,9 @@ class TimCounter : public TimCounterBase {
 public:
 	TimCounter( const timCounterCfg* const cfg );
 
-	BASE_RESULT		reinit					( uint32_t numberCfg = 0 );
+	BaseResult		reinit					( uint32_t numberCfg = 0 );
 
-	BASE_RESULT		on						( void );
+	BaseResult		on						( void );
 	void			off						( void );
 
 	uint32_t		getCounter				( void );
@@ -59,9 +59,9 @@ class TimCompOneChannel : public TimCompOneChannelBase {
 public:
 	TimCompOneChannel( const timCompOneChannelCfg* const cfg );
 
-	BASE_RESULT		reinit					( uint32_t numberCfg = 0 );
+	BaseResult		reinit					( uint32_t numberCfg = 0 );
 
-	BASE_RESULT		on						( void );
+	BaseResult		on						( void );
 	void			off						( void );
 
 private:
@@ -87,9 +87,9 @@ class TimPwmOneChannel : public TimPwmOneChannelBase {
 public:
 	TimPwmOneChannel( const timPwmOneChannelCfg* const cfg );
 
-	BASE_RESULT		reinit					( uint32_t numberCfg = 0 );
+	BaseResult		reinit					( uint32_t numberCfg = 0 );
 
-	BASE_RESULT		on						( void );
+	BaseResult		on						( void );
 	void			off						( void );
 
 	void			setDuty					( float duty );
@@ -111,9 +111,9 @@ class TimInterrupt : public TimInterruptBase {
 public:
 	TimInterrupt( const timInterruptCfg* const cfg );
 
-	BASE_RESULT		reinit							( uint32_t numberCfg = 0 );
+	BaseResult		reinit							( uint32_t numberCfg = 0 );
 
-	BASE_RESULT		on								( void );
+	BaseResult		on								( void );
 	void			off								( void );
 
 	void			clearInterruptFlag				( void );
