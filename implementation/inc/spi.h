@@ -32,7 +32,7 @@ struct SpiMaster8BitCfg {
 
 class SpiMaster8Bit : public SpiMaster8BitBase {
 public:
-	SpiMaster8Bit( const SpiMaster8BitCfg* const cfg, const uint32_t countCfg );
+	SpiMaster8Bit( const SpiMaster8BitCfg* const cfg, const uint32_t countCfg = 1 );
 
 	BaseResult		reinit			( uint32_t numberCfg = 0 );
 
