@@ -22,7 +22,7 @@ struct uartCfg {
 
 class Uart : public UartBase {
 public:
-	Uart( const uartCfg* const cfg, const uint32_t countCfg );
+	Uart( const uartCfg* const cfg, const uint32_t countCfg = 1 );
 
 	BaseResult		reinit						( uint32_t numberCfg = 0 );
 

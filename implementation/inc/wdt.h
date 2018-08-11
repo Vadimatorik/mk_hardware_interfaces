@@ -20,7 +20,7 @@ struct wdtCfg {
 
 class Wdt : public WdtBase {
 public:
-	Wdt ( const wdtCfg* const cfg, const uint32_t countCfg )
+	Wdt ( const wdtCfg* const cfg, const uint32_t countCfg = 1 )
 		: cfg( cfg ), countCfg( countCfg ),
 		nowCfg( 0 ) {}
 
