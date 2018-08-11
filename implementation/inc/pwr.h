@@ -15,7 +15,7 @@ struct pwrCfg {
 
 class Pwr : public PwrBase {
 public:
-	Pwr ( const pwrCfg* const cfg, const uint32_t countCfg )
+	Pwr ( const pwrCfg* const cfg, const uint32_t countCfg = 1 )
 		: cfg( cfg ), countCfg( countCfg ),
 		nowCfg( 0 ) {}
 
