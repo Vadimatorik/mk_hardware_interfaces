@@ -2,6 +2,8 @@
 
 #ifdef __cplusplus
 
+#include "project_config.h"
+
 #ifdef STM32F4
 #include "stm32f4xx_hal_conf.h"
 #endif
