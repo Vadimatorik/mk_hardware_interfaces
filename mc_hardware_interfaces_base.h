@@ -23,6 +23,6 @@ enum class BaseResult {
  * была произведена не удачно.
  */
 #define		checkResult( baseResultVariable )											\
-			if ( baseResultVariable != BASE_RESULT::OK ) return baseResultVariable;
+			if ( baseResultVariable != BaseResult::ok ) return baseResultVariable;
 
 #endif
