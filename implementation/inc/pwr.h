@@ -16,8 +16,7 @@ struct pwrCfg {
 class Pwr : public PwrBase {
 public:
 	Pwr ( const pwrCfg* const cfg, const uint32_t countCfg = 1 )
-		: cfg( cfg ), countCfg( countCfg ),
-		nowCfg( 0 ) {}
+		: cfg( cfg ), countCfg( countCfg ) {}
 
 	BaseResult	reinit			( uint32_t numberCfg = 0 );
 
@@ -30,7 +29,7 @@ private:
 	const pwrCfg*							const cfg;
 	const uint32_t							countCfg;
 
-	uint32_t								nowCfg;
+	uint32_t								nowCfg			=	0;
 };
 
 #endif
