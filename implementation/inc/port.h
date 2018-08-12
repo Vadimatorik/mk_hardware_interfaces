@@ -6,7 +6,7 @@
 
 #ifdef HAL_GPIO_MODULE_ENABLED
 
-#include "mc_hardware_interfaces_port.h"
+#include <mc_hardware_interfaces_port_global.h>
 
 #include "pin.h"
 

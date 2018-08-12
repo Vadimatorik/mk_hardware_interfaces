@@ -233,6 +233,17 @@ BASE_RESULT TimInterrupt::reinit ( uint32_t numberCfg ) {
 	return BASE_RESULT::OK;
 }
 
+BaseResult TimInterrupt::setState ( bool state ) {
+	if ( this->tim.State == HAL_TIM_STATE_RESET )
+		return BASE_RESULT::ERROR_INIT;
+
+	if ( state ) {
+		HAL_TIM_Base_Start_IT( &this->tim );
+	} else {
+		HAL_TIM_Base_Stop_IT( &this->tim );
+	}
+}
+
 BASE_RESULT TimInterrupt::on ( void ) {
 	if ( this->tim.State == HAL_TIM_STATE_RESET )
 		return BASE_RESULT::ERROR_INIT;

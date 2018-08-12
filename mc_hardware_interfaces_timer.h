@@ -94,6 +94,7 @@ public:
 	 */
 	virtual	BaseResult		reinit					( uint32_t numberCfg = 0 )						= 0;
 
+	virtual	BaseResult		setState						(	bool	state	)	=	0;
 	/*!
 	 * Запускает таймера.
 	 *

@@ -113,6 +113,8 @@ public:
 
 	BaseResult		reinit							( uint32_t numberCfg = 0 );
 
+	BaseResult		setState						(	bool	state	);
+
 	BaseResult		on								( void );
 	void			off								( void );
 
