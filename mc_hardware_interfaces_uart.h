@@ -55,8 +55,8 @@ public:
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
 	virtual	BaseResult	tx				(	const uint8_t*		const txArray,
-											const uint16_t&		length		=	1,
-											const uint32_t&		timeoutMs	=	100	)				= 0;
+											uint16_t		length		=	1,
+											uint32_t		timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Возвращает пришедший по UART/USART байт, если таковой имеется.
@@ -68,7 +68,7 @@ public:
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
 	virtual	BaseResult	getByte			(	uint8_t* retrunData,
-											const uint32_t&		timeoutMs	=	100	)				= 0;
+											uint32_t		timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Возвращает пришедший по UART/USART байт без ожидания.

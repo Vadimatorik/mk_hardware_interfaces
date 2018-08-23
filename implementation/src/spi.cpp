@@ -85,8 +85,8 @@ void SpiMaster8Bit::off ( void ) {
 }
 
 BaseResult SpiMaster8Bit::tx (	const uint8_t*		const txArray,
-								const uint16_t		length,
-								const uint32_t		timeoutMs ) {
+								uint16_t			length,
+								uint32_t			timeoutMs ) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 
 	BaseResult rv = BaseResult::errTimeOut ;
@@ -113,8 +113,8 @@ BaseResult SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 
 BaseResult SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 								uint8_t*			rxArray,
-								const uint16_t		length,
-								const uint32_t		timeoutMs	) {
+								uint16_t			length,
+								uint32_t			timeoutMs	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 	xSemaphoreTake ( this->s, 0 );
 
@@ -141,9 +141,9 @@ BaseResult SpiMaster8Bit::tx (	const uint8_t*		const txArray,
 	return rv;
 }
 
-BaseResult SpiMaster8Bit::txOneItem (	const uint8_t	txByte,
-										const uint16_t	count,
-										const uint32_t	timeoutMs	) {
+BaseResult SpiMaster8Bit::txOneItem (	uint8_t		txByte,
+										uint16_t	count,
+										uint32_t	timeoutMs	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 
 	BaseResult rv = BaseResult::errTimeOut ;
@@ -173,10 +173,10 @@ BaseResult SpiMaster8Bit::txOneItem (	const uint8_t	txByte,
 	return rv;
 }
 
-BaseResult SpiMaster8Bit::rx (	uint8_t*			rxArray,
-								const uint16_t		length,
-								const uint32_t		timeoutMs,
-								const uint8_t		outValue	) {
+BaseResult SpiMaster8Bit::rx (	uint8_t*		rxArray,
+								uint16_t		length,
+								uint32_t		timeoutMs,
+								uint8_t			outValue	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 	xSemaphoreTake ( this->s, 0 );
 

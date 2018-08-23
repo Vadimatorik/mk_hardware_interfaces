@@ -5,11 +5,11 @@
 #include <stdint.h>
 
 /// Варианты ответа на вызов метода setCfg класса RccBase.
-enum class RCC_RESULT {
-	OK                  = 0,            /// Операция успешна произведена.
-	ERROR_CFG_NUMBER    = 1,			/// Попытка установить неподдерживаемый режим работы.
-	ERROR_CLK_INIT      = 2,			/// Ошибка при настройке частоты.
-	ERROR_OSC_INIT      = 3				/// Ошибка при настройке источника тактового сигнала.
+enum class RccResult {
+	ok              = 0,            /// Операция успешна произведена.
+	errCfgNumber    = 1,			/// Попытка установить неподдерживаемый режим работы.
+	errClkInit      = 2,			/// Ошибка при настройке частоты.
+	errOscInit      = 3				/// Ошибка при настройке источника тактового сигнала.
 };
 
 /*!
@@ -27,7 +27,7 @@ public:
 	 *
 	 * \return		{Итог попытки смены режим работы RCC.}
 	 */
-	virtual	RCC_RESULT	setCfg		( uint32_t numberCfg = 0 )					= 0;
+	virtual	RccResult	setCfg		( uint32_t numberCfg = 0 )					= 0;
 };
 
 #endif

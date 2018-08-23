@@ -24,29 +24,30 @@ class Uart : public UartBase {
 public:
 	Uart( const uartCfg* const cfg, const uint32_t countCfg = 1 );
 
-	BaseResult		reinit						( uint32_t numberCfg = 0 );
+	BaseResult		reinit						( uint32_t numberCfg					 = 0 );
 
-	BaseResult		on							( void );
-	void			off							( void );
+	BaseResult		on							(	void	);
+	void			off							(	void	);
 
 	BaseResult		tx							(	const uint8_t*		const txArray,
-													const uint16_t&		length		=	1,
-													const uint32_t&		timeoutMs	=	100	);
+													uint16_t			length			=	1,
+													uint32_t			timeoutMs		=	100	);
 
-	BaseResult		getByte						(	uint8_t* retrunData,
-													const uint32_t&		timeoutMs	=	100	);
+	BaseResult		getByte						(	uint8_t*			retrunData,
+													uint32_t			timeoutMs		=	100	);
 
-	BaseResult		getByteWitchout				(	uint8_t* retrunData	);
+	BaseResult		getByteWitchout				(	uint8_t* 			retrunData	);
 
-	void			irqHandler					( void );
+	void			irqHandler					(	void	);
 
 	/// Для внутреннего пользования HAL-а.
-	void			giveSemaphore				( void );
+	void			giveSemaphore				(	void	);
 
 private:
-	bool 			clkInit						( void );
-	bool			clkDeinit					( void );
+	bool 			clkInit						(	void	);
+	bool			clkDeinit					(	void	);
 
+private:
 	const uartCfg*								const cfg;
 	const uint32_t								countCfg;
 

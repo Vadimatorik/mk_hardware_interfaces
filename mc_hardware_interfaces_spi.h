@@ -56,8 +56,8 @@ public:
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
 	virtual BaseResult	tx	(	const uint8_t*		const txArray,
-								const uint16_t		length		=	1,
-								const uint32_t		timeoutMs	=	100	)				= 0;
+								uint16_t			length		=	1,
+								uint32_t			timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Передает массив по SPI и забирает ответ.
@@ -87,8 +87,8 @@ public:
 	 */
 	virtual BaseResult tx	(	const uint8_t*		const txArray,
 								uint8_t*			rxArray,
-								const uint16_t		length		=	1,
-								const uint32_t		timeoutMs	=	100	)				= 0;
+								uint16_t			length		=	1,
+								uint32_t			timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Передает один элемент count раз.
@@ -109,9 +109,9 @@ public:
 	 *					BASE_RESULT::LENGTH_ERROR		-	length вне диапазона.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual BaseResult	txOneItem (	const uint8_t	txByte,
-									const uint16_t	count		=	1,
-									const uint32_t	timeoutMs	=	100	)				= 0;
+	virtual BaseResult	txOneItem (	uint8_t		txByte,
+									uint16_t	count		=	1,
+									uint32_t	timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Принимает данные их SPI.
@@ -134,10 +134,10 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr или rxArray == nullptr.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual	BaseResult	rx	(	uint8_t*			rxArray,
-								const uint16_t		length		=	1,
-								const uint32_t		timeoutMs	=	100,
-								const uint8_t		outValue	=	0xFF )				= 0;
+	virtual	BaseResult	rx	(	uint8_t*		rxArray,
+								uint16_t		length		=	1,
+								uint32_t		timeoutMs	=	100,
+								uint8_t			outValue	=	0xFF )				= 0;
 
 	/*!
 	 * Устанавливает делитель SPI.

@@ -34,39 +34,40 @@ class SpiMaster8Bit : public SpiMaster8BitBase {
 public:
 	SpiMaster8Bit( const SpiMaster8BitCfg* const cfg, const uint32_t countCfg = 1 );
 
-	BaseResult		reinit			( uint32_t numberCfg = 0 );
+	BaseResult		reinit			(	uint32_t		numberCfg = 0	);
 
-	BaseResult		on				( void );
-	void			off				( void );
+	BaseResult		on				(	void	);
+	void			off				(	void	);
 
-	BaseResult	tx				(	const uint8_t*		const txArray,
-									const uint16_t		length		=	1,
-									const uint32_t		timeoutMs	=	100	);
+	BaseResult		tx				(	const uint8_t*		const txArray,
+										uint16_t			length				=	1,
+										uint32_t			timeoutMs			=	100	);
 
-	BaseResult tx				(	const uint8_t*		const txArray,
-									uint8_t*			rxArray,
-									const uint16_t		length		=	1,
-									const uint32_t		timeoutMs	=	100	);
+	BaseResult 		tx				(	const uint8_t*		const txArray,
+										uint8_t*			rxArray,
+										uint16_t			length				=	1,
+										uint32_t			timeoutMs			=	100	);
 
-	BaseResult	txOneItem		(	const uint8_t		txByte,
-									const uint16_t		count		=	1,
-									const uint32_t		timeoutMs	=	100	);
+	BaseResult		txOneItem		(	uint8_t				txByte,
+										uint16_t			count				=	1,
+										uint32_t			timeoutMs			=	100	);
 
-	BaseResult	rx				(	uint8_t*			rxArray,
-									const uint16_t		length		=	1,
-									const uint32_t		timeoutMs	=	100,
-									const uint8_t		outValue	=	0xFF );
+	BaseResult		rx				(	uint8_t*			rxArray,
+										uint16_t			length				=	1,
+										uint32_t			timeoutMs			=	100,
+										uint8_t				outValue			=	0xFF );
 
-	BaseResult		setPrescaler	(	uint32_t prescalerNumber		=	0	);
+	BaseResult		setPrescaler	(	uint32_t			prescalerNumber		=	0	);
 
 
-	void	giveSemaphore			( void );			// Отдать симафор из прерывания (внутренняя функция.
-	void	irqHandler		( void );
+	void			giveSemaphore	(	void	);			// Отдать симафор из прерывания (внутренняя функция.
+	void			irqHandler		(	void	);
 
 private:
-	bool	initClkSpi		( void );											// Включаем тактирование SPI и DMA (если используется).
-	bool	initSpi			( void );											// Инициализируем только SPI (считается, что он уже затактирован).
+	bool			initClkSpi		(	void	);											// Включаем тактирование SPI и DMA (если используется).
+	bool			initSpi			(	void	);											// Инициализируем только SPI (считается, что он уже затактирован).
 
+private:
 	const SpiMaster8BitCfg*					const cfg;
 	const uint32_t							countCfg;
 

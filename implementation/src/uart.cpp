@@ -77,8 +77,8 @@ void Uart::off ( void ) {
 }
 
 BaseResult Uart::tx (	const uint8_t*		const txArray,
-						const uint16_t&		length,
-						const uint32_t&		timeoutMs	) {
+						uint16_t			length,
+						uint32_t			timeoutMs	) {
 	USER_OS_TAKE_MUTEX( this->m, portMAX_DELAY );
 	USER_OS_TAKE_BIN_SEMAPHORE ( this->s, 0 );
 
@@ -114,8 +114,8 @@ BaseResult Uart::getByteWitchout (	uint8_t* retrunData	) {
 	return BaseResult::errNotData;
 }
 
-BaseResult Uart::getByte (	uint8_t* retrunData,
-							const uint32_t&		timeoutMs	) {
+BaseResult Uart::getByte (	uint8_t*		retrunData,
+							uint32_t		timeoutMs	) {
 	if (   this->uart.gState == HAL_UART_STATE_RESET )
 		return BaseResult::errInit;
 
