@@ -1,3 +1,20 @@
+/*!
+ * 	@startuml
+ *
+ *	interface SpiMaster8BitBase {
+ *		{abstract}{method}+	BaseResult		reinit			( uint32_t			cfgNumber			= 0 )
+ *		{abstract}{method}+	BaseResult		on			( void )
+ *		{abstract}{method}+	void			off			( void )
+ *		{abstract}{method}+	BaseResult		tx			( const uint8_t*		const txArray,\n\t\t\t\t\t\t  uint16_t			length			= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100 )
+ *		{abstract}{method}+	BaseResult		tx			( const uint8_t*		const txArray,\n\t\t\t\t\t\t  uint8_t*			rxArray,\n\t\t\t\t\t\t  uint16_t			length			= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100 )
+ *		{abstract}{method}+	BaseResult		txOneItem 		( uint8_t			txByte,\n\t\t\t\t\t\t  uint16_t			count				= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100 )
+ *		{abstract}{method}+	BaseResult		rx			( uint8_t*			rxArray,\n\t\t\t\t\t\t  uint16_t			length			= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100,\n\t\t\t\t\t\t  uint8_t			outValue			= 0xFF )
+ *		{abstract}{method}+	BaseResult		setPrescaler	( uint32_t 			prescalerNumber	= 0 )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -151,20 +168,3 @@ public:
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface SpiMaster8BitBase {
- *		{abstract}{method}+	BaseResult		reinit			( uint32_t			cfgNumber			= 0 )
- *		{abstract}{method}+	BaseResult		on			( void )
- *		{abstract}{method}+	void			off			( void )
- *		{abstract}{method}+	BaseResult		tx			( const uint8_t*		const txArray,\n\t\t\t\t\t\t  uint16_t			length			= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100 )
- *		{abstract}{method}+	BaseResult		tx			( const uint8_t*		const txArray,\n\t\t\t\t\t\t  uint8_t*			rxArray,\n\t\t\t\t\t\t  uint16_t			length			= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100 )
- *		{abstract}{method}+	BaseResult		txOneItem 		( uint8_t			txByte,\n\t\t\t\t\t\t  uint16_t			count				= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100 )
- *		{abstract}{method}+	BaseResult		rx			( uint8_t*			rxArray,\n\t\t\t\t\t\t  uint16_t			length			= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100,\n\t\t\t\t\t\t  uint8_t			outValue			= 0xFF )
- *		{abstract}{method}+	BaseResult		setPrescaler	( uint32_t 			prescalerNumber	= 0 )
- *	}
- *
- *	@enduml
- */
