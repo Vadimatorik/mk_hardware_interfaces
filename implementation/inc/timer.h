@@ -6,7 +6,7 @@
 
 #ifdef HAL_TIM_MODULE_ENABLED
 
-#include "mc_hardware_interfaces_timer.h"
+#include "../../mc_hardware_interfaces_timer_pwm_one_channel.h"
 
 struct clkTimBaseCfg {
 	const uint32_t					period;					// 0..0xFFFF или 0..0xFFFFFFFF
