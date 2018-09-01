@@ -39,7 +39,8 @@ struct AdcOneChannelCfg {
 
 class AdcOneChannel : public AdcOneChannelBase {
 public:
-	AdcOneChannel( const AdcOneChannelCfg* const cfg, uint32_t countCfg );
+	AdcOneChannel	(	const AdcOneChannelCfg*		const cfg,
+						uint32_t					countCfg	);
 
 	BaseResult		reinit								( uint32_t numberCfg = 0 );
 
@@ -52,7 +53,6 @@ public:
 private:
 	void			clkEnable							( void );
 	void			clkDisable							( void );
-
 
 	const AdcOneChannelCfg*			const cfg;
 	const uint32_t					countCfg;

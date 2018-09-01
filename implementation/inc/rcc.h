@@ -1,3 +1,23 @@
+/*!
+ *	@startuml
+ *
+ *	class AdcOneChannel {
+ *		{field}-
+ *		{field}-
+ *		{field}-
+ *		{field}-
+ *		__Constructor__
+ *		{method}+
+ *		__Public methods__
+ *		{method}+
+ *		__Private methods__
+ *		{method}-
+ *		{method}-
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus

@@ -1,3 +1,21 @@
+/*!
+ *	@startuml
+ *
+ *	class AdcOneChannel {
+ *		{field}-	const DacCfg*				const cfg
+ *		{field}-	const uint32_t				cfgCount
+ *		{field}-	DAC_HandleTypeDef			dac
+ *		{field}-	DAC_ChannelConfTypeDef		dacChannel
+ *		__Constructor__
+ *		{method}+	Dac	( const DacCfg*		const cfg,\n\t  uint32_t			cfgCount )
+ *		__Private methods__
+ *		{method}-	void	clkEnable		( void );
+ *		{method}-	void	clkDisable		( void );
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -15,7 +33,8 @@ struct DacCfg {
 
 class Dac : public DacBase {
 public:
-	Dac( const DacCfg* const cfg, const uint32_t countCfg );
+	Dac	(	const DacCfg*		const cfg,
+			uint32_t			cfgCount	);
 
 	BaseResult	reinit			( uint32_t numberCfg = 0 );
 	BaseResult	setValue		( const uint32_t ch, const uint32_t value );
@@ -25,10 +44,10 @@ private:
 	void		clkDisable		( void );
 
 	const DacCfg*					const cfg;
-	const uint32_t					countCfg;
+	const uint32_t					cfgCount;
 
 	DAC_HandleTypeDef				dac;
-	DAC_ChannelConfTypeDef			dacCh;
+	DAC_ChannelConfTypeDef			dacChannel;
 };
 
 #endif
