@@ -75,23 +75,4 @@ bool Pin::read ( void ) {
 	return HAL_GPIO_ReadPin ( ( GPIO_TypeDef* )this->cfg->GPIOx, ( uint16_t )this->cfg->init.Pin );
 }
 
-bool PinMultifunc::reinit ( uint32_t numberCfg ) {
-	if ( numberCfg >= this->countCfg ) return false;
-	HAL_GPIO_DeInit( ( GPIO_TypeDef* )this->cfg->GPIOx, this->cfg->init.Pin );
-	this->init();
-	return true;
-}
-
-bool PinMultifuncIt::checkIt ( void ) {
-	if ( __HAL_GPIO_EXTI_GET_IT( this->exitPin ) != RESET) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-void PinMultifuncIt::clearIt ( void ) {
-	__HAL_GPIO_EXTI_CLEAR_IT( this->exitPin );
-}
-
 #endif

@@ -1,4 +1,4 @@
-#include "timer.h"
+#include "timer_interrupt.h"
 
 #ifdef HAL_TIM_MODULE_ENABLED
 

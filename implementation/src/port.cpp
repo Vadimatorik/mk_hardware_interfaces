@@ -2,6 +2,8 @@
 
 #ifdef HAL_GPIO_MODULE_ENABLED
 
+extern void gpioClkEn (  const GPIO_TypeDef* GPIOx );
+
 BaseResult GlobalPort::reinitAllPorts ( void ) {
     for ( uint32_t l = 0; l < this->countCfg; l++ ) {
 		gpioClkEn( (const GPIO_TypeDef*)this->cfg[l].GPIOx );

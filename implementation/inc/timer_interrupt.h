@@ -6,6 +6,7 @@
 
 #ifdef HAL_TIM_MODULE_ENABLED
 
+#include "timer_counter.h"
 #include "mc_hardware_interfaces_timer_interrupt.h"
 
 struct timInterruptCfg {

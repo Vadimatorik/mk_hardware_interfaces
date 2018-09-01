@@ -60,29 +60,6 @@ protected:
 
 };
 
-class PinMultifunc : public Pin, public PinMultifuncBase {
-public:
-	PinMultifunc( const pinCfg* const cfg, uint32_t countCfg ) : Pin( cfg ), countCfg( countCfg ) {}
-	bool	reinit			( uint32_t numberCfg );
-
-protected:
-	const uint32_t		countCfg;
-};
-
-class PinMultifuncIt : public PinMultifunc, public PinMultifuncItBase {
-public:
-	/// exitPin - GPIO_PIN_x.
-	PinMultifuncIt( const pinCfg* const cfg, uint32_t countCfg, uint32_t exitPin	) : PinMultifunc( cfg, countCfg ), exitPin( exitPin ) {}
-
-	bool	checkIt			( void );
-	void	clearIt			( void );
-
-private:
-	const uint32_t			exitPin;
-};
-
-void gpioClkEn (  const GPIO_TypeDef* GPIOx );
-
 #endif
 
 #endif

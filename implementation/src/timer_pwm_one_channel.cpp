@@ -1,4 +1,4 @@
-#include "timer.h"
+#include "timer_pwm_one_channel.h"
 
 #ifdef HAL_TIM_MODULE_ENABLED
 

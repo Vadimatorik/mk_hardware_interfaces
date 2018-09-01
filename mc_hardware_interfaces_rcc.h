@@ -30,8 +30,8 @@ public:
 	 *
 	 * \return		{Итог попытки смены режим работы RCC.}
 	 */
-	virtual	RccResult	setCfg			(	uint32_t	numberCfg = 0 )					= 0;
-	virtual	uint32_t	getCfgNumber	(	void	)									= 0;
+	virtual	RccResult	setCfg			(	uint32_t		numberCfg = 0 )			= 0;
+	virtual	RccResult	getCfgNumber	(	uint32_t&		cfgNumber	)			= 0;
 };
 
 #endif

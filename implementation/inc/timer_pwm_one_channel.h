@@ -6,7 +6,8 @@
 
 #ifdef HAL_TIM_MODULE_ENABLED
 
-#include "mc_hardware_interfaces_timer_comp_one_channel.h"
+#include "timer_counter.h"
+#include "mc_hardware_interfaces_timer_pwm_one_channel.h"
 
 struct timPwmOneChannelCfg {
 	// Используемый таймер.
