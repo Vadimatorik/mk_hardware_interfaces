@@ -7,9 +7,9 @@ BaseResult Pwr::reinit ( uint32_t numberCfg ) {
 		return BaseResult::errInputValue;
 
 	__HAL_RCC_PWR_CLK_ENABLE();
-	this->nowCfg	=	numberCfg;
+	this->cfgNow	=	numberCfg;
 
-	HAL_PWR_ConfigPVD( ( PWR_PVDTypeDef* )&this->cfg[ this->nowCfg ].cfg );
+	HAL_PWR_ConfigPVD( ( PWR_PVDTypeDef* )&this->cfg[ this->cfgNow ].cfg );
 
 	return BaseResult::ok;
 }

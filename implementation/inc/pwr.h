@@ -1,18 +1,14 @@
 /*!
  *	@startuml
  *
- *	class AdcOneChannel {
- *		{field}-
- *		{field}-
- *		{field}-
- *		{field}-
+ *	class Pwr {
+ *		{field}-	const PwrCfg*		const cfg
+ *		{field}-	const uint32_t		cfgCount
+ *		{field}-	uint32_t			cfgNow
  *		__Constructor__
- *		{method}+
+ *		{method}+	Pwr ( const PwrCfg*	const cfg,\n\tuint32_t		cfgCount = 1 )
  *		__Public methods__
- *		{method}+
- *		__Private methods__
- *		{method}-
- *		{method}-
+ *		{method}+	void		irqHandler		( void )
  *	}
  *
  *	@enduml
@@ -29,14 +25,15 @@
 #include "mc_hardware_interfaces_pwr.h"
 #include "user_os.h"
 
-struct pwrCfg {
+struct PwrCfg {
 	const PWR_PVDTypeDef			cfg;
 };
 
 class Pwr : public PwrBase {
 public:
-	Pwr ( const pwrCfg* const cfg, const uint32_t countCfg = 1 )
-		: cfg( cfg ), countCfg( countCfg ) {}
+	Pwr (	const PwrCfg*	const cfg,
+			uint32_t		cfgCount = 1 )
+		: cfg( cfg ), cfgCount( cfgCount ) {}
 
 	BaseResult	reinit			( uint32_t numberCfg = 0 );
 
@@ -46,10 +43,10 @@ public:
 	void		irqHandler		( void );
 
 private:
-	const pwrCfg*							const cfg;
-	const uint32_t							countCfg;
+	const PwrCfg*							const cfg;
+	const uint32_t							cfgCount;
 
-	uint32_t								nowCfg			=	0;
+	uint32_t								cfgNow			=	0;
 };
 
 #endif

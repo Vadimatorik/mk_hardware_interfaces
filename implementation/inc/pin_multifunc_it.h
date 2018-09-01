@@ -2,17 +2,9 @@
  *	@startuml
  *
  *	class AdcOneChannel {
- *		{field}-
- *		{field}-
- *		{field}-
- *		{field}-
+ *		{field}-	const uint32_t			exitPin
  *		__Constructor__
- *		{method}+
- *		__Public methods__
- *		{method}+
- *		__Private methods__
- *		{method}-
- *		{method}-
+ *		{method}+	PinMultifuncIt\t( const pinCfg*\t\tconst cfg,\n\t\t\t  uint32_t\t\t\tcfgCount,\n\t\t\t  uint32_t\t\t\texitPin )
  *	}
  *
  *	@enduml
@@ -32,13 +24,17 @@
 class PinMultifuncIt : public PinMultifunc, public PinMultifuncItBase {
 public:
 	/// exitPin - GPIO_PIN_x.
-	PinMultifuncIt( const pinCfg* const cfg, uint32_t countCfg, uint32_t exitPin	) : PinMultifunc( cfg, countCfg ), exitPin( exitPin ) {}
+	PinMultifuncIt	(	const PinCfg*		const cfg,
+						uint32_t			cfgCount,
+						uint32_t			exitPin	)
+		: PinMultifunc( cfg, cfgCount ), exitPin( exitPin ) {}
 
 	bool	checkIt			( void );
 	void	clearIt			( void );
 
 private:
 	const uint32_t			exitPin;
+
 };
 
 #endif

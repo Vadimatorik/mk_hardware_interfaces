@@ -1,18 +1,10 @@
 /*!
  *	@startuml
  *
- *	class AdcOneChannel {
- *		{field}-
- *		{field}-
- *		{field}-
- *		{field}-
+ *	class PinMultifunc {
+ *		{field}-	const uint32_t		cfgCount
  *		__Constructor__
- *		{method}+
- *		__Public methods__
- *		{method}+
- *		__Private methods__
- *		{method}-
- *		{method}-
+ *		{method}+	PinMultifunc\t( const pinCfg*\tconst cfg,\n\t\t\t  uint32_t\t\tcfgCount )
  *	}
  *
  *	@enduml
@@ -31,7 +23,10 @@
 
 class PinMultifunc : public Pin, public PinMultifuncBase {
 public:
-	PinMultifunc( const pinCfg* const cfg, uint32_t cfgCount ) : Pin( cfg ), cfgCount( cfgCount ) {}
+	PinMultifunc	(	const PinCfg*		const cfg,
+						uint32_t			cfgCount	)
+		: Pin( cfg ), cfgCount( cfgCount ) {}
+
 	bool	reinit			( uint32_t cfgNumber );
 
 protected:

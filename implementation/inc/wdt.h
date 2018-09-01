@@ -1,18 +1,17 @@
 /*!
  *	@startuml
  *
- *	class AdcOneChannel {
- *		{field}-
- *		{field}-
- *		{field}-
- *		{field}-
+ *	class Wdt {
+ *		{field}-	const WdtCfg*					const cfg
+ *		{field}-	const uint32_t					cfgCount
+ *		{field}-	uint32_t						cfgNow
+ *		{field}-	USER_OS_STATIC_STACK_TYPE		taskStack[ 64 ]
+ *		{field}-	USER_OS_STATIC_TASK_STRUCT_TYPE	taskStruct
+ *		{field}-	uint8_t						reboot
  *		__Constructor__
- *		{method}+
- *		__Public methods__
- *		{method}+
+ *		{method}+	Wdt ( const WdtCfg*		const cfg,\n\tuint32_t			cfgCount = 1 )
  *		__Private methods__
- *		{method}-
- *		{method}-
+ *		{method}{static}-	void	task	( void*	obj )
  *	}
  *
  *	@enduml
@@ -29,7 +28,7 @@
 #include "mc_hardware_interfaces_wdt.h"
 #include "user_os.h"
 
-struct wdtCfg {
+struct WdtCfg {
 	const uint8_t	taskPrio;				// Приоритет задачи, сбрасывающий wdt.
 	const uint32_t	runTimeMs;				// Время перезагрузки по сторожевому таймеру.
 											// при номинальном режиме работы системы.
@@ -40,19 +39,20 @@ struct wdtCfg {
 
 class Wdt : public WdtBase {
 public:
-	Wdt ( const wdtCfg* const cfg, const uint32_t countCfg = 1 )
-		: cfg( cfg ), countCfg( countCfg ),
-		nowCfg( 0 ) {}
+	Wdt (	const WdtCfg*		const cfg,
+			uint32_t			cfgCount = 1 )
+		: cfg( cfg ), cfgCount( cfgCount ),
+		  cfgNow( 0 ) {}
 
 	BaseResult		reinit			( uint32_t numberCfg = 0 );
 	void			reset			( void );
 	void			resetService	( void );
 
 private:
-	const wdtCfg*							const cfg;
-	const uint32_t							countCfg;
+	const WdtCfg*							const cfg;
+	const uint32_t							cfgCount;
 
-	uint32_t								nowCfg;
+	uint32_t								cfgNow;
 
 	static void task ( void* obj );
 

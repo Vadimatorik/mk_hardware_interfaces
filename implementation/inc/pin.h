@@ -2,17 +2,9 @@
  *	@startuml
  *
  *	class AdcOneChannel {
- *		{field}-
- *		{field}-
- *		{field}-
- *		{field}-
+ *		{field}-	const PinCfg*		const cfg;
  *		__Constructor__
- *		{method}+
- *		__Public methods__
- *		{method}+
- *		__Private methods__
- *		{method}-
- *		{method}-
+ *		{method}+	Pin	( const PinCfg*	const cfg )
  *	}
  *
  *	@enduml
@@ -54,14 +46,14 @@
 		.Speed		=	GPIO_SPEED_FREQ_VERY_HIGH,	\
 		.Alternate	=	0
 
-struct pinCfg {
+struct PinCfg {
 	const GPIO_TypeDef*		 const GPIOx;
 	const GPIO_InitTypeDef	init;
 };
 
 class Pin : public PinBase {
 public:
-	Pin( const pinCfg* const cfg ) : cfg( cfg ) {}
+	Pin( const PinCfg* const cfg ) : cfg( cfg ) {}
 
 	void	init			( void );	// Перед инициализацией включается тактирование портов.
 
@@ -76,7 +68,7 @@ public:
 	bool	read			( void );
 
 protected:
-	const pinCfg*			const cfg;
+	const PinCfg*			const cfg;
 
 };
 

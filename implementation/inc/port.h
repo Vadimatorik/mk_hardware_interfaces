@@ -1,18 +1,11 @@
 /*!
  *	@startuml
  *
- *	class AdcOneChannel {
- *		{field}-
- *		{field}-
- *		{field}-
- *		{field}-
+ *	class GlobalPort {
+ *		{field}-	const PinCfg*			const cfg
+ *		{field}-	const uint32_t			cfgCount
  *		__Constructor__
- *		{method}+
- *		__Public methods__
- *		{method}+
- *		__Private methods__
- *		{method}-
- *		{method}-
+ *		{method}+	GlobalPort	( const PinCfg*	const cfg,\n\t\t  uint32_t		cfgCount )
  *	}
  *
  *	@enduml
@@ -32,12 +25,16 @@
 
 class GlobalPort : public GlobalPortBase {
 public:
-	GlobalPort( const pinCfg* const cfg, uint32_t countCfg ) : cfg( cfg ), countCfg( countCfg ) {}
+	GlobalPort	(	const PinCfg*		const cfg,
+					uint32_t			cfgCount	)
+		: cfg( cfg ), cfgCount( cfgCount ) {}
+
 	BaseResult	reinitAllPorts		( void );
 
 private:
-	const pinCfg*				const cfg;
-	const uint32_t				countCfg;
+	const PinCfg*				const cfg;
+	const uint32_t				cfgCount;
+
 };
 
 #endif
