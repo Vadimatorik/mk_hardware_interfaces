@@ -39,9 +39,23 @@ public:
 
 	/// Возвращает результат измерения.
 	/// \return		{	Результат измерения напряжения на канале.	}
-	virtual BaseResult		getMeasurement						(	const uint32_t		numberChannel,
-																	uint32_t*			returnValue		)	= 0;
+	virtual BaseResult		getMeasurement						(	uint32_t		numberChannel,
+																	uint32_t&			returnedValue	)	= 0;
 
 };
 
 #endif
+
+/*!
+ * 	@startuml
+ *
+ * 	interface AdcMultiChannelBase {
+ *		{abstract}{method}+	BaseResult		reinit					( uint32_t		numberCfg = 0 )
+ *		{abstract}{method}+	BaseResult		startContinuousConversion	( void )
+ *		{abstract}{method}+	void			stopContinuousConversion	( void )
+ *		{abstract}{method}+	BaseResult		getMeasurement			( uint32_t		numberChannel,
+ *													\t\t\t\t\t\t\t\t  uint32_t&		returnedValue )
+ *	}
+ *
+ *	@enduml
+ */

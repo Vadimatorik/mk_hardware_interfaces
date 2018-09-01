@@ -22,7 +22,7 @@ public:
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BaseResult		reinit		( uint32_t numberCfg = 0 )													= 0;
+	virtual	BaseResult		reinit		( uint32_t				numberCfg = 0 )						= 0;
 
 	/*!
 	 * Запускает UART/USART.
@@ -55,8 +55,8 @@ public:
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
 	virtual	BaseResult	tx				(	const uint8_t*		const txArray,
-											uint16_t		length		=	1,
-											uint32_t		timeoutMs	=	100	)				= 0;
+											uint16_t			length		=	1,
+											uint32_t			timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Возвращает пришедший по UART/USART байт, если таковой имеется.
@@ -67,8 +67,8 @@ public:
 	 *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.
 	 *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
 	 */
-	virtual	BaseResult	getByte			(	uint8_t* retrunData,
-											uint32_t		timeoutMs	=	100	)				= 0;
+	virtual	BaseResult	getByte			(	uint8_t*			retrunData,
+											uint32_t			timeoutMs	=	100	)				= 0;
 
 	/*!
 	 * Возвращает пришедший по UART/USART байт без ожидания.
@@ -79,8 +79,23 @@ public:
 	 *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.
 	 *					BASE_RESULT::NOT_DATA			-	байт отсутствует	}
 	 */
-	virtual	BaseResult	getByteWitchout	(	uint8_t* retrunData	)									= 0;
+	virtual	BaseResult	getByteWitchout	(	uint8_t*			retrunData	)						= 0;
 
 };
 
 #endif
+
+/*!
+ * 	@startuml
+ *
+ *	interface UartBase {
+ *		{abstract}{method}+	BaseResult		reinit				( uint32_t			cfgNumber		= 0 )
+ *		{abstract}{method}+	BaseResult		on				( void )
+ *		{abstract}{method}+	void			off				( void )
+ *		{abstract}{method}+	BaseResult		tx				( const uint8_t*		const txArray,\n\t\t\t\t\t\t\t  uint16_t			length		= 1,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
+ *		{abstract}{method}+	BaseResult		getByte			( uint8_t*			retrunData,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
+ *		{abstract}{method}+	BaseResult		getByteWitchout		( uint8_t* 			retrunData )
+ *	}
+ *
+ *	@enduml
+ */

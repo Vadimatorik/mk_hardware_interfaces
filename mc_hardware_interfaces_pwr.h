@@ -4,9 +4,6 @@
 
 #include "mc_hardware_interfaces_base.h"
 
-/*!
- *
- */
 class PwrBase {
 public:
 	/*!
@@ -32,3 +29,15 @@ public:
 };
 
 #endif
+
+/*!
+ * 	@startuml
+ *
+ *	interface PwrBase {
+ *		{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
+ *		{abstract}{method}+	void			pvdEnable		( void )
+ *		{abstract}{method}+	void			pvdDisable		( void )
+ *	}
+ *
+ *	@enduml
+ */

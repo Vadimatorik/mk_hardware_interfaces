@@ -25,3 +25,13 @@ public:
 };
 
 #endif
+
+/*!
+ * 	@startuml
+ *
+ *	interface GlobalPortBase {
+ *		{abstract}{method}+	BaseResult		reinitAllPorts	( void )
+ *	}
+ *
+ *	@enduml
+ */

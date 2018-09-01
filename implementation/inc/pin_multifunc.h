@@ -11,11 +11,11 @@
 
 class PinMultifunc : public Pin, public PinMultifuncBase {
 public:
-	PinMultifunc( const pinCfg* const cfg, uint32_t countCfg ) : Pin( cfg ), countCfg( countCfg ) {}
-	bool	reinit			( uint32_t numberCfg );
+	PinMultifunc( const pinCfg* const cfg, uint32_t cfgCount ) : Pin( cfg ), cfgCount( cfgCount ) {}
+	bool	reinit			( uint32_t cfgNumber );
 
 protected:
-	const uint32_t		countCfg;
+	const uint32_t		cfgCount;
 };
 
 #endif

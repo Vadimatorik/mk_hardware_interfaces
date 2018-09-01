@@ -29,3 +29,15 @@ public:
 
 #endif
 
+/*!
+ * 	@startuml
+ *
+ *	interface Port8bitBase {
+ *		{abstract}{method}+	void		write		( uint8_t	data )
+ *		{abstract}{method}+	void		reset		( void )
+ *		{abstract}{method}+	void		toggle	( void )
+ *		{abstract}{method}+	uint8_t	read		( void )
+ *	}
+ *
+ *	@enduml
+ */

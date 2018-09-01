@@ -22,3 +22,15 @@ public:
 };
 
 #endif
+
+/*!
+ * 	@startuml
+ *
+ *	interface PinMultifuncItBase {
+ *		{abstract}{method}+	bool	checkIt	( void )
+ *		{abstract}{method}+	void	clearIt	( void )
+ *	}
+ *
+ *	@enduml
+ */
+

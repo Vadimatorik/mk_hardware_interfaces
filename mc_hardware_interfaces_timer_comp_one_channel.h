@@ -39,3 +39,15 @@ public:
 };
 
 #endif
+
+/*!
+ * 	@startuml
+ *
+ *	interface TimCompOneChannelBase {
+ *		{abstract}{method}+	BaseResult		reinit		( uint32_t	cfgNumber = 0 )
+ *		{abstract}{method}+	BaseResult		on		( void )
+ *		{abstract}{method}+	void			off		( void )
+ *	}
+ *
+ *	@enduml
+ */
