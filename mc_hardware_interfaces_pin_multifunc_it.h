@@ -1,13 +1,15 @@
-/*!
- * 	@startuml
- *
- *	interface PinMultifuncItBase {
- *		{abstract}{method}+	bool	checkIt	( void )
- *		{abstract}{method}+	void	clearIt	( void )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface PinMultifuncItBase {
+	{abstract}{method}+	bool	checkIt	( void )
+	{abstract}{method}+	void	clearIt	( void )
+}
+
+@enduml
+
+*/
 
 #pragma once
 

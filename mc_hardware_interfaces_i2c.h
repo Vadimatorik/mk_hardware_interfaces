@@ -1,17 +1,19 @@
-/*!
- * 	@startuml
- *
- *	interface I2cMasterBase {
- *		{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
- *		{abstract}{method}+	BaseResult		on		( void )
- *		{abstract}{method}+	void			off		( void )
- *		{abstract}{method}+	BaseResult		read		( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
- *		{abstract}{method}+	BaseResult		readDma	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
- *		{abstract}{method}+	BaseResult		writeByte	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		writeAddress )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface I2cMasterBase {
+	{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
+	{abstract}{method}+	BaseResult		on		( void )
+	{abstract}{method}+	void			off		( void )
+	{abstract}{method}+	BaseResult		read		( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
+	{abstract}{method}+	BaseResult		readDma	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
+	{abstract}{method}+	BaseResult		writeByte	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		writeAddress )
+}
+
+@enduml
+
+*/
 
 #pragma once
 

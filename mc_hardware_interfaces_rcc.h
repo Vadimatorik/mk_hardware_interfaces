@@ -1,13 +1,15 @@
-/*!
- * 	@startuml
- *
- *	interface RccBase {
- *		{abstract}{method}+	RccResult	setCfg		( uint32_t		cfgNumber = 0 )
- *		{abstract}{method}+	RccResult	getCfgNumber	( uint32_t&		returnCfgNumber )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface RccBase {
+	{abstract}{method}+	RccResult	setCfg		( uint32_t		cfgNumber = 0 )
+	{abstract}{method}+	RccResult	getCfgNumber	( uint32_t&		returnCfgNumber )
+}
+
+@enduml
+
+*/
 
 #pragma once
 

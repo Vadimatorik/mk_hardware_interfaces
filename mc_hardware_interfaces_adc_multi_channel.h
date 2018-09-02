@@ -1,16 +1,18 @@
-/*!
- * 	@startuml
- *
- * 	interface AdcMultiChannelBase {
- *		{abstract}{method}+	BaseResult		reinit					( uint32_t		numberCfg = 0 )
- *		{abstract}{method}+	BaseResult		startContinuousConversion	( void )
- *		{abstract}{method}+	void			stopContinuousConversion	( void )
- *		{abstract}{method}+	BaseResult		getMeasurement			( uint32_t		numberChannel,
- *													\t\t\t\t\t\t\t\t  uint32_t&		returnedValue )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+	interface AdcMultiChannelBase {
+		{abstract}{method}+	BaseResult		reinit					( uint32_t		numberCfg = 0 )
+		{abstract}{method}+	BaseResult		startContinuousConversion	( void )
+		{abstract}{method}+	void			stopContinuousConversion	( void )
+		{abstract}{method}+	BaseResult		getMeasurement			( uint32_t		numberChannel,
+													\t\t\t\t\t\t\t\t  uint32_t&		returnedValue )
+	}
+
+@enduml
+
+*/
 
 #pragma once
 

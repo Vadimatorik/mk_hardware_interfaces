@@ -1,14 +1,16 @@
-/*!
- * 	@startuml
- *
- *	interface PwrBase {
- *		{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
- *		{abstract}{method}+	void			pvdEnable		( void )
- *		{abstract}{method}+	void			pvdDisable		( void )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface PwrBase {
+	{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
+	{abstract}{method}+	void			pvdEnable		( void )
+	{abstract}{method}+	void			pvdDisable		( void )
+}
+
+@enduml
+
+*/
 
 #pragma once
 

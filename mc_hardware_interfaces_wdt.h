@@ -4,15 +4,19 @@
 
 #include "mc_hardware_interfaces_base.h"
 
-/*!
- *	@startuml
- *	interface WdtBase {
- *		{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
- *		{abstract}{method}+	void			reset			( void )
- *		{abstract}{method}+	void			resetService	( void )
- *	}
- *	@enduml
- */
+/*
+
+@startuml
+
+interface WdtBase {
+	{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
+	{abstract}{method}+	void			reset			( void )
+	{abstract}{method}+	void			resetService	( void )
+}
+
+@enduml
+
+*/
 
 
 class WdtBase {

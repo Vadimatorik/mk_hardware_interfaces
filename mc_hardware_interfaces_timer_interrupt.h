@@ -1,16 +1,18 @@
-/*!
- * 	@startuml
- *
- *	interface TimInterruptBase {
- *		{abstract}{method}+	BaseResult		reinit				( uint32_t	cfgNumber = 0 )
- *		{abstract}{method}+	BaseResult		setState			( bool	state )
- *		{abstract}{method}+	BaseResult		on				( void )
- *		{abstract}{method}+	void			off				( void )
- *		{abstract}{method}+	void			clearInterruptFlag	( void )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface TimInterruptBase {
+	{abstract}{method}+	BaseResult		reinit				( uint32_t	cfgNumber = 0 )
+	{abstract}{method}+	BaseResult		setState			( bool	state )
+	{abstract}{method}+	BaseResult		on				( void )
+	{abstract}{method}+	void			off				( void )
+	{abstract}{method}+	void			clearInterruptFlag	( void )
+}
+
+@enduml
+
+*/
 
 #pragma once
 

@@ -1,15 +1,17 @@
-/*!
- * 	@startuml
- *
- *	interface AdcOneChannelBase {
- *		{abstract}{method}+	BaseResult		reinit						( uint32_t cfgNumber = 0 )
- *		{abstract}{method}+	BaseResult		startContinuousConversion		( void )
- *		{abstract}{method}+	void			stopContinuousConversion		( void )
- *		{abstract}{method}+	uint32_t		getMeasurement				( void )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface AdcOneChannelBase {
+	{abstract}{method}+	BaseResult		reinit						( uint32_t cfgNumber = 0 )
+	{abstract}{method}+	BaseResult		startContinuousConversion		( void )
+	{abstract}{method}+	void			stopContinuousConversion		( void )
+	{abstract}{method}+	uint32_t		getMeasurement				( void )
+}
+
+@enduml
+
+*/
 
 #pragma once
 

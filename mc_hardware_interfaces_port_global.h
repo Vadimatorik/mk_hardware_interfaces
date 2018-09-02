@@ -1,12 +1,14 @@
-/*!
- * 	@startuml
- *
- *	interface GlobalPortBase {
- *		{abstract}{method}+	BaseResult		reinitAllPorts	( void )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface GlobalPortBase {
+	{abstract}{method}+	BaseResult		reinitAllPorts	( void )
+}
+
+@enduml
+
+*/
 
 #pragma once
 

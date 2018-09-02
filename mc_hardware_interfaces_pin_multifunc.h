@@ -1,12 +1,14 @@
-/*!
- * 	@startuml
- *
- *	interface PinMultifuncBase {
- *		{abstract}{method}+	bool	reinit		( uint32_t	cfgNumber = 0 )
- *	}
- *
- *	@enduml
- */
+/*
+
+@startuml
+
+interface PinMultifuncBase {
+	{abstract}{method}+	bool	reinit		( uint32_t	cfgNumber = 0 )
+}
+
+@enduml
+
+*/
 
 #pragma once
 
