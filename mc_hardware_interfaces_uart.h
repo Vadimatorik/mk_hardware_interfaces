@@ -31,13 +31,13 @@ public:
 	 * Замечание: управление тактовым сигналом аппаратного
 	 * модуля осуществляется внутри метода автоматически.
 	 *
-	 * \param[in]	numberCfg		-	выбранный режим работы.
+	 * \param[in]	cfgNumber		-	выбранный режим работы.
 	 *
 	 * \return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BaseResult		reinit		( uint32_t				numberCfg = 0 )						= 0;
+	virtual	BaseResult		reinit		( uint32_t				cfgNumber = 0 )						= 0;
 
 	/*!
 	 * Запускает UART/USART.

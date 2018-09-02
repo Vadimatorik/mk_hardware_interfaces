@@ -22,12 +22,12 @@ public:
 	 * Сбрасывает текущие настройки Pwr и инициализирует его заново
 	 * согласно выбранному режиму.
 	 *
-	 * \param[in]	numberCfg		-	выбранный режим.
+	 * \param[in]	cfgNumber		-	выбранный режим.
 	 *
 	 * \return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 */
-	virtual	BaseResult	reinit			( uint32_t numberCfg = 0 )				= 0;
+	virtual	BaseResult	reinit			( uint32_t cfgNumber = 0 )				= 0;
 
 	/*!
 	 * Запускает контроль за напряжением питания согласно конфигурации.

@@ -1,3 +1,13 @@
+/*!
+ * 	@startuml
+ *
+ *	interface GlobalPortBase {
+ *		{abstract}{method}+	BaseResult		reinitAllPorts	( void )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -25,13 +35,3 @@ public:
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface GlobalPortBase {
- *		{abstract}{method}+	BaseResult		reinitAllPorts	( void )
- *	}
- *
- *	@enduml
- */

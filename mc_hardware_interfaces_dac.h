@@ -1,3 +1,14 @@
+/*!
+ * 	@startuml
+ *
+ *	interface DacBase {
+ *		{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
+ *		{abstract}{method}+	BaseResult		setValue	( uint32_t		channel,\n\t\t\t\t\t  uint32_t		value )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -39,14 +50,3 @@ public:
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface DacBase {
- *		{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
- *		{abstract}{method}+	BaseResult		setValue	( uint32_t		channel,\n\t\t\t\t\t  uint32_t		value )
- *	}
- *
- *	@enduml
- */

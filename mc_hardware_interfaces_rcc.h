@@ -1,3 +1,14 @@
+/*!
+ * 	@startuml
+ *
+ *	interface RccBase {
+ *		{abstract}{method}+	RccResult	setCfg		( uint32_t		cfgNumber = 0 )
+ *		{abstract}{method}+	RccResult	getCfgNumber	( uint32_t&		returnCfgNumber )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -31,18 +42,7 @@ public:
 	 * \return		{Итог попытки смены режим работы RCC.}
 	 */
 	virtual	RccResult	setCfg			(	uint32_t		cfgNumber = 0 )			= 0;
-	virtual	RccResult	getCfgNumber	(	uint32_t&		returnCfgNumber	)			= 0;
+	virtual	RccResult	getCfgNumber	(	uint32_t&		returnCfgNumber	)		= 0;
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface RccBase {
- *		{abstract}{method}+	RccResult	setCfg		( uint32_t		cfgNumber = 0 )
- *		{abstract}{method}+	RccResult	getCfgNumber	( uint32_t&		returnCfgNumber )
- *	}
- *
- *	@enduml
- */

@@ -1,3 +1,17 @@
+/*!
+ * 	@startuml
+ *
+ *	interface TimInterruptBase {
+ *		{abstract}{method}+	BaseResult		reinit				( uint32_t	cfgNumber = 0 )
+ *		{abstract}{method}+	BaseResult		setState			( bool	state )
+ *		{abstract}{method}+	BaseResult		on				( void )
+ *		{abstract}{method}+	void			off				( void )
+ *		{abstract}{method}+	void			clearInterruptFlag	( void )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -16,13 +30,13 @@ public:
 	 * Замечание: управление тактовым сигналом аппаратного
 	 * модуля осуществляется внутри метода автоматически.
 	 *
-	 * \param[in]	numberCfg		-	выбранная конфигурация таймера.
+	 * \param[in]	cfgNumber		-	выбранная конфигурация таймера.
 	 *
 	 * \return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
 	 *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
 	 *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
 	 */
-	virtual	BaseResult		reinit					( uint32_t numberCfg = 0 )						= 0;
+	virtual	BaseResult		reinit					( uint32_t cfgNumber = 0 )						= 0;
 
 	virtual	BaseResult		setState						(	bool	state	)	=	0;
 	/*!
@@ -45,17 +59,3 @@ public:
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface TimInterruptBase {
- *		{abstract}{method}+	BaseResult		reinit				( uint32_t	cfgNumber = 0 )
- *		{abstract}{method}+	BaseResult		setState			( bool	state )
- *		{abstract}{method}+	BaseResult		on				( void )
- *		{abstract}{method}+	void			off				( void )
- *		{abstract}{method}+	void			clearInterruptFlag	( void )
- *	}
- *
- *	@enduml
- */

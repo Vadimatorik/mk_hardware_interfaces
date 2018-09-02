@@ -1,3 +1,14 @@
+/*!
+ * 	@startuml
+ *
+ *	interface PinMultifuncItBase {
+ *		{abstract}{method}+	bool	checkIt	( void )
+ *		{abstract}{method}+	void	clearIt	( void )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -22,15 +33,3 @@ public:
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface PinMultifuncItBase {
- *		{abstract}{method}+	bool	checkIt	( void )
- *		{abstract}{method}+	void	clearIt	( void )
- *	}
- *
- *	@enduml
- */
-

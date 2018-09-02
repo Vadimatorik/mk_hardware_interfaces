@@ -1,3 +1,19 @@
+/*!
+ * 	@startuml
+ *
+ *	interface PinBase {
+ *		{abstract}{method}+	void	set		( void )
+ *		{abstract}{method}+	void	reset		( void )
+ *		{abstract}{method}+	void	toggle	( void )
+ *		{abstract}{method}+	void	set		( bool	state )
+ *		{abstract}{method}+	void	set		( int		state )
+ *		{abstract}{method}+	void	set		( uint8_t	state )
+ *		{abstract}{method}+	bool	read		( void )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -39,19 +55,3 @@ public:
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface PinBase {
- *		{abstract}{method}+	void	set		( void )
- *		{abstract}{method}+	void	reset		( void )
- *		{abstract}{method}+	void	toggle	( void )
- *		{abstract}{method}+	void	set		( bool	state )
- *		{abstract}{method}+	void	set		( int		state )
- *		{abstract}{method}+	void	set		( uint8_t	state )
- *		{abstract}{method}+	bool	read		( void )
- *	}
- *
- *	@enduml
- */

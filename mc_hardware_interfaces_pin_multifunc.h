@@ -1,3 +1,13 @@
+/*!
+ * 	@startuml
+ *
+ *	interface PinMultifuncBase {
+ *		{abstract}{method}+	bool	reinit		( uint32_t	cfgNumber = 0 )
+ *	}
+ *
+ *	@enduml
+ */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -17,18 +27,8 @@ public:
 	 *								и был успешно выбран.
 	 *					false	-	в противном случае.	}
 	 */
-	virtual bool	reinit			( uint32_t numberCfg = 0 )		= 0;
+	virtual bool	reinit			( uint32_t cfgNumber = 0 )		= 0;
 
 };
 
 #endif
-
-/*!
- * 	@startuml
- *
- *	interface PinMultifuncBase {
- *		{abstract}{method}+	bool	reinit		( uint32_t	cfgNumber = 0 )
- *	}
- *
- *	@enduml
- */
