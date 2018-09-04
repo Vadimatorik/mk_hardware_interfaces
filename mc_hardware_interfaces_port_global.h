@@ -4,7 +4,7 @@
 
 namespace McHardwareInterfaces {
 
-interface GlobalPort {
+interface PortGlobal {
 	{abstract}{method}+	BaseResult		reinitAllPorts	( void )
 }
 
@@ -26,7 +26,7 @@ namespace McHardwareInterfaces {
  * Класс предназначен для работы со всеми
  * используемыми в проекте выводами одновременно.
  */
-class GlobalPort {
+class PortGlobal {
 public:
 	/*!
 	 * Сбрасывает настройки всех выводов,
