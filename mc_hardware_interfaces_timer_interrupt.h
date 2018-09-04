@@ -2,12 +2,16 @@
 
 @startuml
 
-interface TimInterruptBase {
+namespace McHardwareInterfaces {
+
+interface TimInterrupt {
 	{abstract}{method}+	BaseResult		reinit				( uint32_t	cfgNumber = 0 )
 	{abstract}{method}+	BaseResult		setState			( bool	state )
 	{abstract}{method}+	BaseResult		on				( void )
 	{abstract}{method}+	void			off				( void )
 	{abstract}{method}+	void			clearInterruptFlag	( void )
+}
+
 }
 
 @enduml
@@ -20,10 +24,12 @@ interface TimInterruptBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для генерации прерываний средствами аппаратного таймера.
  */
-class TimInterruptBase {
+class TimInterrupt {
 public:
 	/*!
 	 * Сбрасывает текущие настройки таймера и инициализирует его заново.
@@ -59,5 +65,7 @@ public:
 	virtual void			clearInterruptFlag		( void )										= 0;
 
 };
+
+}
 
 #endif

@@ -2,13 +2,17 @@
 
 @startuml
 
-interface UartBase {
+namespace McHardwareInterfaces {
+
+interface Uart {
 	{abstract}{method}+	BaseResult		reinit				( uint32_t			cfgNumber		= 0 )
 	{abstract}{method}+	BaseResult		on				( void )
 	{abstract}{method}+	void			off				( void )
 	{abstract}{method}+	BaseResult		tx				( const uint8_t*		const txArray,\n\t\t\t\t\t\t\t  uint16_t			length		= 1,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
 	{abstract}{method}+	BaseResult		getByte			( uint8_t*			retrunData,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
 	{abstract}{method}+	BaseResult		getByteWitchout		( uint8_t* 			retrunData )
+}
+
 }
 
 @enduml
@@ -21,10 +25,12 @@ interface UartBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для приема/передачи через аппаратный uart/usart.
  */
-class UartBase {
+class Uart {
 public:
 	/*!
 	 * Сбрасывает текущие настройки UART/USART и инициализирует его заново.
@@ -99,5 +105,7 @@ public:
 	virtual	BaseResult	getByteWitchout	(	uint8_t*			retrunData	)						= 0;
 
 };
+
+}
 
 #endif

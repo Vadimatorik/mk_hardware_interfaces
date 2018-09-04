@@ -2,7 +2,9 @@
 
 @startuml
 
-interface SpiMaster8BitBase {
+namespace McHardwareInterfaces {
+
+interface SpiMaster8Bit {
 	{abstract}{method}+	BaseResult		reinit			( uint32_t			cfgNumber			= 0 )
 	{abstract}{method}+	BaseResult		on			( void )
 	{abstract}{method}+	void			off			( void )
@@ -11,6 +13,8 @@ interface SpiMaster8BitBase {
 	{abstract}{method}+	BaseResult		txOneItem 		( uint8_t			txByte,\n\t\t\t\t\t\t  uint16_t			count				= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100 )
 	{abstract}{method}+	BaseResult		rx			( uint8_t*			rxArray,\n\t\t\t\t\t\t  uint16_t			length			= 1,\n\t\t\t\t\t\t  uint32_t			timeoutMs			= 100,\n\t\t\t\t\t\t  uint8_t			outValue			= 0xFF )
 	{abstract}{method}+	BaseResult		setPrescaler	( uint32_t 			prescalerNumber	= 0 )
+}
+
 }
 
 @enduml
@@ -23,11 +27,13 @@ interface SpiMaster8BitBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для использования SPI в режиме мастера с разрядностью
  * пакета 8 бит.
  */
-class SpiMaster8BitBase {
+class SpiMaster8Bit {
 public:
 	/*!
 	 * Сбрасывает текущие настройки SPI и инициализирует его заново.
@@ -168,5 +174,7 @@ public:
 	 */
 	virtual BaseResult	setPrescaler	(	uint32_t prescalerNumber	=	0	)		= 0;
 };
+
+}
 
 #endif

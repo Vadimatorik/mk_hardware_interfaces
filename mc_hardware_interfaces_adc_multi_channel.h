@@ -2,13 +2,17 @@
 
 @startuml
 
-	interface AdcMultiChannelBase {
+namespace McHardwareInterfaces {
+
+	interface AdcMultiChannel {
 		{abstract}{method}+	BaseResult		reinit					( uint32_t		numberCfg = 0 )
 		{abstract}{method}+	BaseResult		startContinuousConversion	( void )
 		{abstract}{method}+	void			stopContinuousConversion	( void )
 		{abstract}{method}+	BaseResult		getMeasurement			( uint32_t		numberChannel,
 													\t\t\t\t\t\t\t\t  uint32_t&		returnedValue )
 	}
+
+}
 
 @enduml
 
@@ -20,11 +24,13 @@
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для использования нескольких каналов ADC
  * в режиме непрерывного преобразования.
  */
-class AdcMultiChannelBase {
+class AdcMultiChannel {
 public:
 	/*!
 	 * Сбрасывает текущие настройки ADC и инициализирует его заново.
@@ -59,5 +65,7 @@ public:
 																	uint32_t&		returnedValue	)	= 0;
 
 };
+
+}
 
 #endif

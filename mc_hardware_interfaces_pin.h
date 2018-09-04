@@ -2,7 +2,9 @@
 
 @startuml
 
-interface PinBase {
+namespace McHardwareInterfaces {
+
+interface Pin {
 	{abstract}{method}+	void	set		( void )
 	{abstract}{method}+	void	reset		( void )
 	{abstract}{method}+	void	toggle	( void )
@@ -10,6 +12,8 @@ interface PinBase {
 	{abstract}{method}+	void	set		( int		state )
 	{abstract}{method}+	void	set		( uint8_t	state )
 	{abstract}{method}+	bool	read		( void )
+}
+
 }
 
 @enduml
@@ -22,12 +26,14 @@ interface PinBase {
 
 #include <stdint.h>
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для управления одной линией ввода/вывода.
  * Вывод должен быть заранее настроен на выход или вход с нужными
  * параметрами.
  */
-class PinBase {
+class Pin {
 public:
 	/// Устанавливает вывод в логическую единицу.
 	virtual void	set				( void )					= 0;
@@ -55,5 +61,7 @@ public:
 	virtual bool	read			( void )					= 0;
 
 };
+
+}
 
 #endif

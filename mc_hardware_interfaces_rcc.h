@@ -2,9 +2,13 @@
 
 @startuml
 
-interface RccBase {
+namespace McHardwareInterfaces {
+
+interface Rcc {
 	{abstract}{method}+	RccResult	setCfg		( uint32_t		cfgNumber = 0 )
 	{abstract}{method}+	RccResult	getCfgNumber	( uint32_t&		returnCfgNumber )
+}
+
 }
 
 @enduml
@@ -16,6 +20,8 @@ interface RccBase {
 #ifdef __cplusplus
 
 #include <stdint.h>
+
+namespace McHardwareInterfaces {
 
 /// Варианты ответа на вызов метода setCfg класса RccBase.
 enum class RccResult {
@@ -33,7 +39,7 @@ enum class RccResult {
  * тактового сигнала аппаратных блоков
  * микроконтроллера.
  */
-class RccBase {
+class Rcc {
 public:
 	/*!
 	 * Сбрасывает текущие настройки RCC и инициализирует его заново
@@ -46,5 +52,7 @@ public:
 	virtual	RccResult	setCfg			(	uint32_t		cfgNumber = 0 )			= 0;
 	virtual	RccResult	getCfgNumber	(	uint32_t&		returnCfgNumber	)		= 0;
 };
+
+}
 
 #endif

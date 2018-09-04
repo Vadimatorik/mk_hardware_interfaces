@@ -2,11 +2,15 @@
 
 @startuml
 
-interface TimPwmOneChannelBase {
+namespace McHardwareInterfaces {
+
+interface TimPwmOneChannel {
 	{abstract}{method}+	BaseResult		reinit		( uint32_t	cfgNumber = 0 )
 	{abstract}{method}+	BaseResult		on		( void )
 	{abstract}{method}+	void			off		( void )
 	{abstract}{method}+	void			setDuty	( float	duty )
+}
+
 }
 
 @enduml
@@ -19,10 +23,12 @@ interface TimPwmOneChannelBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для генерации PWM сигнала на одном канале аппаратного таймера.
  */
-class TimPwmOneChannelBase {
+class TimPwmOneChannel {
 public:
 	/*!
 	 * Сбрасывает текущие настройки таймера и инициализирует его заново.
@@ -57,5 +63,7 @@ public:
 	virtual void			setDuty					( float duty )									= 0;
 
 };
+
+}
 
 #endif

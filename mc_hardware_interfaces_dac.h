@@ -2,9 +2,13 @@
 
 @startuml
 
-interface DacBase {
+namespace McHardwareInterfaces {
+
+interface Dac {
 	{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
 	{abstract}{method}+	BaseResult		setValue	( uint32_t		channel,\n\t\t\t\t\t  uint32_t		value )
+}
+
 }
 
 @enduml
@@ -17,10 +21,12 @@ interface DacBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для использования каналов DAC.
  */
-class DacBase {
+class Dac {
 public:
 	/*!
 	 * Сбрасывает текущие настройки DAC и инициализирует его заново.
@@ -50,5 +56,7 @@ public:
 	virtual BaseResult	setValue		(	uint32_t		channel,
 											uint32_t		value		)				= 0;
 };
+
+}
 
 #endif

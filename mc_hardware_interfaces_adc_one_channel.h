@@ -2,11 +2,15 @@
 
 @startuml
 
-interface AdcOneChannelBase {
+namespace McHardwareInterfaces {
+
+interface AdcOneChannel {
 	{abstract}{method}+	BaseResult		reinit						( uint32_t cfgNumber = 0 )
 	{abstract}{method}+	BaseResult		startContinuousConversion		( void )
 	{abstract}{method}+	void			stopContinuousConversion		( void )
 	{abstract}{method}+	uint32_t		getMeasurement				( void )
+}
+
 }
 
 @enduml
@@ -19,11 +23,13 @@ interface AdcOneChannelBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для использования одного канала ADC
  * в режиме непрерывного преобразования.
  */
-class AdcOneChannelBase {
+class AdcOneChannel {
 public:
 	/*!
 	 * Сбрасывает текущие настройки ADC и инициализирует его заново.
@@ -57,5 +63,7 @@ public:
 	virtual uint32_t		getMeasurement						( void )					= 0;
 
 };
+
+}
 
 #endif

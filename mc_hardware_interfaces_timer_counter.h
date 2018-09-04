@@ -2,11 +2,15 @@
 
 @startuml
 
-interface TimCounterBase {
+namespace McHardwareInterfaces {
+
+interface TimCounter {
 	{abstract}{method}+	BaseResult		reinit			( uint32_t	cfgNumber = 0 )
 	{abstract}{method}+	BaseResult		on			( void )
 	{abstract}{method}+	void			off			( void )
 	{abstract}{method}+	uint32_t		getCounter		( void )
+}
+
 }
 
 @enduml
@@ -19,11 +23,13 @@ interface TimCounterBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для запуска таймера в
  * режим счета вверх до заданного значения.
  */
-class TimCounterBase {
+class TimCounter {
 public:
 	/*!
 	 * Сбрасывает текущие настройки таймера и инициализирует его заново.
@@ -54,5 +60,7 @@ public:
 	/// Возвращает текущее значение таймера.
 	virtual	uint32_t		getCounter				( void )										= 0;
 };
+
+}
 
 #endif

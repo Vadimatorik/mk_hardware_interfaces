@@ -2,11 +2,15 @@
 
 @startuml
 
-interface Port8bitBase {
+namespace McHardwareInterfaces {
+
+interface Port8bit {
 	{abstract}{method}+	void		write		( uint8_t	data )
 	{abstract}{method}+	void		reset		( void )
 	{abstract}{method}+	void		toggle	( void )
 	{abstract}{method}+	uint8_t	read		( void )
+}
+
 }
 
 @enduml
@@ -19,12 +23,14 @@ interface Port8bitBase {
 
 #include <stdint.h>
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для управления одной линией ввода/вывода.
  * Вывод должен быть заранее настроен на выход или вход с нужными
  * параметрами.
  */
-class Port8bitBase {
+class Port8bit {
 public:
 	/// Записывает данные в порт.
 	virtual void	write			(	uint8_t		data	)	= 0;
@@ -41,5 +47,7 @@ public:
 	virtual uint8_t	read			(	void	)				= 0;
 
 };
+
+}
 
 #endif

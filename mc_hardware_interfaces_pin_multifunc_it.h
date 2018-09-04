@@ -2,9 +2,13 @@
 
 @startuml
 
-interface PinMultifuncItBase {
+namespace McHardwareInterfaces {
+
+interface PinMultifuncIt {
 	{abstract}{method}+	bool	checkIt	( void )
 	{abstract}{method}+	void	clearIt	( void )
+}
+
 }
 
 @enduml
@@ -17,11 +21,13 @@ interface PinMultifuncItBase {
 
 #include <stdint.h>
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для работы с прерываниями,
  * возникающими на линии в режиме работы на вход.
  */
-class PinMultifuncItBase {
+class PinMultifuncIt {
 public:
 	/*!
 	 * Возвращает флаг зафиксированного прерывания на выводе.
@@ -33,5 +39,7 @@ public:
 	/// Сбрасывает флаг зафиксированного прерывания на выводе.
 	virtual void	clearIt			( void )					= 0;
 };
+
+}
 
 #endif

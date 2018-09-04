@@ -2,13 +2,17 @@
 
 @startuml
 
-interface I2cMasterBase {
+namespace McHardwareInterfaces {
+
+interface I2cMaster {
 	{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
 	{abstract}{method}+	BaseResult		on		( void )
 	{abstract}{method}+	void			off		( void )
 	{abstract}{method}+	BaseResult		read		( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
 	{abstract}{method}+	BaseResult		readDma	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
 	{abstract}{method}+	BaseResult		writeByte	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		writeAddress )
+}
+
 }
 
 @enduml
@@ -21,11 +25,13 @@ interface I2cMasterBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс переназначен для работы с I2C
  * в режиме ведущего устройства на шине.
  */
-class I2cMasterBase {
+class I2cMaster {
 public:
 	/*!
 	 * Сбрасывает текущие настройки I2C и инициализирует его заново.
@@ -68,5 +74,7 @@ public:
 										  uint8_t*		rx,
 										  uint8_t		writeAddress )						= 0;
 };
+
+}
 
 #endif

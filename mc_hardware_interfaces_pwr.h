@@ -2,10 +2,14 @@
 
 @startuml
 
-interface PwrBase {
+namespace McHardwareInterfaces {
+
+interface Pwr {
 	{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
 	{abstract}{method}+	void			pvdEnable		( void )
 	{abstract}{method}+	void			pvdDisable		( void )
+}
+
 }
 
 @enduml
@@ -18,7 +22,9 @@ interface PwrBase {
 
 #include "mc_hardware_interfaces_base.h"
 
-class PwrBase {
+namespace McHardwareInterfaces {
+
+class Pwr {
 public:
 	/*!
 	 * Сбрасывает текущие настройки Pwr и инициализирует его заново
@@ -41,5 +47,7 @@ public:
 	 */
 	virtual	void		pvdDisable		( void )								= 0;
 };
+
+}
 
 #endif

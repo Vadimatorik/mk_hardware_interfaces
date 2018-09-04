@@ -2,8 +2,12 @@
 
 @startuml
 
-interface GlobalPortBase {
+namespace McHardwareInterfaces {
+
+interface GlobalPort {
 	{abstract}{method}+	BaseResult		reinitAllPorts	( void )
+}
+
 }
 
 @enduml
@@ -16,11 +20,13 @@ interface GlobalPortBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для работы со всеми
  * используемыми в проекте выводами одновременно.
  */
-class GlobalPortBase {
+class GlobalPort {
 public:
 	/*!
 	 * Сбрасывает настройки всех выводов,
@@ -35,5 +41,7 @@ public:
 	 */
 	virtual BaseResult		reinitAllPorts	( void )					= 0;
 };
+
+}
 
 #endif

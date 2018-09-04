@@ -2,10 +2,14 @@
 
 @startuml
 
-interface TimCompOneChannelBase {
+namespace McHardwareInterfaces {
+
+interface TimCompOneChannel {
 	{abstract}{method}+	BaseResult		reinit		( uint32_t	cfgNumber = 0 )
 	{abstract}{method}+	BaseResult		on		( void )
 	{abstract}{method}+	void			off		( void )
+}
+
 }
 
 @enduml
@@ -18,11 +22,13 @@ interface TimCompOneChannelBase {
 
 #include "mc_hardware_interfaces_base.h"
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для для генерации прямоугольных
  * импульсов на одном канале средствами аппаратного таймера.
  */
-class TimCompOneChannelBase {
+class TimCompOneChannel {
 public:
 	/*!
 	 * Сбрасывает текущие настройки таймера и инициализирует его заново.
@@ -51,5 +57,7 @@ public:
 	virtual	void			off						( void )										= 0;
 
 };
+
+}
 
 #endif

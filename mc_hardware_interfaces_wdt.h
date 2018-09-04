@@ -8,18 +8,23 @@
 
 @startuml
 
-interface WdtBase {
+namespace McHardwareInterfaces {
+
+interface Wdt {
 	{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
 	{abstract}{method}+	void			reset			( void )
 	{abstract}{method}+	void			resetService	( void )
+}
+
 }
 
 @enduml
 
 */
 
+namespace McHardwareInterfaces {
 
-class WdtBase {
+class Wdt {
 public:
 	/*!
 	 * Сбрасывает текущие настройки WDT и инициализирует его заново.
@@ -44,5 +49,7 @@ public:
 	virtual	void	resetService	( void )										= 0;
 
 };
+
+}
 
 #endif

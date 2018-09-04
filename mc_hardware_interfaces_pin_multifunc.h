@@ -2,8 +2,12 @@
 
 @startuml
 
-interface PinMultifuncBase {
+namespace McHardwareInterfaces {
+
+interface PinMultifunc {
 	{abstract}{method}+	bool	reinit		( uint32_t	cfgNumber = 0 )
+}
+
 }
 
 @enduml
@@ -16,11 +20,13 @@ interface PinMultifuncBase {
 
 #include <stdint.h>
 
+namespace McHardwareInterfaces {
+
 /*!
  * Класс предназначен для смены назначение вывода
  * в процессе выполнения программы.
  */
-class PinMultifuncBase {
+class PinMultifunc {
 public:
 	/*!
 	 * Изменяет назначение вывода на согласно требуемому режиму.
@@ -32,5 +38,7 @@ public:
 	virtual bool	reinit			( uint32_t cfgNumber = 0 )		= 0;
 
 };
+
+}
 
 #endif
