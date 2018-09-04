@@ -4,6 +4,8 @@
 
 #include <stdint.h>
 
+namespace McHardwareInterfaces {
+
 /*!
  * Стандартные ответы от методов
  * интерфейсов микроконтроллера.
@@ -23,6 +25,8 @@ enum class BaseResult {
  * была произведена не удачно.
  */
 #define		checkResult( baseResultVariable )											\
-			if ( baseResultVariable != BaseResult::ok ) return baseResultVariable;
+			if ( baseResultVariable != McHardwareInterfaces::BaseResult::ok ) return baseResultVariable;
+
+}
 
 #endif
