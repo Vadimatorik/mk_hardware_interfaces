@@ -24,7 +24,7 @@ enum class BaseResult {
  * действий и выйти, если операция с интерфейсом
  * была произведена не удачно.
  */
-#define		checkResult( baseResultVariable )											\
+#define		checkResult(baseResultVariable)												\
 			if ( baseResultVariable != McHardwareInterfaces::BaseResult::ok ) return baseResultVariable;
 
 }
