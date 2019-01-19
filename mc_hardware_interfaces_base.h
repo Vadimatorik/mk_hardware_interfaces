@@ -11,12 +11,12 @@ namespace McHardwareInterfaces {
  * интерфейсов микроконтроллера.
  */
 enum class BaseResult {
-	ok				=	0,			/// Операция успешна произведена.
-	errTimeOut		=	1,			/// Был произведён выход по истечении времени ожидания.
-	errLength		=	2,			/// Попытка передать/принять пакет 0-й длины.
-	errInit			=	3,			/// Ошибка инициализации/модуль не был ранее инициализирован.
-	errNotData		=	4,			/// Нет запрашиваемых данных.
-	errInputValue	=	5			/// Входящее значение ошибочно.
+    ok = 0,            /// Операция успешна произведена.
+    errTimeOut = 1,            /// Был произведён выход по истечении времени ожидания.
+    errLength = 2,            /// Попытка передать/принять пакет 0-й длины.
+    errInit = 3,            /// Ошибка инициализации/модуль не был ранее инициализирован.
+    errNotData = 4,            /// Нет запрашиваемых данных.
+    errInputValue = 5            /// Входящее значение ошибочно.
 };
 
 /*!
@@ -24,9 +24,9 @@ enum class BaseResult {
  * действий и выйти, если операция с интерфейсом
  * была произведена не удачно.
  */
-#define		checkResult(baseResultVariable)												\
-			if ( baseResultVariable != McHardwareInterfaces::BaseResult::ok ) return baseResultVariable;
-
+#define        checkResult(baseResultVariable)                                                \
+            if ( baseResultVariable != McHardwareInterfaces::BaseResult::ok ) return baseResultVariable;
+    
 }
 
 #endif

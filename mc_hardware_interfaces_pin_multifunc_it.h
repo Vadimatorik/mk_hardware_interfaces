@@ -29,15 +29,15 @@ namespace McHardwareInterfaces {
  */
 class PinMultifuncIt {
 public:
-	/*!
-	 * Возвращает флаг зафиксированного прерывания на выводе.
-	 * \return		{	true	-	прерывание было зафиксировано.
-	 *					false	-	в противном случае.	}
-	 */
-	virtual bool	checkIt			( void )					= 0;
-
-	/// Сбрасывает флаг зафиксированного прерывания на выводе.
-	virtual void	clearIt			( void )					= 0;
+    /*!
+     * Возвращает флаг зафиксированного прерывания на выводе.
+     * \return		{	true	-	прерывание было зафиксировано.
+     *					false	-	в противном случае.	}
+     */
+    virtual bool checkIt (void) = 0;
+    
+    /// Сбрасывает флаг зафиксированного прерывания на выводе.
+    virtual void clearIt (void) = 0;
 };
 
 }
