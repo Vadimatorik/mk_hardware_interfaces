@@ -23,7 +23,7 @@ interface TimCounter {
 
 #include "mc_hardware_interfaces_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для запуска таймера в
@@ -44,7 +44,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
      */
-    virtual BaseResult reinit (uint32_t cfgNumber = 0) = 0;
+    virtual res reinit (uint32_t cfgNumber = 0) = 0;
     
     /*!
      * Запускает таймера.
@@ -52,7 +52,7 @@ public:
      * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
      *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
      */
-    virtual BaseResult on (void) = 0;
+    virtual res on (void) = 0;
     
     /// Останавливает таймер.
     virtual void off (void) = 0;

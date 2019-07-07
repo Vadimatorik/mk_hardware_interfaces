@@ -22,7 +22,7 @@ interface Pwr {
 
 #include "mc_hardware_interfaces_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 class Pwr {
 public:
@@ -35,7 +35,7 @@ public:
      * \return		{	BASE_RESULT::OK					-	инициализация прошла успешно.
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      */
-    virtual BaseResult reinit (uint32_t cfgNumber = 0) = 0;
+    virtual res reinit (uint32_t cfgNumber = 0) = 0;
     
     /*!
      * Запускает контроль за напряжением питания согласно конфигурации.

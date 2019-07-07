@@ -21,7 +21,7 @@ interface Rcc {
 
 #include <stdint.h>
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /// Варианты ответа на вызов метода setCfg класса RccBase.
 enum class RccResult {

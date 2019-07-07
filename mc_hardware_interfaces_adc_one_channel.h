@@ -23,7 +23,7 @@ interface AdcOneChannel {
 
 #include "mc_hardware_interfaces_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для использования одного канала ADC
@@ -44,7 +44,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
      */
-    virtual BaseResult reinit (uint32_t numberCfg = 0) = 0;
+    virtual res reinit (uint32_t numberCfg = 0) = 0;
     
     /*!
      * Инициирует непрерывное преобразование на канале.
@@ -53,7 +53,7 @@ public:
      *												была успешно начата.
      *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
      */
-    virtual BaseResult startContinuousConversion (void) = 0;
+    virtual res startContinuousConversion (void) = 0;
     
     /// Останавливает непрерывное преобразование на канале.
     virtual void stopContinuousConversion (void) = 0;

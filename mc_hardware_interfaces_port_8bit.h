@@ -23,7 +23,7 @@ interface Port8bit {
 
 #include <stdint.h>
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для управления одной линией ввода/вывода.

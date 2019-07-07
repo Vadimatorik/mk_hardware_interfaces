@@ -27,7 +27,7 @@ interface SpiMaster8Bit {
 
 #include "mc_hardware_interfaces_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для использования SPI в режиме мастера с разрядностью
@@ -46,7 +46,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
      */
-    virtual BaseResult reinit (uint32_t cfgNumber = 0) = 0;
+    virtual res reinit (uint32_t cfgNumber = 0) = 0;
     
     /*!
      * Запускает SPI.
@@ -54,7 +54,7 @@ public:
      * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
      *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
      */
-    virtual BaseResult on (void) = 0;
+    virtual res on (void) = 0;
     
     /// Останавливает SPI.
     virtual void off (void) = 0;
@@ -80,7 +80,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr.
      *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
      */
-    virtual BaseResult tx (const uint8_t *const txArray,
+    virtual res tx (const uint8_t *const txArray,
                            uint16_t length = 1,
                            uint32_t timeoutMs = 100) = 0;
     
@@ -110,7 +110,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr или rxArray == nullptr.
      *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
      */
-    virtual BaseResult tx (const uint8_t *const txArray,
+    virtual res tx (const uint8_t *const txArray,
                            uint8_t *rxArray,
                            uint16_t length = 1,
                            uint32_t timeoutMs = 100) = 0;
@@ -134,7 +134,7 @@ public:
      *					BASE_RESULT::LENGTH_ERROR		-	length вне диапазона.
      *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
      */
-    virtual BaseResult txOneItem (uint8_t txByte,
+    virtual res txOneItem (uint8_t txByte,
                                   uint16_t count = 1,
                                   uint32_t timeoutMs = 100) = 0;
     
@@ -159,7 +159,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr или rxArray == nullptr.
      *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
      */
-    virtual BaseResult rx (uint8_t *rxArray,
+    virtual res rx (uint8_t *rxArray,
                            uint16_t length = 1,
                            uint32_t timeoutMs = 100,
                            uint8_t outValue = 0xFF) = 0;
@@ -172,7 +172,7 @@ public:
      *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.	}
      */
-    virtual BaseResult setPrescaler (uint32_t prescalerNumber = 0) = 0;
+    virtual res setPrescaler (uint32_t prescalerNumber = 0) = 0;
 };
 
 }

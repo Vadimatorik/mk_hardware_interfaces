@@ -25,12 +25,12 @@ interface Uart {
 
 #include "mc_hardware_interfaces_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для приема/передачи через аппаратный uart/usart.
  */
-class Uart {
+class uart {
 public:
     /*!
      * Сбрасывает текущие настройки UART/USART и инициализирует его заново.
@@ -45,7 +45,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      *					BASE_RESULT::ERROR_INIT			-	ошибка инициализации.
      */
-    virtual BaseResult reinit (uint32_t cfgNumber = 0) = 0;
+    virtual res reinit (uint32_t cfgNumber = 0) = 0;
     
     /*!
      * Запускает UART/USART.
@@ -53,7 +53,7 @@ public:
      * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
      *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.	}
      */
-    virtual BaseResult on (void) = 0;
+    virtual res on (void) = 0;
     
     /// Останавливает UART/USART.
     virtual void off (void) = 0;
@@ -77,7 +77,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	txArray == nullptr.
      *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
      */
-    virtual BaseResult tx (const uint8_t *const txArray,
+    virtual res tx (const uint8_t *const txArray,
                            uint16_t length = 1,
                            uint32_t timeoutMs = 100) = 0;
     
@@ -90,7 +90,7 @@ public:
      *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.
      *					BASE_RESULT::TIME_OUT			-	время ожидания истекло.	}
      */
-    virtual BaseResult getByte (uint8_t *retrunData,
+    virtual res get_byte (uint8_t *retrunData,
                                 uint32_t timeoutMs = 100) = 0;
     
     /*!
@@ -102,7 +102,7 @@ public:
      *					BASE_RESULT::ERROR_INIT			-	UART/USART не был инициализирован ранее.
      *					BASE_RESULT::NOT_DATA			-	байт отсутствует	}
      */
-    virtual BaseResult getByteWitchout (uint8_t *retrunData) = 0;
+    virtual res get_byte (uint8_t *retrunData) = 0;
     
 };
 

@@ -20,7 +20,7 @@ interface PinMultifunc {
 
 #include <stdint.h>
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для смены назначение вывода

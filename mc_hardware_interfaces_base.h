@@ -4,13 +4,13 @@
 
 #include <stdint.h>
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Стандартные ответы от методов
  * интерфейсов микроконтроллера.
  */
-enum class BaseResult {
+enum class res {
     ok = 0,            /// Операция успешна произведена.
     errTimeOut = 1,            /// Был произведён выход по истечении времени ожидания.
     errLength = 2,            /// Попытка передать/принять пакет 0-й длины.

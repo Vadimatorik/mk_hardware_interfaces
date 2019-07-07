@@ -20,7 +20,7 @@ interface PortGlobal {
 
 #include "mc_hardware_interfaces_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для работы со всеми
@@ -39,7 +39,7 @@ public:
      * \return		{	BASE_RESULT::OK			-	инициализация прошла успешно.
      *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
      */
-    virtual BaseResult reinitAllPorts (void) = 0;
+    virtual res reinitAllPorts (void) = 0;
 };
 
 }

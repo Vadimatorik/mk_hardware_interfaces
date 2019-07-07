@@ -21,7 +21,7 @@ interface PinMultifuncIt {
 
 #include <stdint.h>
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для работы с прерываниями,
