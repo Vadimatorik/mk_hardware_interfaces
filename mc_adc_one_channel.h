@@ -2,15 +2,14 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
-	interface AdcMultiChannel {
-		{abstract}{method}+	BaseResult		reinit					( uint32_t		numberCfg = 0 )
-		{abstract}{method}+	BaseResult		startContinuousConversion	( void )
-		{abstract}{method}+	void			stopContinuousConversion	( void )
-		{abstract}{method}+	BaseResult		getMeasurement			( uint32_t		numberChannel,
-													\t\t\t\t\t\t\t\t  uint32_t&		returnedValue )
-	}
+interface AdcOneChannel {
+	{abstract}{method}+	res		reinit						( uint32_t cfgNumber = 0 )
+	{abstract}{method}+	res		startContinuousConversion		( void )
+	{abstract}{method}+	void			stopContinuousConversion		( void )
+	{abstract}{method}+	uint32_t		getMeasurement				( void )
+}
 
 }
 
@@ -22,15 +21,15 @@ namespace McHardwareInterfaces {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
- * Класс предназначен для использования нескольких каналов ADC
+ * Класс предназначен для использования одного канала ADC
  * в режиме непрерывного преобразования.
  */
-class AdcMultiChannel {
+class AdcOneChannel {
 public:
     /*!
      * Сбрасывает текущие настройки ADC и инициализирует его заново.
@@ -45,7 +44,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
      */
-    virtual BaseResult reinit (uint32_t numberCfg = 0) = 0;
+    virtual res reinit (uint32_t numberCfg = 0) = 0;
     
     /*!
      * Инициирует непрерывное преобразование на канале.
@@ -54,15 +53,14 @@ public:
      *												была успешно начата.
      *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
      */
-    virtual BaseResult startContinuousConversion (void) = 0;
+    virtual res startContinuousConversion (void) = 0;
     
     /// Останавливает непрерывное преобразование на канале.
     virtual void stopContinuousConversion (void) = 0;
     
     /// Возвращает результат измерения.
     /// \return		{	Результат измерения напряжения на канале.	}
-    virtual BaseResult getMeasurement (uint32_t numberChannel,
-                                       uint32_t &returnedValue) = 0;
+    virtual uint32_t getMeasurement (void) = 0;
     
 };
 

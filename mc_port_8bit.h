@@ -2,7 +2,7 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface Port8bit {
 	{abstract}{method}+	void		write		( uint8_t	data )

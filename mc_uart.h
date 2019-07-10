@@ -2,15 +2,15 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface Uart {
-	{abstract}{method}+	BaseResult		reinit				( uint32_t			cfgNumber		= 0 )
-	{abstract}{method}+	BaseResult		on				( void )
+	{abstract}{method}+	res		reinit				( uint32_t			cfgNumber		= 0 )
+	{abstract}{method}+	res		on				( void )
 	{abstract}{method}+	void			off				( void )
-	{abstract}{method}+	BaseResult		tx				( const uint8_t*		const txArray,\n\t\t\t\t\t\t\t  uint16_t			length		= 1,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
-	{abstract}{method}+	BaseResult		getByte			( uint8_t*			retrunData,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
-	{abstract}{method}+	BaseResult		getByteWitchout		( uint8_t* 			retrunData )
+	{abstract}{method}+	res		tx				( const uint8_t*		const txArray,\n\t\t\t\t\t\t\t  uint16_t			length		= 1,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
+	{abstract}{method}+	res		getByte			( uint8_t*			retrunData,\n\t\t\t\t\t\t\t  uint32_t			timeoutMs		= 100 )
+	{abstract}{method}+	res		getByteWitchout		( uint8_t* 			retrunData )
 }
 
 }
@@ -23,7 +23,7 @@ interface Uart {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 namespace mc_interfaces {
 

@@ -2,7 +2,7 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface Rcc {
 	{abstract}{method}+	RccResult	setCfg		( uint32_t		cfgNumber = 0 )
@@ -39,7 +39,7 @@ enum class RccResult {
  * тактового сигнала аппаратных блоков
  * микроконтроллера.
  */
-class Rcc {
+class clk {
 public:
     /*!
      * Сбрасывает текущие настройки RCC и инициализирует его заново

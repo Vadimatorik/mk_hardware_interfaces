@@ -25,7 +25,7 @@ enum class res {
  * была произведена не удачно.
  */
 #define        checkResult(baseResultVariable)                                                \
-            if ( baseResultVariable != McHardwareInterfaces::BaseResult::ok ) return baseResultVariable;
+            if ( baseResultVariable != mc_interfaces::res::ok ) return baseResultVariable;
     
 }
 

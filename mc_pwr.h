@@ -2,10 +2,10 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface Pwr {
-	{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
+	{abstract}{method}+	res		reinit			( uint32_t cfgNumber = 0 )
 	{abstract}{method}+	void			pvdEnable		( void )
 	{abstract}{method}+	void			pvdDisable		( void )
 }
@@ -20,7 +20,7 @@ interface Pwr {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 namespace mc_interfaces {
 

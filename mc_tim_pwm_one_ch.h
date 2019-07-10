@@ -2,11 +2,11 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface TimPwmOneChannel {
-	{abstract}{method}+	BaseResult		reinit		( uint32_t	cfgNumber = 0 )
-	{abstract}{method}+	BaseResult		on		( void )
+	{abstract}{method}+	res		reinit		( uint32_t	cfgNumber = 0 )
+	{abstract}{method}+	res		on		( void )
 	{abstract}{method}+	void			off		( void )
 	{abstract}{method}+	void			setDuty	( float	duty )
 }
@@ -21,7 +21,7 @@ interface TimPwmOneChannel {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 namespace mc_interfaces {
 

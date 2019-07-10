@@ -2,7 +2,7 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface PinMultifunc {
 	{abstract}{method}+	bool	reinit		( uint32_t	cfgNumber = 0 )

@@ -2,15 +2,15 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface I2cMaster {
-	{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
-	{abstract}{method}+	BaseResult		on		( void )
+	{abstract}{method}+	res		reinit		( uint32_t		numberCfg = 0 )
+	{abstract}{method}+	res		on		( void )
 	{abstract}{method}+	void			off		( void )
-	{abstract}{method}+	BaseResult		read		( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
-	{abstract}{method}+	BaseResult		readDma	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
-	{abstract}{method}+	BaseResult		writeByte	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		writeAddress )
+	{abstract}{method}+	res		read		( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
+	{abstract}{method}+	res		readDma	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		readAddress,\n\t\t\t\t\t  uint16_t		countByte )
+	{abstract}{method}+	res		writeByte	( uint8_t		slaveDeviceAddress,\n\t\t\t\t\t  uint8_t*		rx,\n\t\t\t\t\t  uint8_t		writeAddress )
 }
 
 }
@@ -23,9 +23,9 @@ interface I2cMaster {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс переназначен для работы с I2C
@@ -46,7 +46,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      *					BASE_RESULT::ERROR_INIT	-	в противном случае.	}
      */
-    virtual BaseResult reinit (uint32_t numberCfg = 0) = 0;
+    virtual res reinit (uint32_t numberCfg = 0) = 0;
     
     /*!
      * Запускает I2C.
@@ -54,23 +54,23 @@ public:
      * \return		{	BASE_RESULT::OK					-	передача прошла успешно.
      *					BASE_RESULT::ERROR_INIT			-	SPI не был инициализирован ранее.	}
      */
-    virtual BaseResult on (void) = 0;
+    virtual res on (void) = 0;
     
     /// Останавливает I2C.
     virtual void off (void) = 0;
     
     
-    virtual BaseResult read (uint8_t slaveDeviceAddress,
+    virtual res read (uint8_t slaveDeviceAddress,
                              uint8_t *rx,
                              uint8_t readAddress,
                              uint16_t countByte) = 0;
     
-    virtual BaseResult readDma (uint8_t slaveDeviceAddress,
+    virtual res readDma (uint8_t slaveDeviceAddress,
                                 uint8_t *rx,
                                 uint8_t readAddress,
                                 uint16_t countByte) = 0;
     
-    virtual BaseResult writeByte (uint8_t slaveDeviceAddress,
+    virtual res writeByte (uint8_t slaveDeviceAddress,
                                   uint8_t *rx,
                                   uint8_t writeAddress) = 0;
 };

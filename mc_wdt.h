@@ -2,16 +2,16 @@
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 /*
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface Wdt {
-	{abstract}{method}+	BaseResult		reinit			( uint32_t cfgNumber = 0 )
+	{abstract}{method}+	res		reinit			( uint32_t cfgNumber = 0 )
 	{abstract}{method}+	void			reset			( void )
 	{abstract}{method}+	void			resetService	( void )
 }

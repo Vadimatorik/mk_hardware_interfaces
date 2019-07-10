@@ -2,14 +2,12 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
-interface TimInterrupt {
-	{abstract}{method}+	BaseResult		reinit				( uint32_t	cfgNumber = 0 )
-	{abstract}{method}+	BaseResult		setState			( bool	state )
-	{abstract}{method}+	BaseResult		on				( void )
-	{abstract}{method}+	void			off				( void )
-	{abstract}{method}+	void			clearInterruptFlag	( void )
+interface TimCompOneChannel {
+	{abstract}{method}+	res		reinit		( uint32_t	cfgNumber = 0 )
+	{abstract}{method}+	res		on		( void )
+	{abstract}{method}+	void			off		( void )
 }
 
 }
@@ -22,14 +20,15 @@ interface TimInterrupt {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 namespace mc_interfaces {
 
 /*!
- * Класс предназначен для генерации прерываний средствами аппаратного таймера.
+ * Класс предназначен для для генерации прямоугольных
+ * импульсов на одном канале средствами аппаратного таймера.
  */
-class TimInterrupt {
+class TimCompOneChannel {
 public:
     /*!
      * Сбрасывает текущие настройки таймера и инициализирует его заново.
@@ -46,8 +45,6 @@ public:
      */
     virtual res reinit (uint32_t cfgNumber = 0) = 0;
     
-    virtual res setState (bool state) = 0;
-    
     /*!
      * Запускает таймера.
      *
@@ -58,12 +55,6 @@ public:
     
     /// Останавливает таймер.
     virtual void off (void) = 0;
-    
-    /*
-     * Сбрасывает флаг прерывания и совершает все необходимые
-     * действия чтобы можно было успешно выйти из прерывания.
-     */
-    virtual void clearInterruptFlag (void) = 0;
     
 };
 

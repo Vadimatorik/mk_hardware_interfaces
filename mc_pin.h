@@ -2,7 +2,7 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface Pin {
 	{abstract}{method}+	void	set		( void )

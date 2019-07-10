@@ -2,11 +2,11 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface Dac {
-	{abstract}{method}+	BaseResult		reinit		( uint32_t		numberCfg = 0 )
-	{abstract}{method}+	BaseResult		setValue	( uint32_t		channel,\n\t\t\t\t\t  uint32_t		value )
+	{abstract}{method}+	res		reinit		( uint32_t		numberCfg = 0 )
+	{abstract}{method}+	res		setValue	( uint32_t		channel,\n\t\t\t\t\t  uint32_t		value )
 }
 
 }
@@ -19,9 +19,9 @@ interface Dac {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 /*!
  * Класс предназначен для использования каналов DAC.
@@ -42,7 +42,7 @@ public:
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	несуществующий номер конфигурации.
      *					BASE_RESULT::ERROR_INIT			-	в противном случае.	}
      */
-    virtual BaseResult reinit (uint32_t cfgNumber = 0) = 0;
+    virtual res reinit (uint32_t cfgNumber = 0) = 0;
     
     /*!
      * Выставляет заданное значение на канал.
@@ -53,7 +53,7 @@ public:
      *					BASE_RESULT::ERROR_INIT			-	DAC не был инициализирован ранее.
      *					BASE_RESULT::INPUT_VALUE_ERROR	-	ch или value вне диапазона. }
      */
-    virtual BaseResult setValue (uint32_t channel,
+    virtual res setValue (uint32_t channel,
                                  uint32_t value) = 0;
 };
 

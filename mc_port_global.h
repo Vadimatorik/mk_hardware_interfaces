@@ -2,10 +2,10 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface PortGlobal {
-	{abstract}{method}+	BaseResult		reinitAllPorts	( void )
+	{abstract}{method}+	res		reinitAllPorts	( void )
 }
 
 }
@@ -18,7 +18,7 @@ interface PortGlobal {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 namespace mc_interfaces {
 

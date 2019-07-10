@@ -2,7 +2,7 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface PinMultifuncIt {
 	{abstract}{method}+	bool	checkIt	( void )

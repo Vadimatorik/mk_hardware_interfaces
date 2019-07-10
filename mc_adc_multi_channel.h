@@ -2,14 +2,15 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
-interface AdcOneChannel {
-	{abstract}{method}+	BaseResult		reinit						( uint32_t cfgNumber = 0 )
-	{abstract}{method}+	BaseResult		startContinuousConversion		( void )
-	{abstract}{method}+	void			stopContinuousConversion		( void )
-	{abstract}{method}+	uint32_t		getMeasurement				( void )
-}
+	interface AdcMultiChannel {
+		{abstract}{method}+	res		reinit					( uint32_t		numberCfg = 0 )
+		{abstract}{method}+	res		startContinuousConversion	( void )
+		{abstract}{method}+	void			stopContinuousConversion	( void )
+		{abstract}{method}+	res		getMeasurement			( uint32_t		numberChannel,
+													\t\t\t\t\t\t\t\t  uint32_t&		returnedValue )
+	}
 
 }
 
@@ -21,15 +22,15 @@ interface AdcOneChannel {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 namespace mc_interfaces {
 
 /*!
- * Класс предназначен для использования одного канала ADC
+ * Класс предназначен для использования нескольких каналов ADC
  * в режиме непрерывного преобразования.
  */
-class AdcOneChannel {
+class AdcMultiChannel {
 public:
     /*!
      * Сбрасывает текущие настройки ADC и инициализирует его заново.
@@ -60,7 +61,8 @@ public:
     
     /// Возвращает результат измерения.
     /// \return		{	Результат измерения напряжения на канале.	}
-    virtual uint32_t getMeasurement (void) = 0;
+    virtual res getMeasurement (uint32_t numberChannel,
+                                       uint32_t &returnedValue) = 0;
     
 };
 

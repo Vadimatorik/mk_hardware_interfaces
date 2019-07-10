@@ -2,11 +2,11 @@
 
 @startuml
 
-namespace McHardwareInterfaces {
+namespace mc_interfaces {
 
 interface TimCounter {
-	{abstract}{method}+	BaseResult		reinit			( uint32_t	cfgNumber = 0 )
-	{abstract}{method}+	BaseResult		on			( void )
+	{abstract}{method}+	res		reinit			( uint32_t	cfgNumber = 0 )
+	{abstract}{method}+	res		on			( void )
 	{abstract}{method}+	void			off			( void )
 	{abstract}{method}+	uint32_t		getCounter		( void )
 }
@@ -21,7 +21,7 @@ interface TimCounter {
 
 #ifdef __cplusplus
 
-#include "mc_hardware_interfaces_base.h"
+#include "mc_base.h"
 
 namespace mc_interfaces {
 
